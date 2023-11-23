@@ -1,0 +1,39 @@
+@import '~bootstrap/scss/bootstrap';
+
+.pagebreak {
+    clear: both;
+    page-break-after: always;
+}
+
+#skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#name {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#education {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: left;
+    align-content: left;
+    position: relative;
+    bottom: 0;
+}
+
+#contact {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+

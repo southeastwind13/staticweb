@@ -135,12 +135,8 @@ section {
     text-align: center;
 }
 
-.text-justify{
-    text-align: justify;
-}
-
 .text-header2{
-    text-align: center;
+    text-align: left;
     padding-left: 5%;
     padding-right: 5%;
 }

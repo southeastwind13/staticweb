@@ -126,6 +126,11 @@ section {
     height: 200px; 
 }
 
+/* My CSS */
+.header{
+    color: #fe4d29;
+}
+
 .text-header{
     position:absolute;
     z-index: 1;
@@ -136,7 +141,7 @@ section {
     transform: translate(-50%, -50%);
     font-size: calc(1.525rem + 3.3vw);
 
-    width: 75%;
+    width: 60%;
     height: 200px;
     text-align: center;
     vertical-align: middle;

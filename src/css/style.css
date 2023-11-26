@@ -163,9 +163,10 @@ section {
 
 .image-about{
     border-top-right-radius: 50%;
-    border-bottom-right-radius: 10%;
+    border-bottom-right-radius: 20%;
     border-top-left-radius: 50%;
-    border-bottom-left-radius: 10%;
+    border-bottom-left-radius: 20%;
+    /* border-radius: 50%; */
     justify-content: center;
     align-items: center;
     display: inline;

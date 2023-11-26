@@ -131,6 +131,10 @@ section {
     color: #fe4d29;
 }
 
+.text-justify{
+    text-align: justify;
+}
+
 .text-header{
     position:absolute;
     z-index: 1;

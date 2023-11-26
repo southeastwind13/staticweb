@@ -127,7 +127,7 @@ section {
 }
 
 /* My CSS */
-.header{
+.text-orange{
     color: #fe4d29;
 }
 
@@ -156,6 +156,9 @@ section {
     border-bottom-right-radius: 10%;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 10%;
+    justify-content: center;
+    align-items: center;
+    display: inline;
 }
 
 .div-background{

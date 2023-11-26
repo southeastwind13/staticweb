@@ -98,7 +98,7 @@ section {
 }
 
 .slide1 {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/bg_banner2.jpg);
+    background:  url(../img/bg_banner2.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -111,10 +111,64 @@ section {
     background-repeat: no-repeat;
 }
 
+.header-background{
+    position: relative;
+}
+
+.div-background-textbox{
+    position:absolute;
+    background-color: black;
+    opacity:0.2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 200px; 
+}
+
+.text-header{
+    position:absolute;
+    z-index: 1;
+    color: white;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: calc(1.525rem + 3.3vw);
+
+    padding-top: 4%;
+    
+    width: 75%;
+    height: 200px;
+    text-align: center;
+}
+
+.div-background{
+    background-color: black;
+    opacity:0.2;
+    height: 200px;
+    width: 100%;    
+}
+
+.text-background{
+    color: black;
+    text-transform: uppercase;
+    width: 100%;
+
+}
+
+.text-main-background{
+    position: absolute;
+    text-align: center;
+}
+
+
 .slide .display-3 {
     text-transform: uppercase;
     color: #fff;
 }
+
+
 
 /* navbar */
 .top-nav {

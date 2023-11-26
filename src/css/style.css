@@ -131,8 +131,17 @@ section {
     color: #fe4d29;
 }
 
+.header2{
+    text-align: center;
+}
+
 .text-justify{
     text-align: justify;
+}
+
+.text-header2{
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .text-header{

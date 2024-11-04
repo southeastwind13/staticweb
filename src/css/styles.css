@@ -187,6 +187,15 @@ border: #b3590b
   height: 45%;
 }
 
+.card-img-top-about{
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5rem;
+  height: 6rem;
+  padding-bottom: 1rem;
+}
+
 @media (min-width: 600px) {
   .service-grid { grid-template-columns: repeat(2, 1fr); }
 }

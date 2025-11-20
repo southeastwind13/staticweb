@@ -10974,3 +10974,1451 @@ textarea.form-control-lg {
   width: 4rem;
   font-size: 2rem;
 }
+
+/* --- New customer --- */
+
+
+/* 1. Container หลัก: ใช้ Flexbox */
+.image-gallery {
+    display: flex;
+    flex-direction: row; /* ยืนยันว่าเรียงในแนวนอน (row) */
+    flex-wrap: wrap; /* ให้ขึ้นบรรทัดใหม่ได้เมื่อจอแคบ */
+    gap: 15px; /* ช่องว่างระหว่างรูปภาพ */
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Item ของรูปภาพ: กำหนดให้แต่ละรูปภาพมีพื้นที่เท่ากัน */
+.image-item {
+    /*
+    flex-basis: 33.333%; คือการบอกว่าต้องการพื้นที่เริ่มต้น 1 ใน 3
+    flex-grow: 1; ทำให้มันขยายเท่ากันหากมีพื้นที่เหลือ
+    flex-shrink: 0; ป้องกันไม่ให้มันหดตัวต่ำกว่า flex-basis ในตอนแรก
+    **เราจะใช้ calc() เพื่อหักลบช่องว่าง (gap) ออกไป**
+    */
+    flex-basis: calc(33.333% - 10px); /* 15px gap ถูกเฉลี่ยหักลบออก */
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 6px;
+    flex-grow: 1; /* สำคัญ: ช่วยให้ Items ขยายเท่าๆ กัน */
+}
+
+/* 3. รูปภาพ: ทำให้รูปภาพปรับขนาดตาม Item */
+.image-item img {
+    display: block;
+    width: 100%; /* สำคัญ: ทำให้รูปภาพเต็มความกว้างของ image-item */
+    height: auto; /* รักษาอัตราส่วนของรูปภาพ */
+    transition: transform 0.3s ease;
+}
+
+.image-item img:hover {
+    transform: scale(1.03);
+}
+
+/*
+*** Media Queries สำหรับ Responsive ***
+*/
+
+/* Tablet View (<= 768px): 2 รูปต่อแถว */
+@media (max-width: 768px) {
+    .image-gallery {
+        gap: 10px;
+    }
+    .image-item {
+        flex-basis: calc(50% - 5px); /* 50% สำหรับ 2 รูปต่อแถว */
+    }
+}
+
+/* Mobile View (<= 480px): 1 รูปต่อแถว */
+@media (max-width: 480px) {
+    .image-gallery {
+        gap: 10px;
+    }
+    .image-item {
+        flex-basis: 100%; /* 100% สำหรับ 1 รูปต่อแถว */
+    }
+}
+
+/* ตกแต่งกล่อง Highlight */
+.bps-highlight-box {
+    display: flex;
+    align-items: center;
+    background-color: #f8fff9; /* สีพื้นหลังเขียวอ่อนๆ สบายตา */
+    border: 1px solid #e0eadd;
+    border-left: 6px solid #4CAF50; /* แถบสีเขียวด้านซ้ายเน้นความมั่นใจ */
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* เงาบางๆ ให้ดูลอยเด่น */
+    margin: 30px 0;
+    max-width: 800px; /* ความกว้างสูงสุด */
+    position: relative;
+    overflow: hidden;
+}
+
+/* ส่วนไอคอนรถ */
+.bps-icon-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+    font-size: 32px;
+}
+
+/* ไอคอนเครื่องหมายถูก (Badge เล็กๆ) */
+.bps-check-badge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: #2E7D32; /* สีเขียวเข้ม */
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+/* ส่วนข้อความ */
+.bps-content {
+    flex-grow: 1;
+}
+
+.bps-title {
+    margin: 0 0 8px 0;
+    font-family: 'Prompt', sans-serif; /* หรือฟอนต์ที่เว็บใช้อยู่ */
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.bps-desc {
+    margin: 0;
+    font-family: 'Sarabun', sans-serif; /* หรือฟอนต์ที่เว็บใช้อยู่ */
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.highlight-text {
+    color: #2E7D32;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: #81c784;
+    text-decoration-thickness: 2px;
+}
+
+/* การแสดงผลบนมือถือ (Responsive) */
+@media (max-width: 600px) {
+    .bps-highlight-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .bps-icon-wrapper {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* ตั้งค่า Section หลัก */
+.bps-target-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.bps-section-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.bps-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ดีไซน์ตัวการ์ดทั่วไป */
+.bps-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 35px 25px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.bps-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(252, 126, 15, 0.15); /* เงาสีส้มตอน Hover */
+    border-color: #ffeacc;
+}
+
+/* ไอคอนวงกลม (การ์ดธรรมดา) */
+.bps-card-icon {
+    width: 70px;
+    height: 70px;
+    background: #fff5eb; /* พื้นหลังส้มจางๆ */
+    color: #fc7e0f; /* ไอคอนสีส้มหลัก */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 20px auto;
+}
+
+.bps-card-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.bps-card-desc {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- ส่วน Highlight (Pet Friendly) ธีมส้ม --- */
+.bps-highlight-card {
+    border: 2px solid #fc7e0f; /* ขอบสีส้มหลัก */
+    background: #fffbf5; /* พื้นหลังส้มอ่อน */
+}
+
+.bps-highlight-card .bps-card-icon {
+    background: #fc7e0f; /* ไอคอนพื้นหลังสีส้มหลัก */
+    color: #fff; /* ไอคอนสีขาว */
+}
+
+/* ป้ายแปะ "แนะนำ" */
+.bps-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #e05a00; /* สีส้มแดง (เข้มกว่าสีหลักนิดนึง) เพื่อให้เด่น */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-family: 'Prompt', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bps-section-title {
+        font-size: 1.5rem;
+    }
+    .bps-card-container {
+        gap: 20px;
+    }
+}
+
+/* สไตล์สำหรับ Sub-context */
+.bps-section-subtitle {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.1rem; /* ใหญ่กว่าตัวหนังสือปกตินิดหน่อย */
+    color: #555;
+    max-width: 700px; /* บีบความกว้างไม่ให้ยาวเกินไป อ่านง่าย */
+    margin: -20px auto 40px auto; /* ดึงขึ้นไปหาหัวข้อหน่อย (-20px) และดันการ์ดลงไป (40px) */
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.bps-section-subtitle strong {
+    color: #fc7e0f; /* เน้นคำด้วยสีส้ม */
+    font-weight: 600;
+}
+
+/* ซ่อนการเว้นบรรทัดในมือถือ เพื่อไม่ให้ข้อความขาดๆ */
+@media (max-width: 768px) {
+    .mobile-hide {
+        display: none;
+    }
+    .bps-section-subtitle {
+        font-size: 1rem;
+        padding: 0 15px; /* กันขอบชนจอในมือถือ */
+    }
+}
+
+/* --- Section ปัญหา (The Problem) --- */
+.bps-problem-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9; /* สีพื้นหลังเทาอ่อนๆ ให้ดูขรึมๆ หน่อย */
+}
+
+.bps-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* หัวข้อ */
+.bps-problem-title {
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.bps-problem-subtitle {
+    text-align: center;
+    font-family: 'Sarabun', sans-serif;
+    color: #666;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+}
+
+/* Grid Layout 3 ช่อง */
+.bps-problem-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.bps-problem-item {
+    flex: 1 1 300px; /* ยืดหดได้ */
+    max-width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.bps-problem-item:hover {
+    transform: translateY(-5px);
+}
+
+/* รูปภาพและการคุมโทน (Mood) */
+.bps-img-wrapper {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: #000; /* พื้นหลังดำรองรับตอนโหลด */
+}
+
+.bps-problem-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Filter สร้างบรรยากาศ 'ปัญหา' (หม่นๆ อมแดงนิดๆ) */
+    filter: grayscale(60%) sepia(20%) contrast(1.1); 
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+/* พอเอาเมาส์ชี้ ให้รูปชัดขึ้น */
+.bps-problem-item:hover .bps-problem-img {
+    filter: grayscale(0%); /* กลับมาสีสดใส */
+    transform: scale(1.05); /* ขยายรูปนิดนึง */
+}
+
+/* เนื้อหาใต้ภาพ */
+.bps-problem-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.bps-problem-content h3 {
+    font-family: 'Prompt', sans-serif;
+    color: #c0392b; /* สีแดงเลือดหมู หรือส้มเข้ม สื่อถึง Pain Point */
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+}
+
+.bps-problem-content p {
+    font-family: 'Sarabun', sans-serif;
+    color: #555;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* --- Transition Text (ข้อความเชื่อม) --- */
+.bps-transition-box {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 50px; /* ทำเป็นแคปซูลยาวๆ */
+    box-shadow: 0 5px 20px rgba(252, 126, 15, 0.15); /* เงาสีส้มจางๆ */
+    border: 1px solid #ffeacc;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.bps-transition-text {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.4rem;
+    color: #333;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.bps-transition-text .highlight {
+    color: #fc7e0f; /* สีส้มตาม CI */
+    font-weight: bold;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #ffeacc 60%); /* ไฮไลท์ปากกาเน้นข้อความ */
+}
+
+.bps-arrow-down {
+    color: #fc7e0f;
+    font-size: 20px;
+    margin-top: 10px;
+    animation: bounce 2s infinite;
+}
+
+/* Animation ลูกศรเด้งดึ๋ง */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-3px);}
+}
+
+/* Mobile Fixes */
+.mobile-show { display: none; }
+
+@media (max-width: 768px) {
+    .bps-problem-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .bps-problem-item {
+        width: 100%;
+        max-width: 100%;
+    }
+    .bps-transition-text {
+        font-size: 1.1rem;
+    }
+    .mobile-show { display: block; } /* ให้ตัดบรรทัดในมือถือ */
+}
+
+/* 1. สร้างพื้นที่ว่าง (Spacer) ต่อท้ายเนื้อหา */
+.bps-problem-content::after {
+    content: "";        /* สร้าง content ว่างๆ */
+    display: block;     /* ให้มันเป็นก้อนบล็อก */
+    height: 30px;       /* ความสูงของพื้นที่ว่าง (ปรับตัวเลขนี้ได้ถ้าอยากได้เยอะ/น้อย) */
+    width: 100%;
+}
+
+/* 2. ป้องกันไม่ให้กล่องหลักล็อคความสูง */
+.bps-problem-item {
+    height: auto !important;
+    min-height: auto !important;
+    display: flex;      /* จัดการ layout ใหม่ */
+    flex-direction: column;
+}
+
+.bps-problem-content {
+    flex-grow: 1;       /* ให้เนื้อหายืดเต็มพื้นที่ */
+    padding-bottom: 0 !important; /* รีเซ็ต padding เดิมเพื่อใช้ Spacer แทน */
+}
+
+/* --- Section 3: Solution & Uniqueness --- */
+.bps-solution-section {
+    padding: 80px 20px;
+    background-color: #fff; /* พื้นหลังขาวสะอาดตา */
+    overflow: hidden;
+}
+
+/* จัด Layout ซ้าย-ขวา */
+.bps-solution-layout {
+    display: flex;
+    align-items: center; /* จัดให้เนื้อหาอยู่กึ่งกลางแนวตั้ง */
+    gap: 50px; /* ระยะห่างระหว่างรูปกับตัวหนังสือ */
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- ส่วนเนื้อหา --- */
+.bps-solution-content {
+    flex: 1; /* กินพื้นที่ 1 ส่วน */
+    max-width: 600px;
+}
+
+.bps-solution-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 2.2rem;
+    color: #333;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.text-orange {
+    color: #fc7e0f; /* สีส้ม CI */
+}
+
+.bps-solution-desc {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
+
+/* --- ส่วนรูปภาพ --- */
+.bps-solution-image {
+    flex: 1; /* กินพื้นที่ 1 ส่วน */
+    position: relative;
+}
+
+.bps-solution-image img {
+    width: 100%;
+    border-radius: 20px; /* มุมมน */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* เงาฟุ้งๆ สวยงาม */
+    object-fit: cover;
+    aspect-ratio: 4/3; /* บังคับสัดส่วนภาพให้สวยงาม */
+    transition: transform 0.3s ease;
+}
+
+.bps-solution-image img:hover {
+    transform: scale(1.02); /* ขยายรูปนิดหน่อยตอนเอาเมาส์ชี้ */
+}
+
+/* --- Highlight Box (ธีมสีส้ม #fc7e0f) --- */
+.bps-highlight-box {
+    display: flex;
+    align-items: center;
+    background-color: #fffbf5; /* พื้นหลังส้มอ่อนมากๆ */
+    border: 1px solid #ffeacc;
+    border-left: 6px solid #fc7e0f; /* แถบสีส้มหลัก */
+    border-radius: 12px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 15px rgba(252, 126, 15, 0.08);
+    position: relative;
+}
+
+.bps-icon-wrapper {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 2px solid #fc7e0f;
+    color: #fc7e0f;
+    font-size: 24px;
+    position: relative;
+}
+
+.bps-check-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: #fc7e0f;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+.bps-box-content {
+    flex-grow: 1;
+}
+
+.bps-box-title {
+    margin: 0 0 5px 0;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.bps-box-desc {
+    margin: 0;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #666;
+}
+
+.highlight-text {
+    color: #d66200;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: #fc7e0f;
+}
+
+/* --- Responsive (มือถือ) --- */
+@media (max-width: 992px) {
+    .bps-solution-layout {
+        flex-direction: column-reverse; /* เอารูปขึ้นก่อน Text ในมือถือ */
+        gap: 30px;
+        text-align: center;
+    }
+
+    .bps-solution-content {
+        max-width: 100%;
+    }
+
+    .bps-solution-title {
+        font-size: 1.8rem;
+    }
+
+    /* จัดกล่อง Highlight ให้อยู่ตรงกลางในมือถือ */
+    .bps-highlight-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .bps-icon-wrapper {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .bps-box-content {
+        width: 100%;
+    }
+}
+
+/* --- Highlight Box (กลับมาใช้ธีมสีเขียว ธรรมชาติ) --- */
+.bps-highlight-box {
+    display: flex;
+    align-items: center;
+    background-color: #f0fdf4; /* พื้นหลังเขียวมิ้นท์อ่อนๆ สบายตา */
+    border: 1px solid #dcfce7; /* ขอบเขียวจางๆ */
+    border-left: 6px solid #22c55e; /* แถบสีเขียวสดใส */
+    border-radius: 12px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.08); /* เงาสีเขียวจางๆ */
+    position: relative;
+    margin-top: 30px; /* เว้นระยะห่างจากข้างบนนิดนึง */
+}
+
+.bps-icon-wrapper {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 2px solid #22c55e; /* ขอบไอคอนสีเขียว */
+    color: #22c55e; /* ไอคอนสีเขียว */
+    font-size: 24px;
+    position: relative;
+}
+
+.bps-check-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: #16a34a; /* สีเขียวเข้มขึ้นสำหรับ Badge */
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+/* ส่วนเนื้อหาในกล่อง */
+.bps-box-content {
+    flex-grow: 1;
+}
+
+.bps-box-title {
+    margin: 0 0 5px 0;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #14532d; /* หัวข้อสีเขียวเข้มเกือบดำ */
+}
+
+.bps-box-desc {
+    margin: 0;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #555;
+}
+
+.highlight-text {
+    color: #15803d; /* สีเขียวเข้มเน้นข้อความ */
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: #22c55e; /* เส้นใต้สีเขียวสด */
+}
+
+/* Responsive เดิม (ไม่ต้องแก้ก็ได้ครับ แปะทับเพื่อความชัวร์) */
+@media (max-width: 992px) {
+    .bps-highlight-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    .bps-icon-wrapper {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .bps-box-content {
+        width: 100%;
+    }
+}
+
+/* --- Section 5: The Objections --- */
+
+.bps-objection-section {
+    padding: 80px 20px;
+    background-color: #ffffff; /* เปลี่ยนเป็นสีขาวล้วน */
+}
+
+/* 
+.bps-objection-section {
+    padding: 80px 20px;
+    background-color: #f8f9fa; 
+*/
+
+/* ส่วนหัวข้อ */
+.bps-objection-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.bps-obj-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.bps-obj-subtitle {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Grid Layout */
+.bps-objection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* กล่องแต่ละข้อ (Item) */
+.bps-obj-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 35px 30px;
+    flex: 1 1 300px; /* ยืดหดได้ */
+    max-width: 350px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    text-align: center; /* จัดกลางให้ดู Balance */
+    transition: transform 0.3s ease;
+}
+
+.bps-obj-item:hover {
+    transform: translateY(-5px); /* ลอยขึ้นนิดหน่อยตอน Hover */
+    box-shadow: 0 10px 25px rgba(252, 126, 15, 0.1); /* เงาสีส้มจางๆ */
+    border-color: #ffeacc;
+}
+
+/* ไอคอนวงกลม */
+.bps-obj-icon {
+    width: 70px;
+    height: 70px;
+    background: #fff5eb; /* พื้นหลังส้มจางๆ */
+    color: #fc7e0f; /* สีส้ม Theme */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 20px auto;
+}
+
+/* เนื้อหาในกล่อง */
+.bps-obj-content h3 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.bps-obj-content p {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    padding-bottom: 10px; /* กันตัวหนังสือชิดขอบล่าง */
+}
+
+/* ตัวเน้นข้อความสีส้ม */
+.highlight-orange {
+    color: #d66200;
+    font-weight: 600;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .bps-objection-section {
+        padding: 60px 20px;
+    }
+    
+    .bps-obj-title {
+        font-size: 1.6rem;
+    }
+
+    .bps-obj-item {
+        padding: 30px 20px; /* ลด padding ในมือถือหน่อย */
+    }
+}
+
+/* --- Section 6: Testimonials --- */
+.bps-testimonial-section {
+    padding: 80px 20px;
+    background-color: #f9f9f9; /* สีเทาอ่อน ตัดกับ Section ขาวก่อนหน้า */
+}
+
+/* จัดหัวข้อให้อยู่ตรงกลาง */
+.bps-header-center {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Grid Layout */
+.bps-testim-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* การ์ดรีวิว */
+.bps-testim-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px 30px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    border-top: 5px solid #fc7e0f; /* ขีดสีส้มด้านบนเพิ่มลูกเล่น */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* ไอคอน Quote ใหญ่ๆ จางๆ */
+.bps-quote-icon {
+    font-size: 40px;
+    color: #ffeacc; /* สีส้มจางๆ */
+    margin-bottom: 15px;
+}
+
+/* ดาว 5 ดวง */
+.bps-stars {
+    color: #FFC107; /* สีเหลืองทอง */
+    font-size: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* ข้อความรีวิว */
+.bps-review-text {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    font-style: italic; /* ทำตัวเอียงให้ดูเป็นคำพูด */
+    margin-bottom: 25px;
+    flex-grow: 1; /* ดันชื่อคนรีวิวลงไปล่างสุดเสมอ */
+}
+
+.bps-review-text .highlight-text {
+    background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #ffeacc 60%); /* ไฮไลท์ปากกาเน้นข้อความ */
+    font-style: normal;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ข้อมูลผู้รีวิว */
+.bps-reviewer {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    font-family: 'Prompt', sans-serif;
+}
+
+.reviewer-name {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.reviewer-type {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bps-testimonial-section {
+        padding: 60px 20px;
+    }
+    
+    .bps-testim-card {
+        padding: 30px 20px;
+    }
+}
+
+
+/* --- Section 7: Final CTA --- */
+.bps-cta-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #fffbf5 0%, #fff5eb 100%); /* ไล่สีส้มจางๆ ให้ดูอบอุ่น */
+}
+
+/* กล่องรวมเนื้อหา */
+.bps-cta-box {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(252, 126, 15, 0.15); /* เงาสีส้มฟุ้งๆ */
+    border: 1px solid #ffeacc;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ตกแต่งแถบสีส้มคาดด้านบน */
+.bps-cta-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #fc7e0f;
+}
+
+/* หัวข้อ */
+.bps-cta-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* รายการ Risk Reversal (Checklist) */
+.bps-risk-reversal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 30px;
+    margin-bottom: 25px;
+}
+
+.bps-risk-item {
+    display: flex;
+    align-items: center;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.05rem;
+    color: #555;
+}
+
+.bps-risk-item i {
+    color: #22c55e; /* ไอคอนถูกสีเขียว สื่อถึง "ผ่าน/ปลอดภัย" */
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* เน้นข้อเปลี่ยนวันฟรี ให้เด่นพิเศษ */
+.highlight-risk span {
+    font-weight: 600;
+    color: #fc7e0f; /* สีส้ม */
+}
+.highlight-risk i {
+    color: #fc7e0f;
+}
+
+/* คำอธิบายเพิ่มเติม */
+.bps-cta-desc {
+    font-family: 'Sarabun', sans-serif;
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+/* --- ปุ่มกด (Buttons) --- */
+.bps-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.bps-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* ปุ่มหลัก (Primary) */
+.bps-btn-primary {
+    background-color: #fc7e0f;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(252, 126, 15, 0.3);
+    border: 2px solid #fc7e0f;
+}
+
+.bps-btn-primary:hover {
+    background-color: #e05a00; /* สีเข้มขึ้นตอนชี้ */
+    border-color: #e05a00;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(252, 126, 15, 0.4);
+}
+
+.bps-btn-primary i {
+    margin-left: 10px; /* ลูกศรห่างจากตัวหนังสือ */
+}
+
+/* ปุ่มรอง (Secondary) */
+.bps-btn-secondary {
+    background-color: transparent;
+    color: #555;
+    border: 2px solid #ddd;
+}
+
+.bps-btn-secondary:hover {
+    border-color: #00c300; /* สีเขียว Line */
+    color: #00c300;
+    background-color: #fff;
+}
+
+.bps-btn-secondary i {
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .bps-cta-section {
+        padding: 60px 20px;
+    }
+
+    .bps-cta-box {
+        padding: 40px 20px;
+    }
+
+    .bps-cta-title {
+        font-size: 1.6rem;
+    }
+
+    .bps-risk-reversal {
+        flex-direction: column; /* เรียงลงมาเป็นแนวตั้ง */
+        gap: 15px;
+        align-items: center; /* จัดกลาง */
+    }
+
+    .bps-cta-buttons {
+        flex-direction: column; /* ปุ่มเรียงซ้อนกัน */
+        width: 100%;
+    }
+
+    .bps-btn {
+        width: 100%; /* ปุ่มเต็มจอ */
+    }
+}
+
+
+/* --- Section ห้องพัก (Rooms) --- */
+.bps-room-section {
+    padding: 80px 20px;
+    background-color: #fff;
+}
+
+.bps-room-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.bps-room-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    flex: 1 1 300px;
+    max-width: 350px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.bps-room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* ส่วนรูปภาพ */
+.bps-room-img {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bps-room-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bps-room-card:hover .bps-room-img img {
+    transform: scale(1.1);
+}
+
+/* ป้ายราคา */
+.bps-price-tag {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 600;
+}
+
+/* ป้าย Pet Friendly */
+.bps-pet-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #fc7e0f;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* รายละเอียดห้อง */
+.bps-room-details {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bps-room-details h3 {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.room-desc {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* สิ่งอำนวยความสะดวก (Services) */
+.bps-amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.bps-amenities span {
+    font-size: 0.85rem;
+    color: #555;
+    background: #f4f4f4;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bps-amenities i {
+    color: #fc7e0f;
+}
+
+/* ปุ่มจอง */
+.bps-room-btn {
+    margin-top: auto; /* ดันปุ่มไปล่างสุด */
+    display: block;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    transition: background 0.3s ease;
+}
+
+.bps-room-btn:hover {
+    background: #000;
+}
+
+/* ปุ่มสีส้มสำหรับห้อง Highlight */
+.btn-orange {
+    background: #fc7e0f;
+}
+.btn-orange:hover {
+    background: #e05a00;
+}
+
+/* Highlight Room Border */
+.highlight-room {
+    border: 2px solid #fc7e0f;
+}
+
+/* --- Section 8: Contact & Location --- */
+.bps-contact-section {
+    padding: 60px 20px 20px 20px; /* ด้านล่างเว้นน้อยหน่อย */
+    background-color: #2c3e50; /* สีพื้นหลังเข้ม (Dark Navy) ให้ดูเป็น Footer */
+    color: #fff;
+}
+
+.bps-contact-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ฝั่งข้อมูล */
+.bps-contact-info {
+    flex: 1 1 350px; /* ขยายได้ ขั้นต่ำ 350px */
+}
+
+.bps-contact-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.8rem;
+    color: #fc7e0f; /* หัวข้อสีส้ม เด่นบนพื้นเข้ม */
+    margin-bottom: 15px;
+}
+
+.bps-contact-desc {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* รายการติดต่อ */
+.bps-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bps-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    font-family: 'Sarabun', sans-serif;
+    color: #ddd;
+}
+
+.bps-contact-list i {
+    color: #fc7e0f; /* ไอคอนสีส้ม */
+    width: 25px;
+    margin-top: 5px; /* จัดให้ตรงกับบรรทัดแรก */
+    font-size: 1.1rem;
+}
+
+.bps-contact-list a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.bps-contact-list a:hover {
+    color: #fc7e0f;
+    text-decoration: underline;
+}
+
+/* ฝั่งแผนที่ */
+.bps-map-wrapper {
+    flex: 1 1 350px;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 2px solid #fc7e0f; /* กรอบแผนที่สีส้ม */
+}
+
+/* Footer Bottom */
+.bps-footer-bottom {
+    border-top: 1px solid #445566;
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+.bps-footer-bottom p {
+    font-size: 0.85rem;
+    color: #8899aa;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bps-contact-layout {
+        flex-direction: column; /* มือถือเรียงลงมา */
+    }
+    
+    .bps-map-wrapper {
+        height: 250px; /* ลดความสูงแผนที่ในมือถือ */
+    }
+}
+
+/* --- Mobile Sticky Bar --- */
+.bps-mobile-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: none; /* ซ่อนในคอมพิวเตอร์ */
+    padding: 10px 15px; /* ลด padding ให้กระชับ */
+    gap: 10px;
+    z-index: 9999; /* อยู่บนสุดเสมอ */
+    box-sizing: border-box; /* จัดการ padding ไม่ให้บวม */
+}
+
+.sticky-btn {
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px; /* กำหนดความสูงปุ่มให้กดง่าย */
+    transition: transform 0.2s;
+}
+
+.sticky-btn:active {
+    transform: scale(0.95); /* เอฟเฟกต์ยุบลงตอนกด */
+}
+
+/* ปุ่มแชท (Line) */
+.btn-chat {
+    background-color: #f0f0f0;
+    color: #00c300; /* สีเขียว Line */
+    flex: 1; /* กินพื้นที่ 1 ส่วน */
+    border: 1px solid #ddd;
+}
+.btn-chat i {
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
+
+/* ปุ่มจอง (Book) */
+.btn-book {
+    background-color: #fc7e0f; /* สีส้ม CI */
+    color: #fff;
+    flex: 1.5; /* กินพื้นที่เยอะกว่า (สำคัญกว่า) */
+    box-shadow: 0 4px 10px rgba(252, 126, 15, 0.3);
+}
+.btn-book i {
+    margin-left: 5px;
+    font-size: 0.9rem;
+}
+
+/* แสดงผลเฉพาะหน้าจอเล็กกว่า 768px (มือถือ/แท็บเล็ต) */
+@media (max-width: 768px) {
+    .bps-mobile-sticky {
+        display: flex; /* แสดงผลแบบ Flex */
+    }
+    
+    /* ดัน Footer ขึ้นไปหน่อยไม่ให้โดนบัง */
+    .bps-contact-section {
+        padding-bottom: 90px !important; 
+    }
+}

@@ -177,4 +177,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
   }
+
+  // --- GA4 conversion events ---
+  var track = function (name, params) {
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+    try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, params || {})); } catch (e) {}
+  };
+
+  // Count clicks on every LINE button (booking intent)
+  document.querySelectorAll('a[href*="line.me"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track('line_click', {
+        link_text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60),
+        link_url: a.href,
+        page_path: location.pathname
+      });
+    });
+  });
+
+  // Count completed booking requests (fires once, on the thank-you page —
+  // covers both the AJAX redirect and the no-JS Formsubmit fallback)
+  if (/\/thanks\.html$/.test(location.pathname)) {
+    track('booking_form_submit', { page_path: location.pathname });
+  }
 });

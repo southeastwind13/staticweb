@@ -29,6 +29,12 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   anchor id).
 - `src/events.html` — "อีเวนต์เมืองทอง" page (Impact events + book-nearby CTA), standalone
   like an article. The event table rows are examples for the owner to update.
+- `src/en/index.html` — English version of the landing page (assets via `../`). Linked
+  to the Thai page via `hreflang` on both; nav has a TH↔EN switch. Keep the two pages in
+  sync when content changes.
+- `src/thanks.html` — booking-form success page (noindex). The inquiry form on the Thai
+  and EN pages POSTs to Formsubmit.co; the action email is a placeholder
+  (`INBOX@EXAMPLE.COM`) the owner must set and confirm once.
 - `src/articles/` — blog/content-marketing pages targeting long-tail Thai keywords.
   `index.html` is the article listing; each article is a standalone page with its own
   `BlogPosting` JSON-LD, OG tags, and a LINE CTA. Assets are referenced with `../`

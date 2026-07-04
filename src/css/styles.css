@@ -12808,3 +12808,237 @@ html {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* ========================================================================
+   Phase D — Conversion: brand story, promotions, review platforms,
+   location/distances, event table
+   ======================================================================== */
+
+/* --- Brand story --- */
+.bps-story-section {
+    padding: 70px 20px;
+    background-color: #faf7f2;
+}
+.bps-story-text {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+}
+.bps-story-text p {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.12rem;
+    color: #4a4a4a;
+    line-height: 1.9;
+    margin-bottom: 18px;
+}
+.bps-story-text strong {
+    color: #fc7e0f;
+}
+
+/* --- Promotions --- */
+.bps-promo-section {
+    padding: 80px 20px;
+    background-color: #fff;
+}
+.bps-promo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+}
+.bps-promo-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 34px 26px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bps-promo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.1);
+}
+.bps-promo-highlight {
+    border: 2px solid #fc7e0f;
+}
+.bps-promo-tag {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fc7e0f;
+    color: #fff;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 5px 16px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+.bps-promo-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff3e8;
+    color: #fc7e0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+.bps-promo-card h3 {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 12px;
+}
+.bps-promo-card p {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+.bps-promo-btn {
+    display: inline-block;
+    background: #fc7e0f;
+    color: #fff;
+    text-decoration: none;
+    padding: 11px 26px;
+    border-radius: 50px;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+.bps-promo-btn:hover {
+    background: #d96c0d;
+}
+
+/* --- Review platforms --- */
+.bps-review-platforms {
+    text-align: center;
+    margin-top: 44px;
+}
+.bps-review-platforms-text {
+    font-family: 'Sarabun', sans-serif;
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+.bps-review-platform-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+.bps-platform-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    padding: 11px 24px;
+    border-radius: 50px;
+    color: #fff;
+    transition: opacity 0.2s ease;
+}
+.bps-platform-btn:hover {
+    opacity: 0.9;
+}
+.bps-platform-google {
+    background: #4285f4;
+}
+.bps-platform-fb {
+    background: #1877f2;
+}
+
+/* --- Location / distances --- */
+.bps-location-section {
+    padding: 80px 20px;
+    background-color: #faf7f2;
+}
+.bps-distance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.bps-distance-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.bps-distance-item i {
+    font-size: 1.4rem;
+    color: #fc7e0f;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #fff3e8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bps-distance-item strong {
+    display: block;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 2px;
+}
+.bps-distance-item span {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.92rem;
+    color: #777;
+}
+
+/* --- Event table --- */
+.bps-event-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 10px;
+    font-family: 'Sarabun', sans-serif;
+}
+.bps-event-table th,
+.bps-event-table td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+    color: #444;
+}
+.bps-event-table th {
+    background: #fff7ef;
+    color: #333;
+    font-weight: 600;
+}
+.bps-event-table td a {
+    color: #fc7e0f;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.bps-event-table td a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .bps-promo-grid,
+    .bps-distance-grid {
+        grid-template-columns: 1fr;
+    }
+    .bps-event-table th,
+    .bps-event-table td {
+        padding: 10px 8px;
+        font-size: 0.92rem;
+    }
+}

@@ -22,10 +22,13 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 
 ## Structure
 
-- `src/index.html` — the landing page (Hero → Problem → About → Audiences → Rooms →
-  Objections → Testimonials → Gallery → FAQ → CTA → Contact/Map). Section anchors:
-  `#about`, `#room`, `#gallery`, `#faq`, `#cotract` (note: "cotract" is the existing
-  contact anchor id).
+- `src/index.html` — the landing page (Hero → Problem → Brand story → Audiences → Rooms
+  → Promotions → Objections → Testimonials+review links → Gallery → FAQ → CTA →
+  Location/distances → Contact/Map). Section anchors: `#about`, `#room`, `#promo`,
+  `#gallery`, `#faq`, `#location`, `#cotract` (note: "cotract" is the existing contact
+  anchor id).
+- `src/events.html` — "อีเวนต์เมืองทอง" page (Impact events + book-nearby CTA), standalone
+  like an article. The event table rows are examples for the owner to update.
 - `src/articles/` — blog/content-marketing pages targeting long-tail Thai keywords.
   `index.html` is the article listing; each article is a standalone page with its own
   `BlogPosting` JSON-LD, OG tags, and a LINE CTA. Assets are referenced with `../`
@@ -76,5 +79,9 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   in sync (Google requires markup to match on-page content).
 - Contact/social: phone `094-962-5955`, Facebook `https://www.facebook.com/baan.permsook.2024`,
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
+- Owner-customizable placeholder content (marked with HTML comments in the source): the
+  brand story copy, promotion terms/prices, location distances, the events table, and the
+  Google reviews link (`bps-platform-google` — swap to the real Google Business Profile
+  URL once it exists). Do not add fake `aggregateRating`/`Event` schema for these.
 - After editing structured data, validate at https://validator.schema.org/ and
   Google Rich Results Test before deploying.

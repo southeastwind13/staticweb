@@ -51,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // --- Scroll-reveal animations (progressive enhancement) ---
   var revealSelector = '.bps-header-center, .bps-problem-item, .bps-highlight-box, ' +
     '.bps-solution-image, .bps-card, .bps-room-card, .bps-obj-item, ' +
-    '.bps-testim-card, .bps-gallery-item, .bps-faq-item, .bps-cta-box, .bps-article-card';
+    '.bps-testim-card, .bps-gallery-item, .bps-faq-item, .bps-cta-box, .bps-article-card, ' +
+    '.bps-story-text, .bps-promo-card, .bps-distance-item';
   var revealEls = document.querySelectorAll(revealSelector);
   if ('IntersectionObserver' in window && revealEls.length) {
     revealEls.forEach(function (el) { el.classList.add('bps-reveal'); });

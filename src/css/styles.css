@@ -2994,3 +2994,103 @@ html {
     color: #666;
     font-size: 1rem;
 }
+/* ========================================================================
+   Phase G — Booking/inquiry form + thank-you page
+   ======================================================================== */
+.bps-booking-section {
+    padding: 80px 20px;
+    background-color: #fff;
+}
+.bps-booking-form {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff7ef;
+    border: 1px solid #ffe0c2;
+    border-radius: 18px;
+    padding: 32px;
+}
+.bps-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+.bps-booking-form label {
+    display: block;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+.bps-booking-form input,
+.bps-booking-form select,
+.bps-booking-form textarea {
+    width: 100%;
+    margin-top: 6px;
+    padding: 11px 14px;
+    border: 1px solid #e2d5c6;
+    border-radius: 10px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+    background: #fff;
+    box-sizing: border-box;
+}
+.bps-booking-form input:focus,
+.bps-booking-form select:focus,
+.bps-booking-form textarea:focus {
+    outline: none;
+    border-color: #fc7e0f;
+    box-shadow: 0 0 0 3px rgba(252, 126, 15, 0.15);
+}
+.bps-form-submit {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    background: #fc7e0f;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(252, 126, 15, 0.3);
+    transition: background 0.2s ease;
+}
+.bps-form-submit:hover {
+    background: #d96c0d;
+}
+.bps-form-note {
+    text-align: center;
+    font-family: 'Sarabun', sans-serif;
+    color: #777;
+    font-size: 0.95rem;
+    margin: 16px 0 0;
+}
+.bps-form-note a {
+    color: #fc7e0f;
+    font-weight: 600;
+    text-decoration: none;
+}
+.bps-thanks-box {
+    max-width: 620px;
+    margin: 40px auto;
+    text-align: center;
+}
+.bps-thanks-icon {
+    font-size: 4rem;
+    color: #2ecc71;
+    margin-bottom: 16px;
+}
+@media (max-width: 768px) {
+    .bps-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .bps-booking-form {
+        padding: 22px;
+    }
+}

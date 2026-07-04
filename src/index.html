@@ -883,6 +883,68 @@
         </div>
     </section>
 
+    <!-- Section Booking / Inquiry form -->
+    <!-- ==================================================================
+         ตั้งค่าอีเมล: เปลี่ยน INBOX@EXAMPLE.COM ในบรรทัด action ด้านล่าง
+         เป็นอีเมลที่ต้องการรับคำขอจอง แล้วส่งฟอร์มครั้งแรก 1 ครั้ง
+         Formsubmit จะส่งเมลให้กดยืนยัน (ทำครั้งเดียว) จากนั้นใช้งานได้เลย ฟรี
+         (แนะนำ: หลังยืนยันแล้วเปลี่ยนไปใช้ลิงก์แบบซ่อนอีเมล /el/xxxx เพื่อกันสแปม)
+         ================================================================== -->
+    <section class="bps-booking-section" id="booking">
+        <div class="bps-container">
+            <div class="bps-header-center">
+                <h2 class="bps-section-title">สอบถาม / ขอจองห้องพัก</h2>
+                <p class="bps-section-subtitle">กรอกฟอร์มแล้วเราจะติดต่อกลับ หรือทักไลน์เพื่อความรวดเร็ว</p>
+            </div>
+            <form class="bps-booking-form" action="https://formsubmit.co/INBOX@EXAMPLE.COM" method="POST">
+                <input type="hidden" name="_subject" value="คำขอจองใหม่จากเว็บบ้านเพิ่มสุข">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.baanpermsook.com/thanks.html">
+                <input type="text" name="_honey" style="display:none">
+
+                <div class="bps-form-row">
+                    <label>ชื่อผู้จอง *
+                        <input type="text" name="ชื่อผู้จอง" required placeholder="ชื่อ-นามสกุล">
+                    </label>
+                    <label>เบอร์โทร / LINE *
+                        <input type="text" name="เบอร์โทรหรือไลน์" required placeholder="เช่น 08x-xxx-xxxx">
+                    </label>
+                </div>
+                <div class="bps-form-row">
+                    <label>วันเช็คอิน
+                        <input type="date" name="วันเช็คอิน">
+                    </label>
+                    <label>วันเช็คเอาต์
+                        <input type="date" name="วันเช็คเอาต์">
+                    </label>
+                </div>
+                <div class="bps-form-row">
+                    <label>ประเภทห้อง
+                        <select name="ประเภทห้อง">
+                            <option value="ห้องมาตรฐาน (Standard)">ห้องมาตรฐาน (Standard) ฿1,090</option>
+                            <option value="ห้องครอบครัว (Family)">ห้องครอบครัว (Family) ฿1,890</option>
+                            <option value="ห้อง Pet Friendly">ห้อง Pet Friendly ฿1,090+</option>
+                            <option value="ยังไม่แน่ใจ">ยังไม่แน่ใจ / สอบถามก่อน</option>
+                        </select>
+                    </label>
+                    <label>จำนวนผู้เข้าพัก
+                        <input type="number" name="จำนวนผู้เข้าพัก" min="1" max="10" placeholder="เช่น 2">
+                    </label>
+                </div>
+                <label>ข้อความเพิ่มเติม
+                    <textarea name="ข้อความเพิ่มเติม" rows="3" placeholder="เช่น พาสัตว์เลี้ยง 1 ตัว, มางานคอนเสิร์ตวันที่..."></textarea>
+                </label>
+                <button type="submit" class="bps-form-submit">ส่งคำขอจอง</button>
+                <p class="bps-form-note">
+                    หรือทักไลน์ได้เลยที่
+                    <a href="https://line.me/ti/p/FI5YYjJS-X" target="_blank" rel="noopener">@Baanpermsook</a>
+                    (ตอบไว ภายในไม่กี่นาที)
+                </p>
+            </form>
+        </div>
+    </section>
+
     <section class="bps-contact-section" id="cotract">
         <div class="bps-container">
 

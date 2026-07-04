@@ -36,7 +36,11 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - `src/404.html` — error page (Azure rewrites 404s here via `staticwebapp.config.json`)
 - `src/css/styles.css` — all styles. Custom classes are prefixed `bps-`. Later features
   (gallery, FAQ, articles, sticky nav, reveal, lightbox, hero badges) are appended in
-  labelled "Phase B" / "Phase C" blocks at the end of the file.
+  labelled "Phase B/C/D" blocks at the end of the file. NOTE: the Bootstrap portion was
+  PurgeCSS'd down to only classes used in the HTML/JS (284KB → ~72KB). If you add a new
+  Bootstrap utility class to any page and it has no effect, it was purged — re-run purge
+  or add the rule to the custom section. JS-toggled classes (show, scrolled, open,
+  active, bps-visible/reveal, lightbox) are safelisted.
 - `src/js/scripts.js` — vanilla JS, linked at the bottom of every page. Handles: mobile
   navbar toggle (Bootstrap JS is NOT loaded), smooth scroll, sticky-navbar shadow +
   active-link highlighting (IntersectionObserver), scroll-reveal fade-ins, and an image

@@ -12688,3 +12688,123 @@ textarea.form-control-lg {
         font-size: 1.6rem;
     }
 }
+
+/* ========================================================================
+   Phase C — Sticky nav, scroll reveal, active link, lightbox, hero badges
+   ======================================================================== */
+
+/* Anchor offset so sticky navbar doesn't cover section headings */
+html {
+    scroll-padding-top: 80px;
+}
+
+/* --- Sticky navbar --- */
+.navbar.bg-dark {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.navbar.bg-dark.scrolled {
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.28);
+}
+.navbar-nav .nav-link {
+    transition: color 0.2s ease;
+}
+.navbar-nav .nav-link.active {
+    color: #fc7e0f !important;
+    font-weight: 600;
+}
+
+/* --- Scroll reveal (added by JS; no-JS users see content normally) --- */
+.bps-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+.bps-reveal.bps-visible {
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .bps-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* --- Hero trust signals --- */
+.bps-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 22px;
+}
+.bps-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 50px;
+    backdrop-filter: blur(4px);
+}
+.bps-hero-badge i {
+    color: #ffcf99;
+}
+@media (max-width: 768px) {
+    .bps-hero-badge {
+        font-size: 0.85rem;
+        padding: 7px 13px;
+    }
+}
+
+/* --- Lightbox --- */
+.bps-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 24px;
+    cursor: zoom-out;
+}
+.bps-lightbox.open {
+    display: flex;
+    animation: bpsFadeIn 0.25s ease;
+}
+.bps-lightbox-img {
+    max-width: 92vw;
+    max-height: 88vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+.bps-lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.85;
+}
+.bps-lightbox-close:hover {
+    opacity: 1;
+}
+@keyframes bpsFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

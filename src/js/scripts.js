@@ -126,4 +126,55 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key === 'Escape') closeLightbox();
     });
   }
+
+  // --- Booking/inquiry form via FormSubmit AJAX ---
+  // (fetch always sends Origin, so it works despite Azure's Referrer-Policy)
+  var bookingForm = document.querySelector('.bps-booking-form');
+  if (bookingForm) {
+    var showFormMsg = function (msg, ok) {
+      var el = bookingForm.querySelector('.bps-form-result');
+      if (!el) {
+        el = document.createElement('p');
+        el.className = 'bps-form-result';
+        bookingForm.appendChild(el);
+      }
+      el.textContent = msg;
+      el.style.color = ok ? '#2ecc71' : '#c0392b';
+    };
+    bookingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var action = bookingForm.getAttribute('action') || '';
+      var ajaxUrl = action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+      var btn = bookingForm.querySelector('.bps-form-submit');
+      var prev = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'กำลังส่ง…'; }
+
+      var payload = {};
+      new FormData(bookingForm).forEach(function (val, key) {
+        if (key !== '_honey' && key !== '_next') payload[key] = val;
+      });
+
+      fetch(ajaxUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (res) {
+          if (res && (res.success === 'true' || res.success === true)) {
+            window.location.href = '/thanks.html';
+          } else {
+            showFormMsg(
+              (res && res.message) || 'ส่งไม่สำเร็จ กรุณาลองใหม่ หรือทักไลน์ @Baanpermsook',
+              false
+            );
+            if (btn) { btn.disabled = false; btn.textContent = prev; }
+          }
+        })
+        .catch(function () {
+          showFormMsg('เกิดข้อผิดพลาดในการส่ง กรุณาทักไลน์ @Baanpermsook', false);
+          if (btn) { btn.disabled = false; btn.textContent = prev; }
+        });
+    });
+  }
 });

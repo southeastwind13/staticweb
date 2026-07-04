@@ -22,13 +22,21 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 
 ## Structure
 
-- `src/index.html` — the entire landing page (Hero → Problem → About → Audiences →
-  Rooms → FAQ/objections → Testimonials → CTA → Contact/Map). Section anchors:
-  `#about`, `#room`, `#cotract` (note: "cotract" is the existing contact anchor id).
+- `src/index.html` — the landing page (Hero → Problem → About → Audiences → Rooms →
+  Objections → Testimonials → Gallery → FAQ → CTA → Contact/Map). Section anchors:
+  `#about`, `#room`, `#gallery`, `#faq`, `#cotract` (note: "cotract" is the existing
+  contact anchor id).
+- `src/articles/` — blog/content-marketing pages targeting long-tail Thai keywords.
+  `index.html` is the article listing; each article is a standalone page with its own
+  `BlogPosting` JSON-LD, OG tags, and a LINE CTA. Assets are referenced with `../`
+  (e.g. `../css/styles.css`). Add new articles here AND to `sitemap.xml`.
 - `src/404.html` — error page (Azure rewrites 404s here via `staticwebapp.config.json`)
-- `src/css/styles.css` — all styles. Custom classes are prefixed `bps-`.
-- `src/js/scripts.js` — currently empty; add page JS here.
-- `src/sitemap.xml`, `src/robots.txt` — SEO crawl files
+- `src/css/styles.css` — all styles. Custom classes are prefixed `bps-`. Phase B styles
+  (gallery, FAQ, articles) are appended at the end of the file.
+- `src/js/scripts.js` — mobile navbar toggle (Bootstrap JS is NOT loaded) + smooth
+  scroll. Linked at the bottom of each page.
+- `src/sitemap.xml`, `src/robots.txt` — SEO crawl files. Keep sitemap URLs in sync with
+  pages that exist.
 - `src/googlede4b9980330bd0c6.html` — Google Search Console file-verification token
 - `src/assets/images/` — WebP/JPG/PNG assets (not all are used on the page)
 - `src-backup/` — an older version snapshot; ignore for edits.
@@ -42,8 +50,12 @@ npm start          # serves ./src at http://localhost:8000 via sirv
 ## Deploy
 
 Auto-deploys via **Azure Static Web Apps** GitHub Actions on push to `main`
-(`.github/workflows/azure-static-web-apps-*.yml`). App + output location is `./src`,
-no build step. Merging/pushing to `main` publishes to production.
+(`.github/workflows/azure-static-web-apps-proud-tree-015047703.yml` — the single live
+workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pushing to
+`main` publishes to production. Site is served at `www.baanpermsook.com` only (the apex
+`baanpermsook.com` has no DNS). Google Search Console is verified via the HTML file
+`src/googlede4b9980330bd0c6.html`; the GSC property must be the URL-prefix
+`https://www.baanpermsook.com`.
 
 ## Conventions & notes
 
@@ -51,7 +63,9 @@ no build step. Merging/pushing to `main` publishes to production.
 - Content is Thai. Match the existing warm, conversational marketing tone.
 - SEO matters here (goal: rank on Google + AI search). Keep intact and update when
   content changes: JSON-LD in `index.html` `<head>` (`Hotel` + `FAQPage` + reviews),
-  Open Graph / Twitter tags, `sitemap.xml`, canonical URL, one `<h1>` per page.
+  per-article `BlogPosting` JSON-LD, Open Graph / Twitter tags, `sitemap.xml`, canonical
+  URL, one `<h1>` per page. The visible FAQ section and the `FAQPage` JSON-LD must stay
+  in sync (Google requires markup to match on-page content).
 - Contact/social: phone `094-962-5955`, Facebook `https://www.facebook.com/baan.permsook.2024`,
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
 - After editing structured data, validate at https://validator.schema.org/ and

@@ -12416,9 +12416,275 @@ textarea.form-control-lg {
     .bps-mobile-sticky {
         display: flex; /* แสดงผลแบบ Flex */
     }
-    
+
     /* ดัน Footer ขึ้นไปหน่อยไม่ให้โดนบัง */
     .bps-contact-section {
-        padding-bottom: 90px !important; 
+        padding-bottom: 90px !important;
+    }
+}
+
+/* ========================================================================
+   Phase B — Gallery, FAQ, and Articles (บ้านเพิ่มสุข)
+   ======================================================================== */
+
+/* --- Gallery --- */
+.bps-gallery-section {
+    padding: 80px 20px;
+    background-color: #faf7f2;
+}
+.bps-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.bps-gallery-item {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 4 / 3;
+}
+.bps-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.bps-gallery-item:hover img {
+    transform: scale(1.06);
+}
+@media (max-width: 768px) {
+    .bps-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+/* --- FAQ (details/summary accordion, no JS needed) --- */
+.bps-faq-section {
+    padding: 80px 20px;
+    background-color: #fff;
+}
+.bps-faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+}
+.bps-faq-item {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+.bps-faq-item summary {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+    padding: 20px 54px 20px 22px;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: color 0.2s ease;
+}
+.bps-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+.bps-faq-item summary::after {
+    content: "\002B"; /* + */
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fc7e0f;
+    transition: transform 0.25s ease;
+}
+.bps-faq-item[open] summary::after {
+    content: "\2212"; /* − */
+}
+.bps-faq-item[open] summary {
+    color: #fc7e0f;
+}
+.bps-faq-answer {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    padding: 0 22px 22px 22px;
+}
+@media (max-width: 768px) {
+    .bps-faq-item summary {
+        font-size: 1rem;
+        padding: 16px 46px 16px 18px;
+    }
+}
+
+/* --- Mobile navbar toggle (Bootstrap JS not loaded; wired via scripts.js) --- */
+.navbar-collapse.collapse:not(.show) {
+    display: none;
+}
+@media (min-width: 992px) {
+    .navbar-collapse.collapse:not(.show) {
+        display: flex !important;
+    }
+}
+
+/* --- Articles (blog) --- */
+.bps-article-section {
+    padding: 60px 20px 80px;
+    background-color: #fff;
+}
+.bps-article {
+    max-width: 760px;
+    margin: 0 auto;
+}
+.bps-article h1 {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-size: 2rem;
+    color: #2b2b2b;
+    line-height: 1.35;
+    margin-bottom: 14px;
+}
+.bps-article-meta {
+    font-family: 'Sarabun', sans-serif;
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+.bps-article h2 {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-size: 1.4rem;
+    color: #333;
+    margin: 34px 0 12px;
+}
+.bps-article p,
+.bps-article li {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.08rem;
+    color: #444;
+    line-height: 1.85;
+}
+.bps-article ul {
+    padding-left: 22px;
+    margin-bottom: 18px;
+}
+.bps-article li {
+    margin-bottom: 8px;
+}
+.bps-article-hero {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    object-fit: cover;
+    max-height: 380px;
+}
+.bps-article-cta {
+    margin: 40px 0 10px;
+    padding: 26px;
+    background: #fff7ef;
+    border: 1px solid #ffe0c2;
+    border-radius: 16px;
+    text-align: center;
+}
+.bps-article-cta a {
+    display: inline-block;
+    margin-top: 14px;
+    background: #fc7e0f;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(252, 126, 15, 0.3);
+}
+.bps-article-cta a:hover {
+    background: #d96c0d;
+}
+.bps-article-back {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #fc7e0f;
+    text-decoration: none;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+}
+.bps-related {
+    max-width: 760px;
+    margin: 40px auto 0;
+    border-top: 1px solid #eee;
+    padding-top: 24px;
+}
+.bps-related h2 {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 14px;
+}
+.bps-related a {
+    display: block;
+    color: #444;
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    font-family: 'Sarabun', sans-serif;
+}
+.bps-related a:hover {
+    color: #fc7e0f;
+}
+
+/* --- Article index cards --- */
+.bps-article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.bps-article-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bps-article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+}
+.bps-article-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.bps-article-card-body {
+    padding: 20px;
+}
+.bps-article-card-body h2 {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    font-size: 1.15rem;
+    color: #2b2b2b;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+.bps-article-card-body p {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.98rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+@media (max-width: 768px) {
+    .bps-article-grid {
+        grid-template-columns: 1fr;
+    }
+    .bps-article h1 {
+        font-size: 1.6rem;
     }
 }

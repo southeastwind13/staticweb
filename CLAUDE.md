@@ -80,8 +80,13 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
 - Contact/social: phone `094-962-5955`, Facebook `https://www.facebook.com/baan.permsook.2024`,
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
 - Owner-customizable placeholder content (marked with HTML comments in the source): the
-  brand story copy, promotion terms/prices, location distances, the events table, and the
-  Google reviews link (`bps-platform-google` — swap to the real Google Business Profile
-  URL once it exists). Do not add fake `aggregateRating`/`Event` schema for these.
+  brand story copy, promotion terms/prices, location distances, and the events table.
+- Testimonials are REAL Google reviews (Sutasinee W., Waraporn S., Napaporn M.) mirrored
+  in the Hotel JSON-LD `review` array; the visible "4.2 / 128 reviews" badge and the
+  `bps-platform-google` link (`https://maps.app.goo.gl/EBG2Zk9efFbtqHaT7`) point to the
+  real Google Business listing. Do NOT add `aggregateRating` to JSON-LD (self-serving —
+  disallowed for rich results) and do not fabricate reviews/`Event` schema.
+- Google Business listing address is "51/44 ... Tambon Ban Mai (ต.บ้านใหม่)" whereas the
+  site copy says "ต.บางพูด" — unresolved discrepancy; confirm with owner before changing.
 - After editing structured data, validate at https://validator.schema.org/ and
   Google Rich Results Test before deploying.

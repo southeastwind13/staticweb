@@ -31,10 +31,15 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   `BlogPosting` JSON-LD, OG tags, and a LINE CTA. Assets are referenced with `../`
   (e.g. `../css/styles.css`). Add new articles here AND to `sitemap.xml`.
 - `src/404.html` — error page (Azure rewrites 404s here via `staticwebapp.config.json`)
-- `src/css/styles.css` — all styles. Custom classes are prefixed `bps-`. Phase B styles
-  (gallery, FAQ, articles) are appended at the end of the file.
-- `src/js/scripts.js` — mobile navbar toggle (Bootstrap JS is NOT loaded) + smooth
-  scroll. Linked at the bottom of each page.
+- `src/css/styles.css` — all styles. Custom classes are prefixed `bps-`. Later features
+  (gallery, FAQ, articles, sticky nav, reveal, lightbox, hero badges) are appended in
+  labelled "Phase B" / "Phase C" blocks at the end of the file.
+- `src/js/scripts.js` — vanilla JS, linked at the bottom of every page. Handles: mobile
+  navbar toggle (Bootstrap JS is NOT loaded), smooth scroll, sticky-navbar shadow +
+  active-link highlighting (IntersectionObserver), scroll-reveal fade-ins, and an image
+  lightbox for gallery/room photos. In-page anchors are validated with `isValidHash`
+  before `querySelector` (the "หน้าหลัก" link uses `href="#!"`, which is not a valid
+  selector and throws otherwise).
 - `src/sitemap.xml`, `src/robots.txt` — SEO crawl files. Keep sitemap URLs in sync with
   pages that exist.
 - `src/googlede4b9980330bd0c6.html` — Google Search Console file-verification token
@@ -46,6 +51,9 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 ```
 npm start          # serves ./src at http://localhost:8000 via sirv
 ```
+
+Note: sirv caches files and may serve a stale/truncated version after you edit —
+restart it (or run `npx sirv-cli ./src --dev`) so changes are picked up.
 
 ## Deploy
 

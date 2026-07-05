@@ -1,4 +1,32 @@
+# โรงแรมบ้านเพิ่มสุข — Baan Perm Sook Hotel
+# ยินดีต้อนรับทุก crawler รวมถึง AI/LLM (เราต้องการปรากฏใน AI search)
+
 User-agent: *
+Allow: /
+
+# --- ต้อนรับ AI answer engines / LLM crawlers อย่างชัดเจน ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://www.baanpermsook.com/sitemap.xml

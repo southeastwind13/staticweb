@@ -199,6 +199,30 @@ One commit per step so any single change can be reverted alone.
 | A landing page diverges from the homepage | Final consistency pass compares all eight hero implementations |
 | Deploying an unreviewed redesign to production | Work stays on a branch; PR gives an Azure preview URL; `main` untouched |
 
+## Deviations from this plan, found during implementation
+
+1. **No hue rotation on room photos.** The plan called for
+   `saturate(.88) hue-rotate(-6deg)`. On inspection the yellow is the actual
+   wall colour, not a white-balance error, so a hue shift would have
+   misrepresented the rooms. Shipped with `saturate(.94)` only.
+
+2. **`word-break: keep-all` does not fix Thai.** Per spec it governs breaks
+   between CJK characters only; Thai is not CJK, so Chromium kept applying its
+   Thai dictionary line-breaker and อิมแพ็ค still split. Replaced with explicit
+   `.bps-nobr` nowrap spans around the compounds in every hero heading.
+
+3. **Defining tokens did not collapse anything.** The first pass added the
+   `:root` block and assumed the numbers would drop. They did not: element
+   selectors like `section h2` lose to the class selectors already in the file,
+   and the existing rules still carried hardcoded values. A second pass was
+   needed to bind the real class names (`.bps-section-title`,
+   `.bps-problem-title`, …) to the tokens and to merge duplicate hex values in
+   the stylesheet. Measured before/after is recorded in the PR.
+
+4. **Two extra fixes, both pre-existing.** The Thai brand name overflowed the
+   viewport at 320px, and the 22-row event table crushed four columns into
+   350px on mobile. Both were in scope-adjacent territory and cheap to fix.
+
 ## Owner follow-ups (not code)
 
 - Real promotion discount figures.

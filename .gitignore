@@ -5,3 +5,5 @@ node_modules/
 # macOS
 .DS_Store
 **/.DS_Store
+.gstack/
+.playwright-mcp/

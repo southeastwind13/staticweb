@@ -3691,3 +3691,97 @@ section h2,
         background-image: url("../assets/images/derived/hero-garden-700.webp");
     }
 }
+
+/* ==========================================================================
+   EVENT TABLE — stacked cards on small screens
+   Four columns inside 350px forced every cell to wrap to 3-4 lines, making a
+   22-row table almost unscannable. Below 640px each row becomes a card.
+   CSS only; the table markup and its semantics are unchanged.
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    .bps-event-table thead {
+        display: none;
+    }
+
+    .bps-event-table,
+    .bps-event-table tbody,
+    .bps-event-table tr,
+    .bps-event-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .bps-event-table tr {
+        border: 1px solid var(--bps-line);
+        border-radius: var(--bps-r-md);
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        background: var(--bps-surface);
+    }
+
+    .bps-event-table td {
+        border: none;
+        padding: 0;
+    }
+
+    /* date */
+    .bps-event-table td:nth-child(1) {
+        font-size: var(--bps-t-small);
+        font-weight: 600;
+        color: var(--bps-orange);
+    }
+
+    /* event name */
+    .bps-event-table td:nth-child(2) {
+        font-family: 'Prompt', sans-serif;
+        font-size: 1.0625rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: var(--bps-ink);
+        margin: 4px 0 6px;
+    }
+
+    /* venue */
+    .bps-event-table td:nth-child(3) {
+        font-size: var(--bps-t-small);
+        color: var(--bps-ink-soft);
+    }
+
+    /* booking link becomes a real tap target */
+    .bps-event-table td:nth-child(4) {
+        margin-top: 12px;
+    }
+
+    .bps-event-table td:nth-child(4) a {
+        display: inline-block;
+        background: var(--bps-orange);
+        color: #fff;
+        text-decoration: none;
+        font-family: 'Prompt', sans-serif;
+        font-size: 0.9375rem;
+        padding: 8px 20px;
+        border-radius: var(--bps-r-pill);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Slim image band for text-only pages (events, articles), so they do not open
+   as a pure wall of copy.
+   -------------------------------------------------------------------------- */
+.bps-page-band {
+    position: relative;
+    height: 190px;
+    margin: 0 0 var(--bps-s-3);
+    border-radius: var(--bps-r-md);
+    background-image: url("../assets/images/derived/location-overview-1280.webp");
+    background-position: center 62%;
+    background-size: cover;
+    background-color: var(--bps-ink);
+}
+
+@media (max-width: 640px) {
+    .bps-page-band {
+        height: 130px;
+    }
+}

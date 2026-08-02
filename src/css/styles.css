@@ -3102,3 +3102,583 @@ html {
     margin: 14px 0 0;
     line-height: 1.6;
 }
+
+/* ==========================================================================
+   Phase H — Design system tokens & visual re-skin (2026-08)
+   Spec: docs/superpowers/specs/2026-08-02-visual-reskin-design.md
+
+   NOTE: styles.css was processed with PurgeCSS. Any NEW styling must live in
+   this custom section — adding an unused Bootstrap utility class to markup
+   will silently do nothing because it was purged out.
+   ========================================================================== */
+
+:root {
+    /* --- Colour: collapsed from 26 unique non-gray values to 10 --- */
+    --bps-orange: #fc7e0f;
+    --bps-orange-ink: #d96c0d;
+    --bps-ink: #21252a;
+    --bps-ink-soft: #5c6470;
+    --bps-line: #e8e0d6;
+    --bps-surface: #ffffff;
+    --bps-surface-warm: #fff7ef;   /* replaces 6 near-identical creams */
+    --bps-surface-deep: #ffeacc;
+    --bps-green: #16a34a;          /* replaces 4 greens */
+    --bps-scrim: 20 16 12;         /* RGB triplet, used with varying alpha */
+
+    /* --- Type: 5 steps, ratio 1.25. Prompt display / Sarabun body --- */
+    --bps-t-display: clamp(2rem, 5vw, 3.25rem);
+    --bps-t-h2: clamp(1.5rem, 3vw, 2rem);
+    --bps-t-h3: 1.25rem;
+    --bps-t-body: 1rem;
+    --bps-t-small: 0.875rem;
+
+    /* --- Radius: collapsed from 10 values to 3 --- */
+    --bps-r-sm: 6px;
+    --bps-r-md: 12px;
+    --bps-r-pill: 999px;
+
+    /* --- Spacing: 8px base --- */
+    --bps-s-1: 8px;
+    --bps-s-2: 16px;
+    --bps-s-3: 24px;
+    --bps-s-4: 40px;
+    --bps-s-5: 64px;
+    --bps-s-6: 96px;
+}
+
+/* --------------------------------------------------------------------------
+   Thai line-breaking.
+
+   At 390px the old h1 split อิมแพ็ค across two lines. `word-break: keep-all`
+   does NOT fix this: per spec it only governs breaks between CJK characters,
+   and Thai is not CJK, so Chromium keeps applying its Thai dictionary
+   line-breaker regardless. The reliable fix is an explicit nowrap span around
+   each compound that must stay whole — hence .bps-nobr in the markup.
+   -------------------------------------------------------------------------- */
+.bps-nobr {
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   H2 — was rendering at 5 different size/weight pairs across the page
+   (28.8/600, 32/600, 35.2/700, 32/700, 28.8/500). Now one value.
+   .bps-h2-lead is the deliberate opt-in for a heavier section opener.
+   -------------------------------------------------------------------------- */
+main h2,
+section h2,
+.bps-section h2 {
+    font-family: 'Prompt', sans-serif;
+    font-size: var(--bps-t-h2);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--bps-ink);
+}
+
+.bps-h2-lead {
+    font-weight: 700 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons — one radius, one weight, consistent press feedback.
+   -------------------------------------------------------------------------- */
+.btn {
+    border-radius: var(--bps-r-pill);
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--bps-orange);
+    border-color: var(--bps-orange);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--bps-orange-ink);
+    border-color: var(--bps-orange-ink);
+}
+
+/* ==========================================================================
+   HERO — garden, full-bleed scrim, bottom-left composition
+   Was: the walkway photo behind a floating translucent rounded box that did
+   not contain its own text. The box read as a stray grey rectangle and the
+   subhead sat on busy imagery with no shadow.
+   ========================================================================== */
+
+.bps-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: min(86svh, 700px);
+    padding: var(--bps-s-5) 0 var(--bps-s-4);
+    background-image: url("../assets/images/derived/hero-garden-1100.webp");
+    background-color: var(--bps-ink);
+    background-position: center 42%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* Full-bleed scrim replaces the floating panel: fixes contrast AND removes
+   the stray-box artefact in one change. */
+.bps-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            100deg,
+            rgb(var(--bps-scrim) / 0.62) 0%,
+            rgb(var(--bps-scrim) / 0.28) 42%,
+            rgb(var(--bps-scrim) / 0) 68%
+        ),
+        linear-gradient(
+            180deg,
+            rgb(var(--bps-scrim) / 0.16) 0%,
+            rgb(var(--bps-scrim) / 0.34) 45%,
+            rgb(var(--bps-scrim) / 0.78) 100%
+        );
+    pointer-events: none;
+}
+
+.bps-hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--bps-s-3);
+    text-align: left;          /* centring everything is the template signal */
+}
+
+.bps-hero-eyebrow {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--bps-surface-deep);
+    margin: 0 0 var(--bps-s-1);
+    text-shadow: 0 1px 6px rgb(var(--bps-scrim) / 0.6);
+}
+
+.bps-hero-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: var(--bps-t-display);
+    font-weight: 700;
+    line-height: 1.18;
+    color: #fff;
+    max-width: 16ch;
+    margin: 0 0 var(--bps-s-2);
+    text-shadow: 0 2px 18px rgb(var(--bps-scrim) / 0.55);
+}
+
+.bps-hero-sub {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.94);
+    max-width: 46ch;
+    margin: 0 0 var(--bps-s-2);
+    text-shadow: 0 1px 10px rgb(var(--bps-scrim) / 0.7);
+}
+
+/* Price in the hero. Hidden pricing was the largest goodwill drain found. */
+.bps-hero-price {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin: 0 0 var(--bps-s-3);
+    text-shadow: 0 1px 10px rgb(var(--bps-scrim) / 0.7);
+}
+
+.bps-hero-price strong {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bps-surface-deep);
+    vertical-align: -0.05em;
+}
+
+.bps-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bps-s-2);
+    margin-bottom: var(--bps-s-3);
+}
+
+.bps-hero-cta .btn {
+    padding: 0.75rem 1.75rem;
+    font-size: 1.0625rem;
+}
+
+.bps-hero .bps-hero-badges {
+    justify-content: flex-start;
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .bps-hero {
+        min-height: min(78svh, 620px);
+        padding: var(--bps-s-4) 0 var(--bps-s-3);
+        background-position: center 46%;
+    }
+    .bps-hero-title {
+        max-width: 100%;
+    }
+    .bps-hero-cta .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   ROOM CARDS — shrink the photograph, grow the facts
+   The room photography is the weakest asset; the price and the inclusions
+   are the strongest. Invert which one dominates the card.
+   ========================================================================== */
+
+.bps-room-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--bps-surface);
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-md);
+    overflow: hidden;
+}
+
+.bps-room-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bps-surface-warm);
+}
+
+.bps-room-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Mild desaturation only. The yellow walls are the real wall colour, so
+       a hue shift would misrepresent the room. This just takes the edge off
+       camera oversaturation. */
+    filter: saturate(0.94);
+}
+
+.bps-room-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: var(--bps-s-3);
+}
+
+.bps-room-price {
+    font-family: 'Prompt', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--bps-ink);
+    margin: 0;
+}
+
+.bps-room-price span {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    font-weight: 400;
+    color: var(--bps-ink-soft);
+}
+
+.bps-room-name {
+    font-family: 'Prompt', sans-serif;
+    font-size: var(--bps-t-h3);
+    font-weight: 600;
+    color: var(--bps-ink);
+    margin: var(--bps-s-1) 0 var(--bps-s-1);
+}
+
+.bps-room-desc {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--bps-ink-soft);
+    margin: 0 0 var(--bps-s-2);
+}
+
+/* Capped at 4 chips + an overflow pill. Uncapped wrapping is what pushed the
+   three CTAs to different heights and left a dead zone in the first card. */
+.bps-room-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bps-s-1);
+    margin: 0 0 var(--bps-s-3);
+    padding: 0;
+    list-style: none;
+}
+
+.bps-room-chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink-soft);
+    background: var(--bps-surface-warm);
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-pill);
+    padding: 5px 12px;
+}
+
+.bps-room-chips li i {
+    color: var(--bps-orange);
+    font-size: 0.8125rem;
+}
+
+.bps-room-chips .bps-chip-more {
+    background: transparent;
+    border-style: dashed;
+}
+
+/* margin-top:auto is what makes all three CTAs align regardless of how much
+   body copy or how many chips each card carries. */
+.bps-room-card .bps-room-cta {
+    margin-top: auto;
+    display: block;
+    text-align: center;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+    background: var(--bps-orange);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: var(--bps-r-pill);
+    transition: background-color 0.18s ease-out;
+}
+
+.bps-room-card .bps-room-cta:hover,
+.bps-room-card .bps-room-cta:focus {
+    background: var(--bps-orange-ink);
+    color: #fff;
+}
+
+.bps-room-tag {
+    position: absolute;
+    top: var(--bps-s-2);
+    left: var(--bps-s-2);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgb(var(--bps-scrim) / 0.78);
+    color: #fff;
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: var(--bps-r-pill);
+}
+
+/* ==========================================================================
+   FACT CARDS — replaces the icon-in-orange-circle template grid
+   Was: orange circle > icon > bold centred title > 2-line centred body,
+   repeated three times. The most recognisable AI-generated layout there is.
+   Now: the fact leads, set in display type, text left-aligned.
+   ========================================================================== */
+
+.bps-fact-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: left;
+    background: var(--bps-surface);
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-md);
+    padding: var(--bps-s-3);
+}
+
+.bps-fact-card.is-featured {
+    border-color: var(--bps-orange);
+    background: var(--bps-surface-warm);
+}
+
+.bps-fact-lead {
+    font-family: 'Prompt', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--bps-orange);
+    margin: 0 0 var(--bps-s-1);
+}
+
+.bps-fact-title {
+    display: flex;
+    align-items: center;
+    gap: var(--bps-s-1);
+    font-family: 'Prompt', sans-serif;
+    font-size: var(--bps-t-h3);
+    font-weight: 600;
+    color: var(--bps-ink);
+    margin: 0 0 var(--bps-s-1);
+}
+
+/* Icon stays, but at text size beside the heading rather than floating in a
+   decorative coloured circle. */
+.bps-fact-title i {
+    color: var(--bps-orange);
+    font-size: 1rem;
+}
+
+.bps-fact-body {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--bps-ink-soft);
+    margin: 0 0 var(--bps-s-3);
+}
+
+.bps-fact-card .bps-fact-cta {
+    margin-top: auto;
+    align-self: flex-start;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+    background: var(--bps-orange);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.625rem 1.5rem;
+    border-radius: var(--bps-r-pill);
+    transition: background-color 0.18s ease-out;
+}
+
+.bps-fact-card .bps-fact-cta:hover,
+.bps-fact-card .bps-fact-cta:focus {
+    background: var(--bps-orange-ink);
+    color: #fff;
+}
+
+.bps-fact-flag {
+    align-self: flex-start;
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    font-weight: 600;
+    color: #fff;
+    background: var(--bps-orange);
+    border-radius: var(--bps-r-pill);
+    padding: 3px 12px;
+    margin-bottom: var(--bps-s-1);
+}
+
+/* ==========================================================================
+   LOCATION BAND — uses overview.jpg, the one properly-exposed wide shot
+   ========================================================================== */
+
+.bps-location-band {
+    position: relative;
+    min-height: 260px;
+    background-image: url("../assets/images/derived/location-overview-1280.webp");
+    background-position: center 60%;
+    background-size: cover;
+    background-color: var(--bps-ink);
+    border-radius: var(--bps-r-md);
+    display: flex;
+    align-items: flex-end;
+    padding: var(--bps-s-3);
+    margin-bottom: var(--bps-s-4);
+    overflow: hidden;
+}
+
+.bps-location-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgb(var(--bps-scrim) / 0) 40%,
+        rgb(var(--bps-scrim) / 0.75) 100%
+    );
+}
+
+.bps-location-band p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.0625rem;
+    color: #fff;
+    text-shadow: 0 1px 10px rgb(var(--bps-scrim) / 0.7);
+}
+
+/* ==========================================================================
+   Radius normalisation — was 10 distinct values across the stylesheet
+   ========================================================================== */
+
+.bps-gallery-item,
+.bps-faq-item,
+.bps-article-card,
+.bps-promo-card,
+.bps-audience-card,
+.bps-review-card,
+.bps-booking-form,
+.bps-event-table {
+    border-radius: var(--bps-r-md);
+}
+
+.bps-hero-badge,
+.bps-platform-btn {
+    border-radius: var(--bps-r-pill);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bps-room-card .bps-room-cta,
+    .bps-fact-card .bps-fact-cta {
+        transition: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   De-template the remaining icon-in-circle grids (audiences, objections).
+   Same treatment as the promotion cards: the icon drops to text size and sits
+   with the heading instead of floating in a decorative coloured disc, and the
+   copy left-aligns. Markup is untouched — this is a restyle only.
+   -------------------------------------------------------------------------- */
+
+.bps-card,
+.bps-obj-item {
+    text-align: left;
+}
+
+.bps-card-icon,
+.bps-obj-icon {
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    color: var(--bps-orange);
+    font-size: 1.375rem;
+    display: block;
+    margin: 0 0 var(--bps-s-1) 0;
+    justify-content: flex-start;
+}
+
+.bps-card-title,
+.bps-obj-title-sm,
+.bps-obj-item h3 {
+    text-align: left;
+}
+
+/* The featured audience card previously filled its icon disc with solid orange.
+   With the disc gone that rule painted a full-width orange bar. */
+.bps-highlight-card .bps-card-icon {
+    background: none;
+    color: var(--bps-orange);
+}
+
+/* --------------------------------------------------------------------------
+   Pre-existing: the full Thai brand name is 330px wide and overflowed the
+   viewport at 320px (iPhone SE and small Android). Scale it down below 400px
+   rather than truncating, so the name stays readable.
+   -------------------------------------------------------------------------- */
+@media (max-width: 400px) {
+    .navbar-brand {
+        font-size: 1rem;
+        line-height: 1.3;
+        white-space: normal;
+    }
+}

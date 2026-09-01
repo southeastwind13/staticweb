@@ -55,6 +55,12 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   `docs/google-ads-audit.md` — audit of the live Ads account (1 Sep 2026).
 - `docs/google-ads.md` — ready-to-paste Google Ads copy (TH + EN headlines, descriptions,
   sitelinks, callouts) + ad-group→landing-page mapping. NOT deployed (outside `src/`).
+- `docs/marketing-plan.md` — the overall marketing plan. `docs/agoda_improve.md` and
+  `docs/booking_improve.md` are the per-OTA audits + price ladders that hang off it
+  (Agoda property 5728170, Booking hotel_id 6536661). Both price off the same Google
+  Sheet of daily target prices, and both shelf-price tables are deliberately identical
+  so the guest-facing price matches across OTAs (rate parity). Read the relevant one
+  before touching prices, promotions, or availability on either platform.
 - `src/404.html` — error page (Azure rewrites 404s here via `staticwebapp.config.json`)
 - `src/css/styles.css` — all styles. Custom classes are prefixed `bps-`. Later features
   (gallery, FAQ, articles, sticky nav, reveal, lightbox, hero badges) are appended in

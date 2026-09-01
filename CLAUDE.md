@@ -81,7 +81,13 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - `src/sitemap.xml`, `src/robots.txt` — SEO crawl files. Keep sitemap URLs in sync with
   pages that exist.
 - `src/googlede4b9980330bd0c6.html` — Google Search Console file-verification token
-- `src/assets/images/` — WebP/JPG/PNG assets (not all are used on the page)
+- `src/assets/images/` — WebP/JPG/PNG assets (not all are used on the page).
+  `derived/` holds the sized exports actually referenced by the pages. The hero and
+  og:image use `hero-exterior-1100.webp` / `hero-exterior-700.webp` /
+  `og-exterior-1200x630.jpg` (the orange cottages, from `bps-g-exterior.jpg`).
+  The older `hero-garden-*` / `og-garden-*` files are still used by
+  `articles/pak-kret-day-trip.html` — do not delete them. Regenerate exports with
+  `sips` + `cwebp` (no ImageMagick/PIL on this machine).
 - `src-backup/` — an older version snapshot; ignore for edits.
 
 ## Run locally
@@ -116,6 +122,18 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
 - Owner-customizable placeholder content (marked with HTML comments in the source): the
   brand story copy, promotion terms/prices, and location distances.
+- **The pet fee is `300 THB per pet, PER NIGHT`** (owner-confirmed 2 Sep 2026), and every
+  place that quotes it must say "per night" / "ต่อคืน". It is currently written in 21
+  places across `index.html`, `pet-friendly.html`, `articles/hotel-pet-friendly-pakkret.html`,
+  `llms.txt` and the `en/` counterparts — meta descriptions and OG tags included. Omitting
+  "per night" understates a 2-night stay by half and is what drove Booking.com's
+  value-for-money score to 6.3. Do not confuse it with the extra-bed fee, which is also
+  300 THB but genuinely per night already.
+- **The `FAQPage` JSON-LD is hand-maintained, not generated.** There is no build step in
+  this repo (`package.json` has only `start`), so editing a visible `.bps-faq-answer`
+  means editing the matching `acceptedAnswer.text` by hand in BOTH `index.html` and
+  `en/index.html` (15 Q&A each). Verify by extracting both lists and comparing them
+  byte-for-byte — Google requires them to match.
 - **Analytics: always fire events through `track()` in `scripts.js`, never `gtag()` directly.**
   Every page loads `gtm.js` before `gtag.js` on the same `dataLayer`, so the GTM container
   owns the default gtag destination — an event sent without `send_to` lands in
@@ -132,6 +150,19 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   request whose `en=` matches the event name (single events carry `en=` in the URL;
   several at once are batched into the POST body, so read the body too). GA4's own Events
   list is not a check — it only lists events it has already processed, hours later.
+- **OTA operating facts** (both accounts were worked on 2 Sep 2026 — read
+  `docs/booking_improve.md` / `docs/agoda_improve.md` before touching either):
+  - **Availability stops at 15 Dec 2026.** That ceiling is the owner's decision, already
+    applied on both platforms. Do not propose reopening 2027 unless the owner raises it.
+  - **Agoda enforces a 1,400 THB minimum rate** ("Rate must be between 1,400 and 999,000"),
+    so the shared shelf-price ladder's base tier cannot be 1,350 there. Booking has no such
+    floor and currently sits at 1,350 — a 3.6% rate-parity gap that is still an open
+    decision, not an oversight.
+  - **Room allocation is deliberate**: 1 room/night to Booking, 2 to Agoda, out of 4
+    registered. Not a bug; do not "fix" it.
+  - Booking commission measured from real invoices is **14.9%** (not 15%).
+  - Discounts **compound** on both platforms. Before adding any promotion, check what it
+    stacks with, or the ladder silently under-sells.
 - robots.txt explicitly welcomes AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
   Google-Extended, etc.).
 - Testimonials are REAL Google reviews (Sutasinee W., Waraporn S., Napaporn M.) mirrored

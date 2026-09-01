@@ -127,6 +127,15 @@ Google Analytics 4 properties → Web → ติ๊ก:
 ### 4.3 จัดว่าอันไหน Primary / Secondary
 นี่คือขั้นที่สำคัญที่สุด — bid strategy เรียนรู้จาก **Primary เท่านั้น**
 
+**หาไม่เจอเพราะมันไม่ได้อยู่ในหน้าตั้งค่าของ conversion action** — ค่านี้อยู่ในระดับ
+*goal* ไม่ใช่ระดับ action เส้นทางที่ถูกคือ:
+
+> **Goals → Conversions → แท็บ "Goals"** (ไม่ใช่แท็บ Summary)
+> → กด **Edit goal** ที่ goal ที่ต้องการ (เช่น Leads)
+> → กางหัวข้อ **"Conversion action optimization"**
+> → คอลัมน์ **"Action optimization"** เลือก **Primary** หรือ **Secondary (observe only)**
+> → **Save**
+
 | Conversion action | ตั้งเป็น |
 |---|---|
 | `booking_form_submit` (GA4) | **Primary** ✅ |
@@ -142,7 +151,30 @@ Google Analytics 4 properties → Web → ติ๊ก:
 | **Submit lead forms** ตัวเก่าที่ Misconfigured | **ลบทิ้ง** (ตัวใหม่จาก GA4 แทน) |
 | **Line** ตัวเก่าที่ Misconfigured | **ลบทิ้ง** (ตัวใหม่จาก GA4 แทน) |
 
-### 4.4 หลังตั้งเสร็จ
+**เรื่อง status "Needs attention" / "Misconfigured" ที่ขึ้นหลายอัน** — ไม่ต้องไปไล่ซ่อม
+มันแปลว่า "ตั้งแท็กไว้แต่ไม่เคยได้รับ conversion เลย" ซึ่งก็คืออาการของบั๊ก `send_to`
+ที่เพิ่งแก้ไป **ตัวที่ขึ้นเตือนส่วนใหญ่คือตัวที่อยู่ในรายการ "ลบทิ้ง" อยู่แล้ว**
+เสียเวลาซ่อมไปก็ต้องลบอยู่ดี — ลบ/ปรับเป็น Secondary ตามตารางข้างบนแล้วคำเตือนจะหายไปเอง
+ส่วนตัวที่ import จาก GA4 เข้ามาใหม่จะขึ้น "Awaiting conversions" อยู่ ~1–2 วัน
+จนกว่าจะมีคนกดจริง ถือว่าปกติ
+
+### 4.4 ปรับ goal ของแคมเปญ (ชั้นที่คนมองข้าม)
+
+ถ้าแคมเปญตั้ง **campaign-specific goal** ไว้ มันจะ **ไม่สนใจค่า Primary/Secondary
+ระดับบัญชีเลย** — แคมเปญ `BPS Ads` ตั้งไว้แบบนี้อยู่ (Submit lead forms + Phone call
+leads + Contacts ซึ่งพังทั้งสามตัว) แก้แค่ข้อ 4.3 จึงไม่พอ
+
+> **Campaigns → เลือก `BPS Ads` → Settings → Goals**
+> เอาของเก่าออก ใส่ `booking_form_submit` + `line_click` + `phone_click` แทน
+
+หรือจะกดใช้ **account-default goal** ไปเลยก็ได้ (Goals → แท็บ Goals → Edit goal →
+กาง "Account default" → เปิด "Make this an account-default goal") แล้วลบ
+campaign-specific goal ทิ้ง จะได้ไม่ต้องคุมสองที่
+
+**ลำดับที่ถูก:** import จาก GA4 (4.2) → จัด Primary/Secondary (4.3) → แก้ goal ของ
+แคมเปญ (4.4) → **ค่อยเปิดแคมเปญ** ถ้าเปิดก่อนแก้ goal เงินจะไหลไปเรียนรู้จากเป้าพังอีกรอบ
+
+### 4.5 หลังตั้งเสร็จ
 - อย่าเพิ่งเปลี่ยน bid strategy ทันที — ปล่อยเก็บ conversion จริง **2 สัปดาห์**
   แล้วค่อยตั้ง Target CPA (ตั้งที่ ~฿250–350/ลีด เป็นจุดเริ่ม)
 - ระหว่างนี้ใช้ **Maximize clicks** พร้อมกำหนด max CPC หรือคง Maximize conversions ไว้

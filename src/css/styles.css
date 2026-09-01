@@ -3199,7 +3199,11 @@ section h2,
 }
 
 /* ==========================================================================
-   HERO — garden, full-bleed scrim, bottom-left composition
+   HERO — orange cottages, full-bleed scrim, bottom-left composition
+   2026-09-02: swapped from the garden/pond shot to bps-g-exterior. The garden
+   photo was soft-focus and read as generic foliage; the orange cottages are
+   sharp and are the one thing about this property nobody else in the comp set
+   has. The scrim below is unchanged and still carries the text contrast.
    Was: the walkway photo behind a floating translucent rounded box that did
    not contain its own text. The box read as a stray grey rectangle and the
    subhead sat on busy imagery with no shadow.
@@ -3211,7 +3215,7 @@ section h2,
     align-items: flex-end;
     min-height: min(86svh, 700px);
     padding: var(--bps-s-5) 0 var(--bps-s-4);
-    background-image: url("../assets/images/derived/hero-garden-1100.webp");
+    background-image: url("../assets/images/derived/hero-exterior-1100.webp");
     background-color: var(--bps-ink);
     background-position: center 42%;
     background-size: cover;
@@ -3683,12 +3687,12 @@ section h2,
     }
 }
 
-/* Mobile gets the 700px hero (92KB) instead of the 1100px one (261KB).
-   Foliage is high-entropy and compresses poorly, so serving the right size
-   matters more than pushing quality down further. */
+/* Mobile gets the 700px hero (48KB) instead of the 1100px one (95KB).
+   The cottage shot has large flat colour areas so it compresses far better
+   than the old foliage hero did — both files roughly halved. */
 @media (max-width: 760px) {
     .bps-hero {
-        background-image: url("../assets/images/derived/hero-garden-700.webp");
+        background-image: url("../assets/images/derived/hero-exterior-700.webp");
     }
 }
 

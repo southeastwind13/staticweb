@@ -178,26 +178,106 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // --- GA4 conversion events ---
-  var track = function (name, params) {
-    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
-    try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, params || {})); } catch (e) {}
+  // ---------------------------------------------------------------------------
+  // Analytics: GA4 events + (optional) Google Ads conversions
+  // ---------------------------------------------------------------------------
+  // GA4 (G-CG82G9GPN5) and GTM (GTM-PLKLTZT) are loaded in the <head> of every
+  // page. Everything below adds the *lead* signals GA4 cannot measure on its own.
+  //
+  // TO SWITCH ON GOOGLE ADS CONVERSIONS: fill in the ids below, taken from
+  // Google Ads → Goals → Conversions → (each action) → "Tag setup" →
+  // "Install the tag yourself". `id` is the AW-xxxxxxxxx number (same for every
+  // action); each `label` is the string after the slash in send_to.
+  // While `id` is empty nothing extra is sent — the GA4 events still fire.
+  // Full walkthrough: docs/google-analytics-setup.md
+  // The GA4 measurement id must be passed explicitly on every event.
+  // WHY: gtm.js loads before gtag.js and shares the same dataLayer, so the GTM
+  // container owns the default gtag destination. An event sent without
+  // `send_to` lands in GTM-PLKLTZT (where no trigger matches it) and never
+  // reaches GA4 — verified in the browser: without send_to no /g/collect
+  // request is made at all, with it the hit goes out. This is why
+  // line_click / booking_form_submit showed 0 in GA4 and Google Ads.
+  var GA4_ID = 'G-CG82G9GPN5';
+
+  var ADS = {
+    id: '',                 // e.g. 'AW-123456789'
+    labels: {
+      booking_form_submit: '',   // conversion "Submit lead form" (primary)
+      line_click: '',            // conversion "LINE click"
+      phone_click: ''            // conversion "Phone call click"
+    }
   };
 
-  // Count clicks on every LINE button (booking intent)
-  document.querySelectorAll('a[href*="line.me"]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      track('line_click', {
-        link_text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60),
-        link_url: a.href,
-        page_path: location.pathname
-      });
-    });
-  });
+  if (ADS.id && typeof gtag === 'function') {
+    // gtag.js is already on the page; this just adds the Ads destination.
+    gtag('config', ADS.id);
+  }
 
-  // Count completed booking requests (fires once, on the thank-you page —
-  // covers both the AJAX redirect and the no-JS Formsubmit fallback)
+  var pageMeta = function () {
+    return {
+      page_path: location.pathname,
+      page_lang: /^\/en\//.test(location.pathname) ? 'en' : 'th'
+    };
+  };
+
+  // Send one event to GA4, GTM's dataLayer, and Google Ads (when configured).
+  var track = function (name, params) {
+    var data = Object.assign(pageMeta(), params || {});
+    try { if (typeof gtag === 'function') gtag('event', name, Object.assign({ send_to: GA4_ID }, data)); } catch (e) {}
+    try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: name }, data)); } catch (e) {}
+
+    var label = ADS.labels[name];
+    if (ADS.id && label) {
+      try { if (typeof gtag === 'function') gtag('event', 'conversion', { send_to: ADS.id + '/' + label }); } catch (e) {}
+    }
+  };
+
+  var linkText = function (a) {
+    return (a.textContent || a.getAttribute('aria-label') || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+  };
+
+  // Delegated so it also covers links added after load (lightbox, etc.)
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+
+    // Booking intent — tapping through to LINE
+    if (href.indexOf('line.me') > -1) {
+      track('line_click', { link_text: linkText(a), link_url: a.href });
+
+    // Booking intent — tapping the phone number
+    } else if (/^tel:/i.test(href)) {
+      track('phone_click', { link_text: linkText(a), phone_number: href.replace(/^tel:/i, '') });
+
+    // "Where is it?" — the single biggest signal in the Ads account (1,936/mo)
+    } else if (/maps\.app\.goo\.gl|google\.[^/]+\/maps/.test(href)) {
+      track('map_click', { link_text: linkText(a), link_url: a.href });
+
+    // Social / review platforms
+    } else if (href.indexOf('facebook.com') > -1) {
+      track('social_click', { platform: 'facebook', link_url: a.href });
+    } else if (href.indexOf('agoda.com') > -1 || href.indexOf('booking.com') > -1) {
+      track('ota_click', { platform: href.indexOf('agoda.com') > -1 ? 'agoda' : 'booking.com', link_url: a.href });
+    }
+  }, true);
+
+  // Funnel step: someone actually started filling the booking form.
+  // Fires at most once per page view, so form_start → booking_form_submit
+  // gives a real completion rate.
+  if (bookingForm) {
+    var formStarted = false;
+    bookingForm.addEventListener('input', function () {
+      if (formStarted) return;
+      formStarted = true;
+      track('form_start', { form_source: (bookingForm.querySelector('input[name="ที่มา"], input[name="Source"]') || {}).value || '' });
+    });
+  }
+
+  // Completed booking request (fires once, on the thank-you page — covers both
+  // the AJAX redirect and the no-JS FormSubmit fallback). This is the GA4 key
+  // event to import into Google Ads as the primary conversion.
   if (/\/thanks\.html$/.test(location.pathname)) {
-    track('booking_form_submit', { page_path: location.pathname });
+    track('booking_form_submit', {});
   }
 });

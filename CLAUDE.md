@@ -46,6 +46,8 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   `BlogPosting` JSON-LD, OG tags, GTM/GA, and a LINE CTA. Assets referenced with `../`.
   Add new articles here AND to `sitemap.xml` AND to the article-index grid.
 - `src/llms.txt` — markdown summary of the hotel (facts + links) for LLM/AI crawlers.
+- `docs/google-analytics-setup.md` — GA4/Ads conversion setup guide + the send_to gotcha.
+  `docs/google-ads-audit.md` — audit of the live Ads account (1 Sep 2026).
 - `docs/google-ads.md` — ready-to-paste Google Ads copy (TH + EN headlines, descriptions,
   sitelinks, callouts) + ad-group→landing-page mapping. NOT deployed (outside `src/`).
 - `src/404.html` — error page (Azure rewrites 404s here via `staticwebapp.config.json`)
@@ -59,9 +61,9 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - `src/js/scripts.js` — vanilla JS, linked at the bottom of every page. Handles: mobile
   navbar toggle (Bootstrap JS is NOT loaded), smooth scroll, sticky-navbar shadow +
   active-link highlighting, scroll-reveal, image lightbox, the booking form (FormSubmit
-  AJAX → redirect to `/thanks.html`), and GA4 event tracking (`line_click` on LINE
-  buttons, `booking_form_submit` on the thank-you page). In-page anchors are validated
-  with `isValidHash` before `querySelector` (the "หน้าหลัก" link uses `href="#!"`).
+  AJAX → redirect to `/thanks.html`), and GA4 event tracking (see the Analytics note
+  under Conventions). In-page anchors are validated with `isValidHash` before
+  `querySelector` (the "หน้าหลัก" link uses `href="#!"`).
   NOTE: Azure serves `Referrer-Policy: same-origin`, which nulls Origin on a normal
   cross-origin form POST and makes FormSubmit reject it — hence the AJAX approach (fetch
   always sends Origin). staticwebapp.config.json also sets `strict-origin-when-cross-origin`.
@@ -103,9 +105,18 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
 - Owner-customizable placeholder content (marked with HTML comments in the source): the
   brand story copy, promotion terms/prices, and location distances.
-- `GA4` key event for conversions is `booking_form_submit` (marked as a key event in GA4).
-  `line_click` also fires but is a softer signal. robots.txt explicitly welcomes AI
-  crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.).
+- **Analytics: always fire events through `track()` in `scripts.js`, never `gtag()` directly.**
+  Every page loads `gtm.js` before `gtag.js` on the same `dataLayer`, so the GTM container
+  owns the default gtag destination — an event sent without `send_to` lands in
+  GTM-PLKLTZT, matches no trigger, and never reaches GA4 (verified in-browser: no
+  `/g/collect` request at all). `track()` adds `send_to: 'G-CG82G9GPN5'` plus
+  `page_path`/`page_lang`, mirrors to `dataLayer` for GTM, and fires the Google Ads
+  conversion when the `ADS` block at the top of that section is filled in (empty = off).
+  Events: `booking_form_submit` (thank-you page, the key conversion), `line_click`,
+  `phone_click`, `map_click`, `social_click`, `ota_click`, `form_start`.
+  Setup/verification steps for the GA4 + Ads UI: `docs/google-analytics-setup.md`.
+- robots.txt explicitly welcomes AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
+  Google-Extended, etc.).
 - Testimonials are REAL Google reviews (Sutasinee W., Waraporn S., Napaporn M.) mirrored
   in the Hotel JSON-LD `review` array; the visible "4.2 / 128 reviews" badge and the
   `bps-platform-google` link (`https://maps.app.goo.gl/EBG2Zk9efFbtqHaT7`) point to the

@@ -66,18 +66,33 @@ Google Ads จึงไม่มีทางเห็นการจอง ต�
 ถ้าไม่เห็น: เคลียร์แคช CDN/เบราว์เซอร์ก่อน (Azure cache ไฟล์ `scripts.js`)
 
 ### 3.2 ตั้ง Key events
-Admin → Data display → **Key events** → Mark as key event:
+Admin → Data display → **Key events**:
 
 - ✅ `booking_form_submit` ← ตัวหลัก (น่าจะติ๊กไว้แล้ว)
 - ✅ `line_click`
 - ✅ `phone_click`
 
+> **ถ้ายังไม่เห็นชื่อ event ในลิสต์** (เช่น `phone_click` ที่เพิ่ง deploy) — ปกติ
+> GA4 จะโชว์เฉพาะ event ที่เคยเก็บมาแล้ว และใช้เวลาถึง ~24 ชม. กว่าจะขึ้น
+> **ไม่ต้องรอ** กดปุ่ม **New key event** แล้วพิมพ์ชื่อ event ให้ตรงเป๊ะ
+> (`phone_click` — ตัวพิมพ์เล็กทั้งหมด มี underscore) กด Save ได้เลย
+> GA4 จะเริ่มนับให้ทันทีที่ event ตัวนั้นเข้ามาครั้งแรก
+
 **อย่า** ติ๊ก `map_click` / `social_click` / `form_start` เป็น key event —
 ไม่งั้น Ads จะเอาไปประมูลตามอีก (บทเรียนจาก "เข้าชมเกิน 3 นาที")
 
 ### 3.3 ปิดเป้าปลอมที่ทำให้ Ads หลง
-Admin → Key events → หา **"เข้าชมเกิน 3 นาที"** → **ยกเลิก** mark as key event
+Admin → Key events → หา **"เข้าชมเกิน 3 นาที"** → กดดาวออก (ยกเลิก mark as key event)
 เป้าตัวนี้คือสาเหตุที่ Maximize conversions ทุ่มงบไปหา "คนอยู่บนเว็บนาน" ไม่ใช่คนจอง
+
+**`purchase`** ที่เห็นในลิสต์คือ key event ที่ GA4 ติ๊กมาให้เองตั้งแต่แรก — เว็บนี้ไม่มี
+ระบบขายของออนไลน์ มันจึงไม่เคยยิงเลย (ยอดควรเป็น 0) **ปล่อยไว้ได้ ไม่ต้องยุ่ง**
+ขอแค่ **อย่า import เข้า Google Ads** เท่านั้น (จะเอาดาวออกก็ได้ ไม่มีผลอะไร)
+
+> ⚠️ การเอาดาวออกใน GA4 **หยุดแค่การนับต่อจากนี้** — ข้อมูลเก่ายังแสดงเป็น key event
+> เหมือนเดิม และที่สำคัญกว่าคือ **มันไม่ได้ลบ conversion action ที่ import ไป
+> Google Ads แล้ว** ต้องไปจัดการฝั่ง Ads เองตามข้อ 4.3 ด้วย ไม่งั้น bid strategy
+> ก็ยังเรียนรู้จากของเดิมอยู่ดี
 
 ### 3.4 ลงทะเบียน custom dimension (ไม่บังคับ แต่แนะนำ)
 Admin → Custom definitions → Create custom dimension (scope = Event):

@@ -125,6 +125,9 @@ Google Analytics 4 properties → Web → ติ๊ก:
 (รอ ~24 ชม. หลังเชื่อมบัญชี ชื่อ event ถึงจะโผล่ให้เลือก)
 
 ### 4.3 จัดว่าอันไหน Primary / Secondary
+
+> **สถานะจริงหลังลงมือแก้ 2 ก.ย. 2026** — โครงสร้างในบัญชีไม่เหมือนที่ตารางข้างล่างเดาไว้
+> ตอนแรก ดูสรุปที่ทำไปแล้วในหัวข้อ 7 ท้ายเอกสาร
 นี่คือขั้นที่สำคัญที่สุด — bid strategy เรียนรู้จาก **Primary เท่านั้น**
 
 **หาไม่เจอเพราะมันไม่ได้อยู่ในหน้าตั้งค่าของ conversion action** — ค่านี้อยู่ในระดับ
@@ -219,3 +222,57 @@ var ADS = {
 - [ ] Import conversion 3 ตัว + จัด Primary/Secondary ตามตาราง 4.3
 - [ ] ลบ conversion action ที่ตายแล้ว 5 ตัว
 - [ ] ผ่านไป 7 วัน: กลับมาดูว่า `booking_form_submit` > 0 หรือยัง
+
+---
+
+## 7. บันทึกการแก้บัญชี Google Ads — 2 กันยายน 2026
+
+เข้าไปแก้ในบัญชี 798-838-0532 จริง สิ่งที่พบต่างจากที่เอกสารเดาไว้ตอนแรก
+
+### 7.1 โครงสร้างจริงที่เจอ
+
+conversion action มี 14 ตัว จัดอยู่ใน 8 goal — และ **`booking_form_submit` กับ
+`line_click` ถูก import เข้ามาแล้วตั้งแต่ 1 ก.ย.** (อยู่ในกลุ่ม goal ชื่อ
+"Phone call leads" ซึ่งชื่อไม่ตรงความหมาย แต่ใช้งานได้ เพราะแคมเปญเลือก goal นั้นอยู่)
+
+**แคมเปญ `BPS Ads` ใช้ campaign-specific goal 4 ตัว:**
+Contact (Website) · Phone call lead (Call from Ads) · Phone call lead (Website) ·
+Submit lead form (Website)
+
+ข่าวดีคือ **ไม่มีเป้าขยะตัวไหนอยู่ใน goal ของแคมเปญเลย** — Store visits / Page views /
+Get directions / เข้าชมเกิน 3 นาที ทั้งหมดขึ้นว่า "Campaigns 0 of 1" คือไม่ถูกใช้ประมูล
+สิ่งที่แคมเปญเรียนรู้จริงมีแค่ Call clicks + booking_form_submit + line_click
+(ที่เหลือคือแท็กพังที่ยิง 0 ครั้ง จึงไม่มีผลต่อ bidding)
+
+### 7.2 สิ่งที่แก้ไปแล้ว (Primary → Secondary observe only)
+
+| Goal | Conversion action | เหตุผล |
+|---|---|---|
+| Engagements | `Baanpermsook - GA4 (web) คนที่เข้าชมเกิน 3 นาที` | เป้าปลอมตัวหลัก — ยังเป็น Primary + account-default อยู่ |
+| Contacts | `Contact us (All Web Site Data)` | มาจาก Universal Analytics ที่ปิดตายแล้ว |
+| Contacts | `Line` | แท็กเว็บตัวเก่า สถานะ Misconfigured — มี `line_click` จาก GA4 แทนแล้ว |
+| Downloads | `Android installs (all other apps)` | ไม่มีแอป Android |
+
+ก่อนบันทึกได้กด **Review campaign impact** ทุกครั้ง — Google ยืนยันว่า goal ของแคมเปญ
+`BPS Ads` **ไม่เปลี่ยนเลย** (Changes to conversions counted for optimization = None)
+
+**ผลลัพธ์:** Contacts และ Engagements เปลี่ยนจาก "Needs attention" เป็น **Active** ✅
+
+### 7.3 ที่แก้ไม่ได้ / ยังค้าง
+
+- **Store visits** — dropdown ถูก disable (เป็น action ที่ Google โฮสต์เอง แก้ไม่ได้)
+  ไม่กระทบแคมเปญเพราะไม่ได้อยู่ใน goal ของแคมเปญ
+- **Downloads** ตอนนี้เหลือ Primary 0 ตัว เลยขึ้นป้ายแดง "Misconfigured" — เป็นแค่ป้าย
+  ไม่มีผลอะไร (ไม่มีแคมเปญใช้ goal นี้) จะให้หายจริงต้อง **ลบ** action
+  `Android installs` ทิ้ง ซึ่งลบแล้วข้อมูลย้อนหลังหายด้วย จึงยังไม่ได้ทำ
+- **`contact form`** ใน goal "Submit lead forms" ยัง Misconfigured และเป็น Primary ตัวเดียว
+  ของ goal นั้น — ถ้าลดเป็น Secondary goal จะเหลือ 0 primary ทั้งที่แคมเปญใช้ goal นี้อยู่
+  ปล่อยไว้ปลอดภัยกว่า (มันยิง 0 ครั้ง จึงไม่หลอก bidding)
+- **`phone_click`** ยังไม่ได้ import เข้า Ads — ต้องไปทำข้อ 3.2 (New key event ใน GA4)
+  ให้เสร็จก่อน แล้วรอ ~24 ชม. ค่อยกลับมา import ตามข้อ 4.2
+
+### 7.4 ⚠️ แคมเปญกำลังวิ่งอยู่
+
+`BPS Ads` สถานะ **Enabled** (ไม่ใช่ Paused แล้ว) — ฿300/วัน · Maximize clicks ·
+"Bid strategy learning 99%" แปลว่าเงินกำลังไหลอยู่ตอนนี้ ข่าวดีคือบั๊ก `send_to`
+แก้และ deploy แล้ววันนี้ ทราฟฟิกตั้งแต่นี้ไปจะถูกนับ conversion จริงเป็นครั้งแรก

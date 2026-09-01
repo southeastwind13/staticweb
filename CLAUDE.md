@@ -19,7 +19,9 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   file is large; most of it is the framework, only `bps-*` classes are custom)
 - Self-hosted **Sarabun** Thai font (`src/font/Sarabun/`)
 - Icons: Font Awesome 6 + Bootstrap Icons (both via CDN, loaded in `<head>`)
-- Analytics: Google Tag Manager (`GTM-PLKLTZT`) + GA4 (`G-CG82G9GPN5`)
+- Analytics: Google Tag Manager (`GTM-PLKLTZT`) + GA4 (`G-CG82G9GPN5`, property
+  "Baanpermsook - GA4"). Paid traffic runs from Google Ads account `798-838-0532`
+  (campaign `BPS Ads`) — see the Analytics note under Conventions before touching either.
 
 ## Structure
 
@@ -46,7 +48,10 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   `BlogPosting` JSON-LD, OG tags, GTM/GA, and a LINE CTA. Assets referenced with `../`.
   Add new articles here AND to `sitemap.xml` AND to the article-index grid.
 - `src/llms.txt` — markdown summary of the hotel (facts + links) for LLM/AI crawlers.
-- `docs/google-analytics-setup.md` — GA4/Ads conversion setup guide + the send_to gotcha.
+- `docs/google-analytics-setup.md` — the analytics runbook: the `send_to` bug and its
+  proof, every event the site sends, the real GA4 and Google Ads click paths (both
+  differ from what the help pages describe), and a log of what was changed in the live
+  Ads account. Read it before changing anything analytics-related.
   `docs/google-ads-audit.md` — audit of the live Ads account (1 Sep 2026).
 - `docs/google-ads.md` — ready-to-paste Google Ads copy (TH + EN headlines, descriptions,
   sitelinks, callouts) + ad-group→landing-page mapping. NOT deployed (outside `src/`).
@@ -115,6 +120,12 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   Events: `booking_form_submit` (thank-you page, the key conversion), `line_click`,
   `phone_click`, `map_click`, `social_click`, `ota_click`, `form_start`.
   Setup/verification steps for the GA4 + Ads UI: `docs/google-analytics-setup.md`.
+- **Verify analytics changes over the network, never from the console.** A dropped event
+  throws no error and logs nothing — that is exactly how the `send_to` bug survived. Load
+  the page, filter network requests for `/g/collect`, fire the interaction, and confirm a
+  request whose `en=` matches the event name (single events carry `en=` in the URL;
+  several at once are batched into the POST body, so read the body too). GA4's own Events
+  list is not a check — it only lists events it has already processed, hours later.
 - robots.txt explicitly welcomes AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
   Google-Extended, etc.).
 - Testimonials are REAL Google reviews (Sutasinee W., Waraporn S., Napaporn M.) mirrored

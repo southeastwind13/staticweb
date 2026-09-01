@@ -3200,10 +3200,12 @@ section h2,
 
 /* ==========================================================================
    HERO — orange cottages, full-bleed scrim, bottom-left composition
-   2026-09-02: swapped from the garden/pond shot to bps-g-exterior. The garden
-   photo was soft-focus and read as generic foliage; the orange cottages are
+   2026-09-02: swapped from the garden/pond shot to the orange cottages. The
+   garden photo was soft-focus and read as generic foliage; the cottages are
    sharp and are the one thing about this property nobody else in the comp set
    has. The scrim below is unchanged and still carries the text contrast.
+   Source is header_background.webp (4628x2711), NOT bps-g-exterior.jpg —
+   that file is a 1280px downscale of the same photo and cannot fill a hero.
    Was: the walkway photo behind a floating translucent rounded box that did
    not contain its own text. The box read as a stray grey rectangle and the
    subhead sat on busy imagery with no shadow.
@@ -3215,7 +3217,7 @@ section h2,
     align-items: flex-end;
     min-height: min(86svh, 700px);
     padding: var(--bps-s-5) 0 var(--bps-s-4);
-    background-image: url("../assets/images/derived/hero-exterior-1100.webp");
+    background-image: url("../assets/images/derived/hero-exterior-2000.webp");
     background-color: var(--bps-ink);
     background-position: center 42%;
     background-size: cover;
@@ -3687,12 +3689,13 @@ section h2,
     }
 }
 
-/* Mobile gets the 700px hero (48KB) instead of the 1100px one (95KB).
-   The cottage shot has large flat colour areas so it compresses far better
-   than the old foliage hero did — both files roughly halved. */
+/* Mobile gets the 1200px hero (128KB) instead of the 2000px one (256KB).
+   Both are cut from header_background.webp, the 4628x2711 original of the
+   same shot — bps-g-exterior.jpg is only a 1280px downscale of it, so
+   deriving from that was what made the first attempt look soft. */
 @media (max-width: 760px) {
     .bps-hero {
-        background-image: url("../assets/images/derived/hero-exterior-700.webp");
+        background-image: url("../assets/images/derived/hero-exterior-1200.webp");
     }
 }
 

@@ -83,11 +83,15 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - `src/googlede4b9980330bd0c6.html` — Google Search Console file-verification token
 - `src/assets/images/` — WebP/JPG/PNG assets (not all are used on the page).
   `derived/` holds the sized exports actually referenced by the pages. The hero and
-  og:image use `hero-exterior-1100.webp` / `hero-exterior-700.webp` /
-  `og-exterior-1200x630.jpg` (the orange cottages, from `bps-g-exterior.jpg`).
-  The older `hero-garden-*` / `og-garden-*` files are still used by
-  `articles/pak-kret-day-trip.html` — do not delete them. Regenerate exports with
-  `sips` + `cwebp` (no ImageMagick/PIL on this machine).
+  og:image use `hero-exterior-2000.webp` / `hero-exterior-1200.webp` /
+  `og-exterior-1200x630.jpg` — the orange cottages.
+  **Cut those from `header_background.webp` (4628x2711), not from
+  `bps-g-exterior.jpg`.** The two are the same photograph, but `bps-g-exterior.jpg`
+  is only a 1280px downscale, so anything derived from it is soft once a hero
+  stretches it across a full-width viewport. Check `sips -g pixelWidth` before
+  picking a source. The older `hero-garden-*` / `og-garden-*` files are still used
+  by `articles/pak-kret-day-trip.html` — do not delete them. Regenerate exports with
+  `dwebp` + `sips` + `cwebp` (no ImageMagick/PIL on this machine).
 - `src-backup/` — an older version snapshot; ignore for edits.
 
 ## Run locally

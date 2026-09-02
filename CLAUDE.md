@@ -192,6 +192,12 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
     so the shared shelf-price ladder's base tier cannot be 1,350 there. Booking has no such
     floor and currently sits at 1,350 — a 3.6% rate-parity gap that is still an open
     decision, not an oversight.
+  - **Agoda's "nearby landmark" says Don Mueang Airport and cannot be changed by
+    request** — Agoda formally refused on 3 Sep 2026 ("the system does not support
+    per-case edits"; it is derived automatically from the property's location). Do not
+    re-open a support ticket for it. The open lever is the map pin: the airport is
+    8.7 km from the real coordinates (13.925607, 100.527022) while IMPACT is 2.7 km, so
+    the pin in the portal is probably wrong — that field the partner can edit.
   - **Room allocation is deliberate**: 1 room/night to Booking, 2 to Agoda, out of 4
     registered. Not a bug; do not "fix" it.
   - Booking commission measured from real invoices is **14.9%** (not 15%).

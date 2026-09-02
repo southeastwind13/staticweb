@@ -196,10 +196,13 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
     is Don Mueang Airport.** The public URL is `agoda.com/baanpermsook/hotel/bangkok-th
     .html` even though the address Agoda holds says Nonthaburi 11120. Muang Thong Thani
     is not in Bangkok, so it was never an option; Don Mueang is genuinely the closest
-    Bangkok area. The map pin was checked on 3 Sep 2026 and is CORRECT (13.92560,
-    100.52959 — 278 m from the site's own coordinates), so do not go looking there.
-    Agoda refused a request to change the landmark itself ("no per-case edits") — that
-    ticket is closed; the request to raise instead is the city/area misassignment.
+    Bangkok area. The map pin WAS wrong and the owner corrected it on 3 Sep 2026; it
+    now reads 13.9256010055542, 100.52959442138672, matching the address Agoda holds.
+    Agoda refused a request to change the landmark itself ("no per-case edits") — do
+    not re-file that. File instead the two inputs: the coordinates have just been
+    corrected so the location should be reprocessed, and the city is Bangkok when it
+    should be Nonthaburi/Pak Kret. A ready-to-send letter (TH + EN) is in
+    `docs/agoda_improve.md` §5.2.
   - **The hotel has 21 rooms** (owner-confirmed 3 Sep 2026) and **children stay free up
     to age 4**. The site previously said 13 rooms and age 3 in five places; corrected.
     The "4" in the room-allocation note above is rooms registered with the OTAs, not the

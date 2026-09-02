@@ -384,6 +384,97 @@ Occupancy 0–49% = **10%** · 50–99% = **5%** · Minimum rooms = **1** · Lea
 - [ ] ติ๊กหมวดที่ยังว่างทั้งหมด: Others **0/57** · Cleanliness and safety **2/29**
       (ทั้งที่ได้คะแนนสะอาด 9.1!) · Things to do **0/23** (มีสวนจริง) · For the kids **0/15**
 - [ ] เขียนคำบรรยายเองแทนของอัตโนมัติ ให้มีคำว่า IMPACT / เมืองทองธานี / อาหารเช้า / สวน
+      → **ร่างพร้อมวางแล้วในหัวข้อ 5.1** (ไทย + อังกฤษ + คำบรรยายห้อง) เหลือแค่ตรวจแล้ววาง
+
+---
+
+## 5.1 คำบรรยายที่พัก — ร่างพร้อมวาง
+
+แทนที่คำบรรยายอัตโนมัติของ Agoda ที่พูดถึง "สนามบินดอนเมือง / บาร์ / ค็อกเทล"
+และไม่มีคำว่า IMPACT หรือเมืองทองสักคำ (ดูหัวข้อ 1)
+
+**วางที่:** Partner Portal → Property → Property details → Description
+
+### กติกาของ Agoda ที่ทำให้คำบรรยายถูกตีกลับ
+
+ก่อนวาง ตรวจว่าไม่มีของพวกนี้ปนอยู่ — ร่างข้างล่างเลี่ยงไว้หมดแล้ว
+
+- ❌ เบอร์โทร อีเมล ไลน์ ลิงก์เว็บไซต์ — Agoda ตัดทิ้งหรือปฏิเสธทั้งชุด
+- ❌ ราคาเป็นตัวเลข และชื่อโปรโมชัน — เปลี่ยนบ่อยจนคำบรรยายผิดเอง
+- ❌ เอ่ยชื่อคู่แข่งหรือ OTA เจ้าอื่น
+- ⚠️ **ไม่พูดถึงสนามบินดอนเมืองเลย** แม้จะขับ 25–30 นาทีถึงจริง — เพราะตอนนี้ระบบ
+  จัดเราอยู่โซน "Don Mueang International Airport" อยู่แล้ว การย้ำคำนี้ในคำบรรยาย
+  มีแต่จะตอกโซนที่ผิดให้แน่นขึ้น ค่อยเติมกลับได้หลังแก้โซนสำเร็จ
+
+### คำบรรยายภาษาไทย
+
+```
+โรงแรมบ้านเพิ่มสุข เป็นที่พักสไตล์เรือนสวนในซอยเงียบ ย่านติวานนท์–ปากเกร็ด จังหวัดนนทบุรี
+ห่างจากอิมแพ็ค เมืองทองธานี ประมาณ 3.8 กิโลเมตร ขับรถราว 7–10 นาที ถึงได้ทั้ง IMPACT Arena,
+IMPACT Challenger และ IMPACT Exhibition Center จึงเหมาะกับผู้ที่เดินทางมาชมคอนเสิร์ต
+เข้าชมงานแสดงสินค้า หรือมาออกบูธติดต่อกันหลายคืน
+
+ตัวที่พักเป็นอาคารเตี้ยล้อมรอบด้วยสวนและต้นไม้ใหญ่ บรรยากาศร่มรื่นและเงียบกว่าโรงแรม
+ริมถนนใหญ่ ห้องพักทุกห้องมีเครื่องปรับอากาศ น้ำอุ่น โทรทัศน์ และ Wi-Fi ฟรี พร้อมอาหารเช้า
+ที่รวมอยู่ในราคาห้องพักทุกประเภท เสิร์ฟเวลา 08.00–10.00 น. ทันเวลาสำหรับผู้ที่ต้องไปเปิดบูธ
+หรือเข้างานตั้งแต่เช้า
+
+อีกจุดที่หาได้ไม่ง่ายในย่านเมืองทองธานีคือเรารับสัตว์เลี้ยง ทั้งสุนัขและแมว โดยมีค่าดูแล
+คิดต่อตัว ต่อคืน มีที่จอดรถฟรีในบริเวณอย่างเพียงพอ ไม่ต้องไปหาที่จอดริมถนน และมีพนักงาน
+ดูแลตลอด 24 ชั่วโมง เช็คอินดึกหลังเลิกคอนเสิร์ตหรือหลังรื้อบูธได้
+
+การเดินทางรอบ ๆ สะดวก ห่างจากเซ็นทรัล แจ้งวัฒนะ ประมาณ 10–15 นาที รถไฟฟ้า MRT
+สายสีม่วง สถานีแยกปากเกร็ด ประมาณ 15–20 นาที และเกาะเกร็ด แหล่งท่องเที่ยวเก่าแก่
+ของปากเกร็ด อยู่ห่างออกไปไม่ไกล
+```
+
+### คำบรรยายภาษาอังกฤษ
+
+```
+Baan Perm Sook Hotel is a quiet garden-style property tucked into a residential soi in
+Pak Kret, Nonthaburi, about 3.8 km — a 7 to 10 minute drive — from IMPACT Muang Thong
+Thani. IMPACT Arena, IMPACT Challenger and IMPACT Exhibition Center are all within that
+same short drive, which makes the hotel a practical base for concert-goers, trade show
+visitors and exhibitor teams staying several nights in a row.
+
+The buildings are low-rise and wrapped in a mature garden, so evenings are noticeably
+quieter here than at hotels on the main road. Every room has air conditioning, hot water,
+a TV and free Wi-Fi, and breakfast is included in every room type, served from 08:00 to
+10:00 — early enough for guests who need to open a booth or reach a morning session.
+
+Pets are genuinely welcome: both dogs and cats may stay, with a care fee charged per pet,
+per night. That is still rare around Muang Thong Thani. There is ample free parking on
+the grounds, and staff are on duty 24 hours, so a late check-in after a concert or after
+booth teardown is never a problem.
+
+Getting around is straightforward — Central Chaengwattana is roughly 10 to 15 minutes
+away, the MRT Purple Line at Yaek Pak Kret station 15 to 20 minutes, and Ko Kret, the old
+river island known for its pottery and riverside market, is a short trip from the hotel.
+```
+
+### คำบรรยายห้องพัก (ถ้าช่องนี้ยังเป็นของอัตโนมัติอยู่เหมือนกัน)
+
+```
+[Standard]
+ห้องมาตรฐาน เตียงควีนไซส์ พักได้ 2 ท่าน เครื่องปรับอากาศ น้ำอุ่น โทรทัศน์ Wi-Fi ฟรี
+และอาหารเช้ารวมในราคาห้องพัก หน้าต่างมองเห็นสวนของโรงแรม
+
+[Family]
+ห้องครอบครัว พักได้สูงสุด 4 ท่าน กว้างกว่าห้องมาตรฐาน เหมาะกับครอบครัวหรือทีมงาน
+ที่มาออกบูธด้วยกัน เด็กอายุไม่เกิน 3 ขวบพักฟรีเมื่อนอนร่วมเตียงกับผู้ปกครอง
+
+[Pet Friendly]
+ห้องสำหรับผู้ที่เดินทางพร้อมสัตว์เลี้ยง รับทั้งสุนัขและแมว โดยมีค่าดูแลคิดต่อตัว ต่อคืน
+อยู่ใกล้ส่วนสวนของโรงแรม พาน้องออกมาเดินได้สะดวก สิ่งอำนวยความสะดวกในห้อง
+เท่ากับห้องมาตรฐานทุกอย่าง และรวมอาหารเช้าเช่นกัน
+```
+
+### ⚠️ ก่อนวาง — เคลียร์จำนวนห้องกับเจ้าของก่อน
+
+ร่างข้างบน **จงใจไม่ระบุจำนวนห้องทั้งหมด** เพราะเอกสารในรีโปยังขัดกันเอง:
+`src/llms.txt` เขียนว่า 13 ห้อง แต่ `CLAUDE.md` และแผนเชิงรุกใช้ตัวเลข 4 ห้อง
+(จัดสรรให้ Agoda 2 ห้อง/คืน) ถ้าจะใส่ตัวเลขลงคำบรรยาย ต้องถามเจ้าของให้ชัดก่อน
+แล้วแก้ `llms.txt` ให้ตรงกันด้วย
 
 ---
 

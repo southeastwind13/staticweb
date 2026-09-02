@@ -192,12 +192,20 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
     so the shared shelf-price ladder's base tier cannot be 1,350 there. Booking has no such
     floor and currently sits at 1,350 — a 3.6% rate-parity gap that is still an open
     decision, not an oversight.
-  - **Agoda's "nearby landmark" says Don Mueang Airport and cannot be changed by
-    request** — Agoda formally refused on 3 Sep 2026 ("the system does not support
-    per-case edits"; it is derived automatically from the property's location). Do not
-    re-open a support ticket for it. The open lever is the map pin: the airport is
-    8.7 km from the real coordinates (13.925607, 100.527022) while IMPACT is 2.7 km, so
-    the pin in the portal is probably wrong — that field the partner can edit.
+  - **Agoda files the property under city = Bangkok, which is why its "nearby landmark"
+    is Don Mueang Airport.** The public URL is `agoda.com/baanpermsook/hotel/bangkok-th
+    .html` even though the address Agoda holds says Nonthaburi 11120. Muang Thong Thani
+    is not in Bangkok, so it was never an option; Don Mueang is genuinely the closest
+    Bangkok area. The map pin was checked on 3 Sep 2026 and is CORRECT (13.92560,
+    100.52959 — 278 m from the site's own coordinates), so do not go looking there.
+    Agoda refused a request to change the landmark itself ("no per-case edits") — that
+    ticket is closed; the request to raise instead is the city/area misassignment.
+  - **Agoda's public page states facts the hotel has not confirmed**: a bar with
+    cocktails, a coffee shop, BBQ facilities, 21 rooms, children 3–6 free, 15 minutes
+    from Don Mueang. `Bar` and `Coffee shop` are ticked Yes in Property facilities and
+    feed that copy. `Breakfast [free]` is ticked **No** while breakfast is included in
+    every room type — that drops the property out of Agoda's free-breakfast filter.
+    None of this was changed: it needs the owner to confirm what actually exists.
   - **Room allocation is deliberate**: 1 room/night to Booking, 2 to Agoda, out of 4
     registered. Not a bug; do not "fix" it.
   - Booking commission measured from real invoices is **14.9%** (not 15%).

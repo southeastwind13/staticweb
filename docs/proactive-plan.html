@@ -1,0 +1,989 @@
+<title>แผนเชิงรุกบ้านเพิ่มสุข</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Trirong:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#FBFAF6; --surface:#FFFFFF; --surface-2:#F4F2EB; --surface-3:#EDEAE0;
+  --ink:#1C2620; --ink-2:#55625A; --ink-3:#818D84;
+  --line:#E3E1D7; --line-strong:#CFCDC1;
+  --accent:#B85C0A; --accent-ink:#8F4707; --accent-soft:#FBF0E3;
+  --alert:#A33B22; --alert-soft:#FAEAE4;
+  --good:#3D6B45; --good-soft:#E9F0E7;
+  --cool:#2F6B63; --cool-soft:#E4EFEC;
+  --check:#FFFFFF;
+  --shadow:0 1px 2px rgba(28,38,32,.05), 0 8px 24px -16px rgba(28,38,32,.25);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#12160F; --surface:#1A1F16; --surface-2:#222719; --surface-3:#2A3020;
+    --ink:#ECEEE4; --ink-2:#A3AE9A; --ink-3:#7C8876;
+    --line:#2C3326; --line-strong:#3E4737;
+    --accent:#F79445; --accent-ink:#FCA75F; --accent-soft:#2A2013;
+    --alert:#E9866C; --alert-soft:#2E1C16;
+    --good:#92C08F; --good-soft:#1B2A1B;
+    --cool:#7FC4B8; --cool-soft:#152724;
+    --check:#12160F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12160F; --surface:#1A1F16; --surface-2:#222719; --surface-3:#2A3020;
+  --ink:#ECEEE4; --ink-2:#A3AE9A; --ink-3:#7C8876;
+  --line:#2C3326; --line-strong:#3E4737;
+  --accent:#F79445; --accent-ink:#FCA75F; --accent-soft:#2A2013;
+  --alert:#E9866C; --alert-soft:#2E1C16;
+  --good:#92C08F; --good-soft:#1B2A1B;
+  --cool:#7FC4B8; --cool-soft:#152724;
+  --check:#12160F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"Sarabun",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:400; font-size:16px; line-height:1.72;
+  margin:0; padding:0;
+}
+::selection{background:var(--accent-soft); color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
+
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 80px}
+.shell{display:grid; grid-template-columns:1fr; gap:0}
+@media(min-width:1040px){
+  .shell{grid-template-columns:212px minmax(0,1fr); gap:52px; align-items:start}
+}
+
+/* ---------- masthead ---------- */
+.masthead{padding:52px 0 30px; border-bottom:1px solid var(--line)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink);
+  display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:0 0 14px;
+}
+.eyebrow .dot{width:4px; height:4px; border-radius:50%; background:var(--line-strong)}
+h1{
+  font-family:"Trirong","Sarabun",serif; font-weight:600; font-size:clamp(30px,5.2vw,46px);
+  line-height:1.25; letter-spacing:-.01em; margin:0 0 16px; text-wrap:balance;
+}
+.standfirst{font-size:17.5px; color:var(--ink-2); max-width:62ch; margin:0 0 26px; font-weight:300}
+.standfirst strong{font-weight:600; color:var(--ink)}
+
+.meter{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.meter-bar{flex:1 1 240px; height:8px; background:var(--surface-3); border-radius:99px; overflow:hidden; min-width:180px}
+.meter-fill{height:100%; width:0%; background:var(--accent); border-radius:99px; transition:width .35s ease}
+.meter-txt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; color:var(--ink-2);
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.meter-txt b{color:var(--ink); font-weight:500}
+
+/* ---------- rail ---------- */
+.rail{display:none}
+@media(min-width:1040px){
+  .rail{display:block; position:sticky; top:28px; padding-top:44px}
+  .rail ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+  .rail a{
+    display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+    text-decoration:none; color:var(--ink-2); font-size:13.5px; line-height:1.4;
+    padding:7px 10px; border-radius:6px; border-left:2px solid transparent;
+  }
+  .rail a:hover{background:var(--surface-2); color:var(--ink)}
+  .rail a.on{color:var(--accent-ink); border-left-color:var(--accent); background:var(--accent-soft)}
+  .rail .n{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+  .rail-head{
+    font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--ink-3); padding:0 10px 10px;
+  }
+}
+
+/* ---------- sections ---------- */
+section{padding-top:52px; scroll-margin-top:20px}
+.sec-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px}
+.sec-num{
+  font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:500; color:var(--accent);
+  letter-spacing:.06em; padding-top:4px;
+}
+h2{
+  font-family:"Trirong","Sarabun",serif; font-weight:600; font-size:clamp(22px,3.2vw,29px);
+  line-height:1.3; margin:0; letter-spacing:-.005em; text-wrap:balance;
+}
+h3{font-family:"Sarabun",sans-serif; font-weight:700; font-size:17px; margin:32px 0 12px; line-height:1.5}
+.sec-note{color:var(--ink-2); font-size:15.5px; max-width:66ch; margin:8px 0 26px; font-weight:300}
+.sec-note strong{font-weight:600; color:var(--ink)}
+p{margin:0 0 14px}
+a{color:var(--accent-ink)}
+
+/* ---------- status cards ---------- */
+.cards{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin:0 0 8px}
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:18px 18px 20px; box-shadow:var(--shadow);
+}
+.card-k{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 10px;
+}
+.card-v{font-family:"Trirong",serif; font-size:26px; font-weight:600; line-height:1.15; margin:0 0 8px; font-variant-numeric:tabular-nums}
+.card-d{font-size:13.5px; color:var(--ink-2); line-height:1.6; margin:0; font-weight:300}
+.card.is-good .card-v{color:var(--good)}
+.card.is-alert .card-v{color:var(--alert)}
+.card.is-accent .card-v{color:var(--accent-ink)}
+
+/* ---------- callout ---------- */
+.callout{
+  background:var(--accent-soft); border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0; padding:18px 22px; margin:26px 0;
+}
+.callout p:last-child{margin-bottom:0}
+.callout.cool{background:var(--cool-soft); border-left-color:var(--cool)}
+.callout.alert{background:var(--alert-soft); border-left-color:var(--alert)}
+.callout-k{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent-ink); margin:0 0 8px; font-weight:500;
+}
+.callout.cool .callout-k{color:var(--cool)}
+.callout.alert .callout-k{color:var(--alert)}
+
+/* ---------- task groups ---------- */
+.group{
+  background:var(--surface); border:1px solid var(--line); border-radius:11px;
+  margin:0 0 16px; overflow:hidden; box-shadow:var(--shadow);
+}
+.group-head{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:15px 20px; background:var(--surface-2); border-bottom:1px solid var(--line);
+}
+.group-title{font-weight:700; font-size:15.5px; margin:0; flex:1 1 auto; line-height:1.45}
+.group-title .sub{display:block; font-weight:300; font-size:13px; color:var(--ink-2); margin-top:1px}
+.group-count{
+  font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-3);
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+ul.tasks{list-style:none; margin:0; padding:0}
+ul.tasks > li{border-bottom:1px solid var(--line)}
+ul.tasks > li:last-child{border-bottom:0}
+
+.task{display:flex; gap:13px; padding:14px 20px; cursor:pointer; align-items:flex-start}
+.task:hover{background:var(--surface-2)}
+.task input{position:absolute; opacity:0; width:0; height:0}
+.box{
+  flex:0 0 auto; width:17px; height:17px; margin-top:5px; border-radius:4px;
+  border:1.5px solid var(--line-strong); background:var(--surface);
+  display:grid; place-items:center; transition:background .14s, border-color .14s;
+}
+.box::after{
+  content:""; width:9px; height:5px; border-left:2px solid var(--check);
+  border-bottom:2px solid var(--check); transform:rotate(-45deg) scale(.5);
+  opacity:0; transition:opacity .14s, transform .14s; margin-top:-2px;
+}
+.task input:checked + .box{background:var(--good); border-color:var(--good)}
+.task input:checked + .box::after{opacity:1; transform:rotate(-45deg) scale(1)}
+.task input:focus-visible + .box{outline:2px solid var(--accent); outline-offset:2px}
+.t-body{flex:1 1 auto; min-width:0}
+.t-main{display:block; font-size:15px; line-height:1.6}
+.t-main b{font-weight:700}
+.t-sub{display:block; font-size:13.5px; color:var(--ink-2); line-height:1.62; margin-top:3px; font-weight:300}
+.t-sub code{
+  font-family:"IBM Plex Mono",monospace; font-size:12px; background:var(--surface-3);
+  padding:1px 5px; border-radius:4px; color:var(--ink-2);
+}
+.task input:checked ~ .t-body{opacity:.42}
+.task input:checked ~ .t-body .t-main{text-decoration:line-through; text-decoration-thickness:1px}
+
+.chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:7px}
+.chip{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.05em;
+  padding:2px 8px; border-radius:99px; background:var(--surface-3); color:var(--ink-2);
+  white-space:nowrap; line-height:1.7;
+}
+.chip.owner{background:var(--accent-soft); color:var(--accent-ink)}
+.chip.hot{background:var(--alert-soft); color:var(--alert)}
+.chip.new{background:var(--cool-soft); color:var(--cool)}
+.chip.done{background:var(--good-soft); color:var(--good)}
+
+body.hide-done li:has(.task input:checked){display:none}
+
+/* ---------- toolbar ---------- */
+.toolbar{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  margin:0 0 20px; padding-top:4px;
+}
+.btn{
+  font-family:"Sarabun",sans-serif; font-size:13px; font-weight:600;
+  border:1px solid var(--line-strong); background:var(--surface); color:var(--ink-2);
+  border-radius:7px; padding:7px 14px; cursor:pointer; transition:all .15s; line-height:1.5;
+}
+.btn:hover{border-color:var(--accent); color:var(--accent-ink); background:var(--accent-soft)}
+.btn[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; margin:20px 0 8px; border:1px solid var(--line); border-radius:10px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:660px; font-size:14px}
+th,td{text-align:right; padding:12px 15px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.6}
+thead th{
+  background:var(--surface-2); font-family:"IBM Plex Mono",monospace; font-weight:500;
+  font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+  white-space:nowrap; border-bottom:1px solid var(--line-strong);
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td b{font-weight:700}
+td .m{font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-variant-numeric:tabular-nums}
+.tag{
+  display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10.5px;
+  padding:2px 7px; border-radius:5px; background:var(--surface-3); color:var(--ink-2); white-space:nowrap;
+}
+.tag.hot{background:var(--alert-soft); color:var(--alert)}
+.tag.warm{background:var(--accent-soft); color:var(--accent-ink)}
+.tag.slow{background:var(--cool-soft); color:var(--cool)}
+
+/* ---------- script blocks ---------- */
+.script{
+  border:1px solid var(--line); border-radius:10px; background:var(--surface);
+  margin:0 0 16px; overflow:hidden;
+}
+.script-head{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:12px 18px; background:var(--surface-2); border-bottom:1px solid var(--line);
+}
+.script-name{font-weight:700; font-size:14px; margin:0}
+.script-name span{display:block; font-weight:300; font-size:12.5px; color:var(--ink-2)}
+.script-body{padding:18px 20px; font-size:14.5px; line-height:1.78; color:var(--ink-2); white-space:pre-wrap; margin:0}
+.script-body strong{color:var(--ink); font-weight:600}
+.copied{font-size:12px; color:var(--good); font-family:"IBM Plex Mono",monospace}
+
+/* ---------- day plan ---------- */
+.days{list-style:none; margin:22px 0 0; padding:0; display:flex; flex-direction:column; gap:0}
+.days li{display:flex; gap:18px; padding:15px 0; border-bottom:1px solid var(--line)}
+.days li:last-child{border-bottom:0}
+.day-k{
+  flex:0 0 92px; font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--accent-ink);
+  font-weight:500; padding-top:2px; line-height:1.6;
+}
+.day-k span{display:block; color:var(--ink-3); font-size:11px}
+.day-v{flex:1 1 auto; font-size:14.5px; line-height:1.65}
+.day-v em{font-style:normal; color:var(--ink-2); font-size:13.5px; display:block; margin-top:2px; font-weight:300}
+
+footer{
+  margin-top:64px; padding-top:26px; border-top:1px solid var(--line);
+  font-size:13px; color:var(--ink-3); line-height:1.75;
+}
+footer code{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="wrap">
+<div class="masthead">
+  <p class="eyebrow">โรงแรมบ้านเพิ่มสุข<span class="dot"></span>2 กันยายน 2569<span class="dot"></span>ต่อจาก marketing-plan.md</p>
+  <h1>งานที่ยังค้าง และดีลที่ยังไม่มีใครไปคุย</h1>
+  <p class="standfirst">แผน 30 วันเดิมลงมือไปแล้วเกือบทั้งฝั่งเทคนิค — Ads รื้อเสร็จ, OTA แก้ราคาและคอนเทนต์ครบ
+  สิ่งที่เหลือคือ <strong>งานที่ต้องใช้คนเดินไปคุย</strong> และช่องทางหนึ่งที่แผนเดิมไม่มีเลย:
+  <strong>ดีลที่ทำให้มีคนจองซ้ำทุกเดือนโดยไม่ต้องแข่งกับใคร</strong></p>
+  <div class="meter">
+    <div class="meter-bar"><div class="meter-fill" id="fill"></div></div>
+    <div class="meter-txt" id="mtxt"><b>0</b> / 0 เสร็จแล้ว</div>
+  </div>
+</div>
+
+<div class="shell">
+<nav class="rail" aria-label="สารบัญ">
+  <p class="rail-head">สารบัญ</p>
+  <ol id="rail"></ol>
+</nav>
+
+<main>
+
+<section id="s-now">
+  <div class="sec-head"><span class="sec-num">01</span><h2>อ่านก่อน 60 วินาที — ตอนนี้ยืนอยู่ตรงไหน</h2></div>
+  <p class="sec-note">สามเสาที่ลงมือไปแล้วไม่เท่ากัน เสาหนึ่งเสร็จ เสาหนึ่งเกือบเสร็จ และอีกเสาหนึ่ง
+  <strong>ยังไม่ได้แตะเลยแม้แต่ข้อเดียว</strong></p>
+  <div class="cards">
+    <div class="card is-good">
+      <p class="card-k">Google Ads</p>
+      <p class="card-v">พร้อมเปิด</p>
+      <p class="card-d">รื้อครบ · broad match ปิด 72 คำ · โฆษณา Excellent ทั้ง 5 ตัว · เหลือแค่ตรวจข้อความด้วยตาแล้วกดเปิด</p>
+    </div>
+    <div class="card is-accent">
+      <p class="card-k">OTA</p>
+      <p class="card-v">88–100%</p>
+      <p class="card-d">Booking คอนเทนต์เต็ม 100% · Agoda 88% และยังติดโซนผิดเป็น “ดอนเมือง” ซึ่งเป็นตัวฉุดอันดับที่ใหญ่ที่สุด</p>
+    </div>
+    <div class="card is-alert">
+      <p class="card-k">Google Business Profile</p>
+      <p class="card-v">0 / 9</p>
+      <p class="card-d">ช่องทางฟรีที่ intent สูงที่สุด และเป็นเสาเดียวที่ยังไม่ได้เริ่มเลย แม้แต่ที่อยู่ก็ยังผิดอยู่</p>
+    </div>
+  </div>
+  <div class="callout alert">
+    <p class="callout-k">ข้อสังเกตจากตัวเลขจริง</p>
+    <p>ใน GA4 อีเวนต์ <code>booking_form_submit</code> สถานะ <b>Inactive</b> — 28 วันไม่มีใครกดส่งฟอร์มสักคน
+    ส่วน <code>line_click</code> <b>Active</b> แปลว่าคนที่สนใจไปทางไลน์หมด ไม่ได้กรอกฟอร์ม
+    <b>ทุกดีลในหน้านี้จึงต้องจบที่ไลน์หรือโทรศัพท์ ไม่ใช่ฟอร์ม</b></p>
+  </div>
+</section>
+
+<section id="s-gap">
+  <div class="sec-head"><span class="sec-num">02</span><h2>ช่องว่างของแผนเดิม</h2></div>
+  <p class="sec-note">แผน 30 วันเดิมเก่งเรื่อง <strong>ดักดีมานด์ที่มีอยู่แล้ว</strong> — คนหาที่พักใกล้อิมแพ็ค เราไปดักตรงนั้น
+  แต่ทุกช่องทางในแผนเป็น <strong>ลูกค้าครั้งเดียวจบ</strong> ทั้งหมด คอนเสิร์ตจบ คนก็หายไป
+  ปัญหาคือดีมานด์แบบนี้มาเป็นก้อน ๆ แล้วเว้นช่วงยาว ซึ่งอธิบายว่าทำไม “บางช่วงไม่มีลูกค้าหลายวันติด”</p>
+
+  <div class="callout cool">
+    <p class="callout-k">เลขที่เปลี่ยนวิธีคิด</p>
+    <p>เรามี <b>4 ห้อง = 120 คืนต่อเดือน</b> ถ้าหาลูกค้าประจำได้แค่ <b>2 เจ้า</b> ที่ใช้ห้องเจ้าละ 3 คืนต่อสัปดาห์
+    เท่ากับ <b>24 คืนต่อเดือน = 20% occupancy</b> ที่ไม่ต้องแข่งกับใคร ไม่เสียคอมมิชชัน ไม่ต้องยิงแอด และเกิดซ้ำเองทุกเดือน
+    โรงแรม 4 ห้องไม่ต้องการลูกค้าเยอะ — ต้องการลูกค้า <b>ประจำ</b> ไม่กี่เจ้า</p>
+  </div>
+
+  <p>สิ่งที่แผนเดิมไม่มี และหน้านี้เพิ่มเข้าไป มี 4 อย่าง</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>ที่ยังไม่มี</th><th>ทำไมถึงสำคัญ</th><th>อยู่หัวข้อไหน</th></tr></thead>
+    <tbody>
+      <tr><td><b>ดีลประจำแบบ B2B</b></td><td>เปลี่ยนวันธรรมดาที่ว่างให้เป็นรายได้ที่เกิดซ้ำ — ปัญหาจริงอยู่ที่ จ.–พฤ. ไม่ใช่วันหยุด</td><td class="m">04</td></tr>
+      <tr><td><b>คนที่ส่งลูกค้าให้ได้</b></td><td>โรงแรมใหญ่ในเมืองทองปฏิเสธลูกค้าทุกคืนงานใหญ่ ตอนนี้คนพวกนั้นไปนอนที่อื่น ไม่ใช่ที่เรา</td><td class="m">04</td></tr>
+      <tr><td><b>ดีมานด์ที่ไม่ขึ้นกับอีเวนต์</b></td><td>ญาติผู้ป่วย ผู้เข้าอบรม ช่างติดตั้ง — พักยาว วันธรรมดา และไม่สนใจว่ามีคอนเสิร์ตไหม</td><td class="m">04</td></tr>
+      <tr><td><b>ของที่ต้องมีก่อนไปคุย</b></td><td>ใบกำกับภาษีออกไม่ได้ (ยืนยันแล้ว) → ดีลองค์กร/ราชการปิดไม่ได้ ให้ไปเน้นผู้ออกบูธและทีมสร้างบูธที่จ่ายเองแทน</td><td class="m">05</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="s-week">
+  <div class="sec-head"><span class="sec-num">03</span><h2>ถ้าทำได้แค่ 3 อย่างในสัปดาห์นี้</h2></div>
+  <p class="sec-note">เรียงตามผลที่ได้ต่อแรงที่ลง ไม่ใช่ตามความง่าย</p>
+  <div class="group">
+    <div class="group-head"><p class="group-title">สามข้อนี้ก่อน<span class="sub">เริ่ม 3 ก.ย. — คอนเสิร์ตอัสนี-วสันต์กำลังเล่นอยู่ 7 คืนรวด</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="w1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>เดินเข้าไปคุยกับ Novotel และ ibis ที่อิมแพ็ค เรื่องรับลูกค้าล้น</b></span>
+        <span class="t-sub">คืนคอนเสิร์ตเขาเต็มและต้องปฏิเสธลูกค้าที่เคาน์เตอร์ทุกคืน ขอคุยกับ Front Office Manager
+        ยื่นการ์ดราคา + เบอร์ + QR ไลน์ เสนอค่าแนะนำ 10% หรือแลกกันสองทาง · สคริปต์อยู่หัวข้อ 06</span>
+        <span class="chips"><span class="chip new">ของใหม่</span><span class="chip hot">ทำสัปดาห์นี้</span><span class="chip">ฟรี</span><span class="chip owner">เจ้าของ/ผู้จัดการเดินเอง</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="w2"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตั้ง Google Business Profile ให้ครบ + อัปรูปจริง 20 รูป</b></span>
+        <span class="t-sub">เสาที่ยังเป็นศูนย์ และเป็นที่ที่คนค้น “ที่พักใกล้อิมแพ็ค” บนมือถือเห็นก่อนเพื่อน
+        เริ่มที่แก้ที่อยู่ผิดจาก ต.บ้านใหม่ เป็น ต.บางพูด · รายการเต็มอยู่หัวข้อ 07</span>
+        <span class="chips"><span class="chip hot">ทำสัปดาห์นี้</span><span class="chip">ฟรี</span><span class="chip">~2 ชม.</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="w3"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ดึงรายชื่อผู้ออกบูธงานเฟอร์นิเจอร์ ครั้งที่ 92 แล้วยิงอีเมล 30 บริษัท</b></span>
+        <span class="t-sub">งานยาว 9 วัน (5–13 ก.ย.) ผู้ออกบูธต่างจังหวัดพัก 5–9 คืน = ลูกค้ามูลค่าสูงสุดที่มีในปฏิทิน
+        และคนที่ตอบกลับจะกลายเป็นลูกค้าประจำรายปี · สคริปต์อยู่หัวข้อ 06</span>
+        <span class="chips"><span class="chip hot">ทำสัปดาห์นี้</span><span class="chip">ฟรี</span><span class="chip">~3 ชม.</span></span>
+      </span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section id="s-deal">
+  <div class="sec-head"><span class="sec-num">04</span><h2>แผนเชิงรุก — ใครที่ควรไปคุยด้วย</h2></div>
+  <p class="sec-note">แบ่งเป็น 3 ชั้นตามความเร็วที่เห็นผล ชั้นแรกได้เงินภายในเดือนนี้
+  ชั้นที่สองเป็นรายได้ประจำที่ใช้เวลาเพาะ 1–3 เดือน ชั้นที่สามคือเครือข่ายเล็ก ๆ ที่ทบต้นไปเรื่อย ๆ</p>
+
+  <h3>ชั้นที่ 1 — ได้ลูกค้าภายในเดือนนี้</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>ไปคุยกับใคร</th><th>ทำไมเขาต้องพักกับเรา</th><th>หาเขายังไง</th><th>ข้อเสนอที่ปิดได้</th><th>จังหวะ</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>โรงแรมใหญ่ในเมืองทอง</b><br><span class="t-sub">Novotel IMPACT, ibis IMPACT และที่พักอื่นในโซน</span></td>
+        <td>คืนงานใหญ่เขาเต็ม แล้วต้องบอกลูกค้าที่ยืนอยู่ตรงหน้าว่า “เต็มแล้วค่ะ” — ลูกค้าคนนั้นคือลูกค้าเรา</td>
+        <td>เดินเข้าไปที่ล็อบบี้ ขอคุย Front Office Manager หรือ Duty Manager พร้อมการ์ดราคา</td>
+        <td>ค่าแนะนำ 10% ต่อห้องต่อคืน จ่ายสด หรือแลกส่งลูกค้าให้กันสองทาง</td>
+        <td><span class="tag hot">ทำเลย</span></td>
+      </tr>
+      <tr>
+        <td><b>ผู้ออกบูธต่างจังหวัด</b><br><span class="t-sub">งานที่ยังไม่ถึงในปฏิทิน 8 งาน</span></td>
+        <td>พัก 3–9 คืนติด มาทุกปี จองล่วงหน้า และไม่เกี่ยงราคาถ้าที่จอดรถกับอาหารเช้าตอบโจทย์</td>
+        <td>เว็บงาน → เมนู Exhibitor List (เปิดสาธารณะ) → คัดเฉพาะบริษัทต่างจังหวัด</td>
+        <td>พัก 5 คืนขึ้นไปลด 15% (เรตปิด เสนอทางไลน์/อีเมล) · ที่จอดรถตู้ขนของ · อาหารเช้าเสิร์ฟทันเปิดบูธ · <b>ออกใบกำกับภาษีไม่ได้</b></td>
+        <td><span class="tag hot">T-14 ถึง T-7</span></td>
+      </tr>
+      <tr>
+        <td><b>ผู้รับเหมาสร้างบูธ / ทีมติดตั้ง</b></td>
+        <td>ของดีที่สุดที่ยังไม่มีใครแย่ง — พักตั้งแต่ build-up ถึง teardown ยาวกว่าผู้ออกบูธ และมา<b>ทุกงาน ทั้งปี</b></td>
+        <td>ค้น “รับสร้างบูธ / ออกแบบบูธ อิมแพ็ค” หรือถามช่างที่หน้างานตอนติดตั้งตรง ๆ</td>
+        <td>เรตเหมาห้องรายเดือน · เช็คอินดึก · ที่จอดรถกระบะ · ซักผ้าได้</td>
+        <td><span class="tag hot">ทำเลย</span></td>
+      </tr>
+      <tr>
+        <td><b>ลูกค้าเก่าในไลน์</b></td>
+        <td>ถูกที่สุดในบรรดาทุกช่องทาง และ <code>line_click</code> บอกอยู่แล้วว่าคนของเราอยู่บนไลน์</td>
+        <td>รายชื่อที่เคยทักมา + คนที่เคยพัก (ขอไลน์ตอนเช็คเอาท์ตั้งแต่วันนี้เป็นต้นไป)</td>
+        <td>ทักก่อนอีเวนต์ใหญ่ 10–14 วัน พร้อมราคาที่จองตรงแล้วได้ของแถม (เช็คเอาท์สาย / ฟรีค่าสัตว์เลี้ยง)</td>
+        <td><span class="tag hot">ทำเลย</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>ชั้นที่ 2 — รายได้ประจำ เพาะ 1–3 เดือน</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>ไปคุยกับใคร</th><th>ทำไมเขาต้องพักกับเรา</th><th>หาเขายังไง</th><th>ข้อเสนอที่ปิดได้</th><th>จังหวะ</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>ญาติผู้ป่วยโรงพยาบาลแถวปากเกร็ด–นนทบุรี</b></td>
+        <td>ดีมานด์วันธรรมดาที่ไม่สนใจว่ามีคอนเสิร์ตหรือไม่ พักยาว ต้องการที่เงียบและถูก — ตรงกับช่องที่เราว่างที่สุดพอดี</td>
+        <td>ขอฝากการ์ด/ใบปลิวที่ประชาสัมพันธ์และแผนกสังคมสงเคราะห์ของโรงพยาบาลในรัศมี 15 นาที</td>
+        <td>เรตพัก 7 คืนขึ้นไป · เช็คอิน-เช็คเอาท์ยืดหยุ่น · น้ำร้อน/ไมโครเวฟ</td>
+        <td><span class="tag warm">2 สัปดาห์</span></td>
+      </tr>
+      <tr>
+        <td><b>หน่วยงานราชการที่จัดอบรม</b><br><span class="t-sub">ศูนย์ราชการแจ้งวัฒนะ · หน่วยงานย่านติวานนท์ · มสธ. (อยู่ ต.บางพูด เหมือนเรา)</span></td>
+        <td>ผู้เข้าอบรมต่างจังหวัดต้องพักหลายคืน เบิกค่าที่พักได้ตามระเบียบ และราคา 1,090 อยู่ในกรอบเบิกสบาย ๆ</td>
+        <td>ติดต่อฝ่ายอบรม/ฝ่ายพัสดุ ขอเข้าเป็น “ที่พักในบัญชี” สำหรับผู้เข้าอบรม</td>
+        <td>ใบเสนอราคาเป็นทางการ · ราคาคงที่ตลอดปี · <b>ติดล็อก: ออกใบกำกับภาษีไม่ได้ (เจ้าของยืนยัน 2 ก.ย. 69) กลุ่มนี้ส่วนใหญ่จะเบิกไม่ผ่าน</b></td>
+        <td><span class="tag slow">1–3 เดือน</span></td>
+      </tr>
+      <tr>
+        <td><b>บริษัทย่านแจ้งวัฒนะ–เมืองทอง</b></td>
+        <td>มีพนักงานหรือคู่ค้าต่างจังหวัดเข้ามาประชุม/ฝึกอบรมเป็นรอบ ๆ ตลอดปี</td>
+        <td>ติดต่อ HR หรือธุรการ ขอเป็นที่พักคู่สัญญา (preferred accommodation)</td>
+        <td>Corporate rate · <b>ติดล็อก: ออกใบกำกับภาษีไม่ได้ (เจ้าของยืนยัน 2 ก.ย. 69) บริษัทที่ต้องใช้ภาษีซื้อจะปิดดีลไม่ได้</b></td>
+        <td><span class="tag slow">1–3 เดือน</span></td>
+      </tr>
+      <tr>
+        <td><b>ผู้จัดการแข่งขันกีฬาที่ธันเดอร์โดม/สนามเมืองทอง</b></td>
+        <td>ทีมเยาวชน เชียร์ลีดเดอร์ อีสปอร์ต มาเป็นกลุ่มและพักหลายคืน</td>
+        <td>ติดต่อผู้จัดรายการแข่ง หรือสมาคมกีฬาที่ลงปฏิทินไว้</td>
+        <td>เหมา 4 ห้อง หรือรับเฉพาะส่วนที่ล้นจากทีมใหญ่</td>
+        <td><span class="tag slow">ตามปฏิทินแข่ง</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout alert">
+    <p class="callout-k">ข้อจำกัดที่กระทบดีลชั้นที่ 2 โดยตรง</p>
+    <p>ปฏิทินขายเปิดถึง <b>15 ธ.ค. 2569</b> เท่านั้น (เพดานที่เจ้าของกำหนดเอง)
+    ดีลกับองค์กรมักถามหาสัญญาราคายาว 6–12 เดือน ตอนนี้จึงรับได้แค่ถึงกลางเดือนธันวาคม
+    <b>ไปคุยได้ตามปกติ แต่ต้องบอกกรอบเวลาให้ตรง</b> ถ้าเจอเจ้าที่พร้อมเซ็นยาวจริง ค่อยเอาเรื่องกลับมาคุยกับเจ้าของเป็นเคส ๆ ไป</p>
+  </div>
+
+  <h3>ชั้นที่ 3 — เครือข่ายเล็ก ๆ ที่ทบต้น</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>ไปคุยกับใคร</th><th>ข้อเสนอ</th><th>ต้นทุน</th></tr></thead>
+    <tbody>
+      <tr><td><b>คลินิกสัตว์ · ร้านกรูมมิ่ง · คาเฟ่รับสัตว์เลี้ยง ย่านปากเกร็ด–แจ้งวัฒนะ</b></td><td>ขอวางการ์ดที่ร้าน แลกกับส่วนลด 10% ให้ลูกค้าเขา และเราแนะนำร้านเขาให้แขกที่พาน้องมา</td><td>ค่าพิมพ์การ์ด</td></tr>
+      <tr><td><b>คนขับรถ วิน และรถตู้ที่ประจำหน้าอิมแพ็ค</b></td><td>ค่าแนะนำ 100–200 บาทต่อห้อง จ่ายสด — คนกลุ่มนี้ถูกถามหาที่พักใกล้ ๆ ทุกวัน</td><td>จ่ายเมื่อได้ลูกค้า</td></tr>
+      <tr><td><b>กลุ่มเฟซบุ๊กคนรักสัตว์ และกลุ่ม “ที่พักพาน้องไปได้”</b></td><td>โพสต์แบบช่วยเหลือ เปิดเผยว่าเป็นเจ้าของ ตามหลักในแผนเดิมหัวข้อ 6.1</td><td>ฟรี</td></tr>
+      <tr><td><b>ไดเรกทอรีที่พักรับสัตว์เลี้ยงทุกเจ้าที่ลงฟรีได้</b></td><td>ลงทะเบียนให้ครบ — คู่แข่งแถวเมืองทองแทบไม่มีใครรับสัตว์เลี้ยง</td><td>ฟรี</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="s-kit">
+  <div class="sec-head"><span class="sec-num">05</span><h2>ของที่ต้องมีก่อนไปคุย</h2></div>
+  <p class="sec-note">ไม่มีของพวกนี้ = ปิดดีลองค์กรไม่ได้เลยสักเจ้า ต่อให้เขาอยากพักแค่ไหน
+  ทั้งหมดทำเสร็จได้ใน <strong>ครึ่งวัน</strong> และใช้ซ้ำได้กับทุกเป้าหมายในหัวข้อ 04</p>
+  <div class="group">
+    <div class="group-head"><p class="group-title">ชุดเครื่องมือขาย<span class="sub">ทำครั้งเดียว ใช้ตลอด</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="k1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>การ์ดราคา 1 หน้า (A5) พิมพ์ 100 ใบ</b></span>
+        <span class="t-sub">ห้อง 3 แบบ + ราคา + “ห่างอิมแพ็ค 7–10 นาที” + ที่จอดรถฟรี + อาหารเช้า + รับสัตว์เลี้ยง 300 บาท/ตัว/คืน + QR ไลน์ + เบอร์ 094-962-5955 · ใช้ทั้งกับโรงแรมใหญ่ โรงพยาบาล และร้านค้า</span>
+        <span class="chips"><span class="chip new">ของใหม่</span><span class="chip">ครึ่งวัน</span><span class="chip">ค่าพิมพ์</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="k2"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตอบแล้ว: ออกใบกำกับภาษีเต็มรูป<u>ไม่ได้</u></b></span>
+        <span class="t-sub">เจ้าของยืนยัน 2 ก.ย. 69 — ออกได้แค่ใบเสร็จรับเงิน ผลคือกลุ่มราชการและบริษัทที่ต้องใช้ภาษีซื้อ
+        ปิดดีลไม่ได้ ให้ทุ่มแรงไปที่ผู้ออกบูธ ทีมสร้างบูธ และลูกค้าบุคคลแทน สคริปต์อีเมลในหัวข้อ 06 แก้ให้ตรงแล้ว</span>
+        <span class="chips"><span class="chip owner">เจ้าของตอบแล้ว</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="k3"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตัดสินใจเรตองค์กร แล้วเขียนเป็นตัวเลขตายตัว</b></span>
+        <span class="t-sub">เสนอ: พัก 5 คืนขึ้นไปลด 15% · 10 คืนขึ้นไปลด 20% · วางบิลรายเดือนสำหรับคู่สัญญา
+        เรตแบบมีสัญญาไม่ผิดกติกา rate parity ของ OTA เพราะเป็นราคาปิด ไม่ได้ประกาศต่อสาธารณะ</span>
+        <span class="chips"><span class="chip new">ของใหม่</span><span class="chip owner">เจ้าของตัดสินใจ</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="k4"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตัดสินใจว่าให้เครดิต 30 วันกับหน่วยงานราชการไหม</b></span>
+        <span class="t-sub">ราชการเบิกจ่ายช้าเกือบทุกที่ ถ้ารับเงินสดอย่างเดียวจะเสียดีลกลุ่มนี้ทั้งกลุ่ม</span>
+        <span class="chips"><span class="chip new">ของใหม่</span><span class="chip owner">เจ้าของตัดสินใจ</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="k5"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ถ่ายรูปจริง 20 รูปในรอบเดียว</b></span>
+        <span class="t-sub">สวน · หน้าโรงแรม · ล็อบบี้ · ห้องแต่ละแบบ · ห้องน้ำ · อาหารเช้า · ที่จอดรถ · ป้ายทางเข้าซอย
+        ชุดเดียวใช้ได้ทั้ง Google Business Profile, Agoda, การ์ดราคา และอีเมลหาผู้ออกบูธ</span>
+        <span class="chips"><span class="chip">1 ชม.</span><span class="chip">ใช้ได้ 4 ที่</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="k6"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>คลิปจับเวลาจริงจากประตูโรงแรมถึงหน้า IMPACT Arena</b></span>
+        <span class="t-sub">ขึ้นนาฬิกาบนจอ ตอบคำถามที่คนกังวลที่สุด (“ไกลไหม”) ด้วยหลักฐานแทนคำโฆษณา
+        ถ่ายครั้งเดียว ใช้ซ้ำก่อนทุกงานใหญ่ เปลี่ยนแค่แคปชัน</span>
+        <span class="chips"><span class="chip">30 นาที</span><span class="chip">ใช้ซ้ำได้ตลอด</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="k7"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ขอไลน์ลูกค้าทุกคนตอนเช็คเอาท์ ตั้งแต่วันนี้</b></span>
+        <span class="t-sub">คนที่เคยพักคือกลุ่มที่ปิดการขายง่ายที่สุดและถูกที่สุด ตอนนี้ยังไม่มีรายชื่อเก็บไว้เลย
+        เริ่มสะสมวันนี้ ใช้ได้จริงตอนคอนเสิร์ตเดือนตุลาคม</span>
+        <span class="chips"><span class="chip new">ของใหม่</span><span class="chip">ฟรี</span></span>
+      </span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section id="s-script">
+  <div class="sec-head"><span class="sec-num">06</span><h2>สคริปต์ที่ใช้ได้เลย</h2></div>
+  <p class="sec-note">แก้ชื่อกับวันที่แล้วส่งได้ทันที ทุกชุดจบที่ไลน์หรือโทรศัพท์ ไม่ใช่ฟอร์มบนเว็บ</p>
+
+  <div class="script">
+    <div class="script-head">
+      <p class="script-name">อีเมลถึงผู้ออกบูธต่างจังหวัด<span>ส่งช่วง T-14 ถึง T-7 ก่อนงาน</span></p>
+      <button class="btn" data-copy="sc1">คัดลอก</button>
+    </div>
+    <p class="script-body" id="sc1">เรียน ฝ่ายจัดงานแสดงสินค้า บริษัท [ชื่อบริษัท]
+
+ทราบว่าทางบริษัทออกบูธในงาน [ชื่องาน] ที่อิมแพ็ค เมืองทองธานี ระหว่างวันที่ [วันที่] ครับ
+
+ทางเราเป็นโรงแรมเล็ก ๆ ในซอย ห่างจากอิมแพ็คประมาณ 7–10 นาที มีห้องพัก 4 ห้อง
+และดูแลทีมออกบูธมาหลายงาน จึงอยากเสนอที่พักสำหรับทีมงานครับ
+
+สิ่งที่ตรงกับงานออกบูธโดยเฉพาะ
+· พัก 5 คืนขึ้นไป ลดให้ 15% จากราคาปกติ (เริ่มต้น 1,090 บาท/คืน รวมอาหารเช้า)
+· ออกใบเสร็จรับเงินให้ได้ (ขออภัย ยังออกใบกำกับภาษีเต็มรูปไม่ได้)
+· ที่จอดรถฟรีในบริเวณ รองรับรถตู้ขนของ
+· อาหารเช้าเสิร์ฟเช้าพอที่จะไปเปิดบูธทัน
+· เช็คอินได้ตลอด 24 ชั่วโมง กลับดึกหลังรื้อบูธก็เข้าห้องได้
+
+ถ้าสนใจ ทักไลน์มาได้เลยครับ สะดวกที่สุด — LINE: FI5YYjJS-X
+หรือโทร 094-962-5955 (คุยกับผู้จัดการโดยตรง ไม่ผ่านคอลเซ็นเตอร์)
+
+ขอบคุณครับ
+โรงแรมบ้านเพิ่มสุข · ต.บางพูด อ.ปากเกร็ด จ.นนทบุรี
+www.baanpermsook.com</p>
+  </div>
+
+  <div class="script">
+    <div class="script-head">
+      <p class="script-name">บทพูดกับ Front Office โรงแรมใหญ่<span>เดินเข้าไปคุย ไม่ต้องนัดล่วงหน้า</span></p>
+      <button class="btn" data-copy="sc2">คัดลอก</button>
+    </div>
+    <p class="script-body" id="sc2">สวัสดีครับ ขอรบกวนคุยกับผู้จัดการฝ่ายต้อนรับสักครู่ได้ไหมครับ
+
+ผมเปิดที่พักเล็ก ๆ อยู่ในซอย ห่างจากที่นี่ประมาณ [x] นาที มี 4 ห้องครับ
+คือเห็นว่าคืนที่มีคอนเสิร์ตหรืองานใหญ่ ทางนี้ห้องเต็มและต้องปฏิเสธลูกค้าอยู่บ่อย ๆ
+เลยอยากเสนอตัวเป็นที่รองรับลูกค้าส่วนที่รับไม่ไหวครับ
+
+ห้องเราสะอาด มีอาหารเช้า ที่จอดรถฟรี รับสัตว์เลี้ยงด้วย
+ถ้าส่งลูกค้ามาแล้วเข้าพักจริง เรามีค่าแนะนำให้ 10% ต่อห้องต่อคืน จ่ายสดครับ
+หรือถ้าไม่สะดวกรับ ก็ยินดีแลกกันสองทาง — ลูกค้าที่เกินกำลังเรา เราส่งกลับมาที่นี่เหมือนกัน
+
+นี่การ์ดราคากับเบอร์ผมครับ โทรได้ตลอด 24 ชั่วโมง ห้องว่างเช็คทางไลน์ได้ทันที</p>
+  </div>
+
+  <div class="script">
+    <div class="script-head">
+      <p class="script-name">ข้อความถึงฝ่ายอบรม/พัสดุหน่วยงานราชการ<span>ส่งอีเมลก่อน แล้วโทรตามภายใน 3 วัน</span></p>
+      <button class="btn" data-copy="sc3">คัดลอก</button>
+    </div>
+    <p class="script-body" id="sc3">เรียน ฝ่ายฝึกอบรม / ฝ่ายพัสดุ [ชื่อหน่วยงาน]
+
+ขออนุญาตเสนอที่พักสำหรับผู้เข้ารับการอบรมจากต่างจังหวัดครับ
+
+โรงแรมบ้านเพิ่มสุข ตั้งอยู่ ต.บางพูด อ.ปากเกร็ด จ.นนทบุรี
+ห่างจาก [ชื่อสถานที่จัดอบรม] ประมาณ [x] นาที
+
+· ห้องพักเริ่มต้น 1,090 บาท/คืน รวมอาหารเช้า — อยู่ในกรอบอัตราค่าเช่าที่พักที่เบิกได้
+· ออกใบเสนอราคาและใบเสร็จรับเงินให้ได้
+· ที่จอดรถฟรี เช็คอินได้ 24 ชั่วโมง
+· พัก 5 คืนขึ้นไป ลดเพิ่ม 15%
+
+หากสนใจ ยินดีส่งใบเสนอราคาอย่างเป็นทางการ หรือให้เจ้าหน้าที่เข้ามาดูห้องจริงก่อนได้ครับ
+ติดต่อกลับได้ที่ 094-962-5955 หรือ LINE: FI5YYjJS-X
+
+ขอแสดงความนับถือ
+โรงแรมบ้านเพิ่มสุข · www.baanpermsook.com</p>
+  </div>
+</section>
+
+<section id="s-todo">
+  <div class="sec-head"><span class="sec-num">07</span><h2>งานค้างจากแผนเดิม</h2></div>
+  <p class="sec-note">ตัดข้อที่ทำเสร็จไปแล้วออกหมด เหลือเฉพาะที่ยังค้างจริง ณ 2 ก.ย. 2569
+  เรียงกลุ่มตามผลกระทบ — <strong>กลุ่มแรกคือเสาที่ยังไม่ได้เริ่มเลย</strong></p>
+  <div class="toolbar">
+    <button class="btn" id="toggleDone" aria-pressed="false">ซ่อนข้อที่ทำแล้ว</button>
+    <button class="btn" id="resetAll">ล้างเครื่องหมายทั้งหมด</button>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><p class="group-title">Google Business Profile — ยังไม่ได้แตะเลยสักข้อ<span class="sub">ฟรีทั้งหมด · ช่องทางที่ intent สูงที่สุด · ~2 ชม. แรก แล้วที่เหลือทำสัปดาห์ละนิด</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="g1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>แก้ที่อยู่จาก ต.บ้านใหม่ เป็น ต.บางพูด</b></span>
+        <span class="t-sub">เจ้าของยืนยันแล้วว่า ต.บางพูด ถูกต้อง เว็บเราถูกอยู่แล้ว ผิดเฉพาะฝั่ง Google · ค้างมานาน แก้ก่อนข้ออื่น</span>
+        <span class="chips"><span class="chip hot">ทำก่อน</span><span class="chip owner">ต้องเข้าบัญชี GBP</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g2"><span class="box"></span><span class="t-body">
+        <span class="t-main">ตั้งหมวดหมู่ให้ถูก</span>
+        <span class="t-sub">หลัก: โรงแรม · รอง: รีสอร์ท, ที่พักพร้อมอาหารเช้า</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g3"><span class="box"></span><span class="t-body">
+        <span class="t-main">เปิดคุณลักษณะให้ครบ</span>
+        <span class="t-sub">โดยเฉพาะ “อนุญาตให้นำสัตว์เลี้ยงเข้าพัก” · ที่จอดรถฟรี · Wi-Fi ฟรี · อาหารเช้า · พนักงาน 24 ชม. · กล้องวงจรปิด</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g4"><span class="box"></span><span class="t-body">
+        <span class="t-main">ใส่ลิงก์เว็บ + ตั้งปุ่มจองให้ไปที่ไลน์</span>
+        <span class="t-sub"><code>https://line.me/ti/p/FI5YYjJS-X</code> — ไม่ใช่ฟอร์มบนเว็บ เพราะฟอร์มยังไม่มีใครกดเลยใน 28 วัน</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g5"><span class="box"></span><span class="t-body">
+        <span class="t-main">เขียนคำอธิบายธุรกิจใหม่</span>
+        <span class="t-sub">ต้องมีคำว่า “ใกล้อิมแพ็ค เมืองทองธานี” และ “รับสัตว์เลี้ยง”</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g6"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>อัปโหลดรูปจริง 20+ รูป</b></span>
+        <span class="t-sub">ความสดของรูปเป็นสัญญาณอันดับที่ถูกมองข้ามที่สุด · รูปมือถือที่ถ่ายจริง ชนะรูปสวยที่เก่า 2 ปีเสมอ · ใช้ชุดเดียวกับข้อ k5</span>
+        <span class="chips"><span class="chip hot">ทำสัปดาห์นี้</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g7"><span class="box"></span><span class="t-body">
+        <span class="t-main">ตั้งรอบอัปรูป 3–5 รูปทุกสัปดาห์</span>
+        <span class="t-sub">โปรไฟล์ที่นิ่งจะถูกลดลำดับ · 20 นาทีต่อวันดีกว่าลุยวันเดียว 8 ชม. แล้วหาย</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g8"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตอบรีวิวย้อนหลัง 30 อันล่าสุด ภายใน 7 วัน</b></span>
+        <span class="t-sub">ตอบทุกดาว รวมดาวต่ำ — ตอบดาวต่ำแบบสุภาพทำให้คนอ่านเชื่อถือเรามากขึ้น ไม่ใช่น้อยลง</span>
+        <span class="chips"><span class="chip hot">ทำสัปดาห์นี้</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="g9"><span class="box"></span><span class="t-body">
+        <span class="t-main">ตั้งระบบขอรีวิว + Q&amp;A 8 ข้อ + โพสต์สัปดาห์ละ 1–2 ครั้ง</span>
+        <span class="t-sub">QR ที่เคาน์เตอร์ + ข้อความไลน์หลังเช็คเอาท์ 2 ชม. · Q&amp;A ดึงจาก FAQ บนเว็บได้เลย · โพสต์ผูกกับอีเวนต์ที่กำลังจะมา
+        · <b>ห้ามคัดกรองรีวิว</b> (ถามก่อนว่าพอใจไหมแล้วส่งลิงก์เฉพาะคนที่พอใจ) ผิดนโยบาย Google และโดนลงโทษได้</span>
+      </span></label></li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><p class="group-title">Agoda <span class="sub">property 5728170 · คอนเทนต์ 88% · อ่าน docs/agoda_improve.md ก่อนแตะราคา</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="a1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ติดต่อ Agoda ให้แก้โซนจาก “ดอนเมือง” เป็นเมืองทองธานี/ปากเกร็ด</b></span>
+        <span class="t-sub">ข้อเดียวที่ใหญ่ที่สุดในหน้านี้สำหรับฝั่ง Agoda — คนค้นที่พักย่านเมืองทองไม่เจอเราเพราะเราไม่ได้อยู่ในโซนนั้นในระบบเขา
+        · ต้องเปิดเคสกับ support ไม่ใช่แก้เองใน extranet</span>
+        <span class="chips"><span class="chip hot">ผลกระทบสูงสุด</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="a2"><span class="box"></span><span class="t-body">
+        <span class="t-main">ติ๊กหมวดสิ่งอำนวยความสะดวกที่ยังว่างทั้งหมด</span>
+        <span class="t-sub">Others <b>0/57</b> · Cleanliness and safety <b>2/29</b> (ทั้งที่ได้คะแนนสะอาด 9.1) · Things to do <b>0/23</b> (เรามีสวนจริง) · For the kids <b>0/15</b></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="a3"><span class="box"></span><span class="t-body">
+        <span class="t-main">เขียนคำบรรยายเองแทนของอัตโนมัติ</span>
+        <span class="t-sub">ต้องมีคำว่า IMPACT · เมืองทองธานี · อาหารเช้า · สวน</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="a4"><span class="box"></span><span class="t-body">
+        <span class="t-main">ถามเจ้าของว่ามี Off-leash area / pet bowls / litter box จริงไหม</span>
+        <span class="t-sub">อีก 3 ช่องที่ยังติ๊กไม่ได้เพราะไม่รู้ว่ามีจริง · ถ้าไม่มีแต่ทำได้ง่าย ก็ทำแล้วติ๊กเลย</span>
+        <span class="chips"><span class="chip owner">ถามเจ้าของ</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="a5"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตัดสินใจเรื่องช่องว่างราคา 3.6% ระหว่างสองเจ้า</b></span>
+        <span class="t-sub">Agoda บังคับราคาขั้นต่ำ 1,400 บาท ใส่ 1,350 ตามตารางไม่ได้ ทำให้ Booking ถูกกว่าในคืนราคาฐาน
+        → เลือก: ขึ้น Booking เป็น 1,400 ให้เท่ากัน หรือยอมรับส่วนต่างไว้อย่างนั้น</span>
+        <span class="chips"><span class="chip owner">เจ้าของตัดสินใจ</span></span>
+      </span></label></li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><p class="group-title">Booking.com <span class="sub">hotel_id 6536661 · คอนเทนต์ 100% · อันดับ 11/11 ในกลุ่มเทียบ · commission จริง 14.9%</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="b1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตอบรีวิวทั้ง 3 อัน</b></span>
+        <span class="t-sub">ร่างคำตอบเขียนไว้พร้อมวางแล้วใน <code>docs/booking_improve.md</code> หัวข้อ 5.1 — ตรวจแล้ววางได้เลย</span>
+        <span class="chips"><span class="chip hot">ทำสัปดาห์นี้</span><span class="chip">15 นาที</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="b2"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ขอรีวิวจากลูกค้าที่พักจริง ให้ถึง 10 รีวิว</b></span>
+        <span class="t-sub">ตัวแปรใหญ่ที่สุดที่เหลืออยู่ — เรามี 3 รีวิว คู่แข่งมี 9 ถึง 2,158 · 1 รีวิวแย่ = 33% ของคะแนนเรา
+        · ลูกค้าเรารีวิวอยู่แล้ว (Agoda 100 อัน, Google 128 อัน) แค่ไม่ได้รีวิวบน Booking · ทักไลน์ขอหลังเช็คเอาท์ก็พอ</span>
+        <span class="chips"><span class="chip hot">ผลกระทบสูงสุด</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="b3"><span class="box"></span><span class="t-body">
+        <span class="t-main">แก้เรื่องเสียงในห้อง</span>
+        <span class="t-sub">รีวิวบอก “ห้องไม่เก็บเสียง” · ถ้าแก้โครงสร้างไม่ได้ อย่างน้อยอย่าจัดห้องติดกันให้ลูกค้ากลุ่มใหญ่กับลูกค้าที่มาพักผ่อน</span>
+        <span class="chips"><span class="chip owner">งานหน้างาน</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="b4"><span class="box"></span><span class="t-body">
+        <span class="t-main">เพิ่มเปลเด็ก / เตียงเสริม ในระบบ</span>
+        <span class="t-sub">ตอนนี้ว่างทั้งคู่ ทำให้หลุดจากผลค้นหาแบบครอบครัว · ต้องรู้ก่อนว่ามีจริงไหมและราคาเท่าไหร่ (ค่าเตียงเสริม 300 บาท/คืน)</span>
+        <span class="chips"><span class="chip owner">ถามเจ้าของ</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="b5"><span class="box"></span><span class="t-body">
+        <span class="t-main">ปรับ Capacity optimisation ตามที่ Booking แนะนำ</span>
+        <span class="t-sub">ตอนนี้ max 3 คน = 2 ผู้ใหญ่ + 2 เด็ก ซึ่งขัดกันเอง · ปรับ adult/child/infant limits ให้ตรงของจริง</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="b6"><span class="box"></span><span class="t-body">
+        <span class="t-main">ส่งคำขอแก้คำบรรยาย ให้ระบุค่าสัตว์เลี้ยง 300 บาท/ตัว/คืน</span>
+        <span class="t-sub">Booking ไม่มีช่องกรอกตัวเลข ต้องเขียนในคำบรรยาย · ส่งที่ Property → View Your Descriptions
+        · การเขียนตกคำว่า “ต่อคืน” คือสิ่งที่ทำให้คะแนนความคุ้มค่าตกไปที่ 6.3</span>
+      </span></label></li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><p class="group-title">Google Ads <span class="sub">บัญชี 798-838-0532 · แคมเปญ BPS Ads ยัง Paused · อ่าน docs/google-ads-audit.md</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="d1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ตรวจข้อความโฆษณา 5 ชุดด้วยตา แล้วกดเปิดแคมเปญกลับ</b></span>
+        <span class="t-sub">ทุกอย่างพร้อมแล้ว: โฆษณา Excellent ทั้ง 5 · คีย์เวิร์ด phrase/exact 73 คำ · broad ปิดครบ 72 คำ · negative 16 คำ · ออกโฆษณา 24 ชม.
+        · งบ 300 บาท/วัน ตามที่เจ้าของตัดสินใจไว้</span>
+        <span class="chips"><span class="chip hot">ทำสัปดาห์นี้</span><span class="chip owner">เจ้าของกดเปิด</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="d2"><span class="box"></span><span class="t-body">
+        <span class="t-main">ตรวจ location targeting ว่าเป็น Presence ไม่ใช่ Presence or interest</span>
+        <span class="t-sub">ถ้าเป็นอย่างหลัง เราจะจ่ายค่าคลิกให้คนที่แค่ “สนใจ” พื้นที่นี้แต่ไม่ได้อยู่แถวนี้</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="d3"><span class="box"></span><span class="t-body">
+        <span class="t-main">ล้าง conversion action ขยะระดับบัญชี</span>
+        <span class="t-sub">ลบตัวที่มาจาก Universal Analytics (ปิดตัวไปแล้ว ค่าเป็น 0 ตลอด) · ปลด Downloads / Page views / Store visits ออกจาก Primary
+        · ไม่เร่งด่วน เพราะแคมเปญตั้ง goal เฉพาะไว้แล้ว</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="d4"><span class="box"></span><span class="t-body">
+        <span class="t-main">ลบแคมเปญ Removed 5 ตัว + Draft 2 ตัว</span>
+        <span class="t-sub">แค่ความสะอาด ไม่กระทบผลงาน</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="d5"><span class="box"></span><span class="t-body">
+        <span class="t-main">เฝ้าดู 7–14 วันแรกหลังเปิด โดยไม่ไปยุ่ง</span>
+        <span class="t-sub">คลิกจะลดจาก ~138/วัน เหลือ ~30–50/วัน และ CPC จะขึ้นจาก 2.19 เป็น 5–10 บาท — เป็นเรื่องปกติ
+        <b>อย่าตกใจแล้วเอา broad match กลับมา</b> ให้ดูยอดทักไลน์กับสายโทรเข้าแทน</span>
+        <span class="chips"><span class="chip">กติกา</span></span>
+      </span></label></li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <div class="group-head"><p class="group-title">เว็บไซต์ <span class="sub">ทำเมื่อสั่งเท่านั้น — เว็บไม่ใช่คอขวดตอนนี้</span></p><span class="group-count" data-count></span></div>
+    <ul class="tasks">
+      <li><label class="task"><input type="checkbox" data-id="e1"><span class="box"></span><span class="t-body">
+        <span class="t-main"><b>ดัน LINE ขึ้นเป็น CTA หลักเหนือฟอร์มจอง</b></span>
+        <span class="t-sub">ข้อมูลจริงบอกชัด: <code>booking_form_submit</code> Inactive 28 วัน แต่ <code>line_click</code> Active
+        · เราออกแบบหน้าเว็บให้เชียร์ฟอร์มที่ไม่มีใครใช้อยู่</span>
+        <span class="chips"><span class="chip new">ของใหม่</span><span class="chip hot">คุ้มที่สุดในกลุ่มนี้</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="e2"><span class="box"></span><span class="t-body">
+        <span class="t-main">ทำหน้าสำหรับผู้ออกบูธงานแสดงสินค้า <b>— ทำแล้ว</b></span>
+        <span class="t-sub">ขึ้นที่ <code>/exhibitor.html</code> และ <code>/en/exhibitor.html</code> แล้ว: เรตพักยาว (ไม่ลงตัวเลข ให้ทักไลน์ขอ
+        เพื่อไม่ผิด rate parity ของ OTA) · ที่จอดรถตู้ · เช็คอิน 24 ชม. · อาหารเช้าเช้าตรู่ · ไม่พูดเรื่องใบกำกับภาษีเพราะออกไม่ได้
+        · เป็นหน้าปลายทางของอีเมลในหัวข้อ 06</span>
+        <span class="chips"><span class="chip">ทำแล้ว</span></span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="e3"><span class="box"></span><span class="t-body">
+        <span class="t-main">ใส่ UTM ในทุกลิงก์ที่โพสต์ตามกลุ่มและโซเชียล</span>
+        <span class="t-sub">ตอนนี้ GA4 แยกไม่ได้เลยว่ายอดมาจากช่องทางไหน — ยิงไปแล้วก็ไม่รู้ว่าอันไหนได้ผล</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="e4"><span class="box"></span><span class="t-body">
+        <span class="t-main">ทำหน้ารวมลิงก์สำหรับไบโอ TikTok/IG</span>
+        <span class="t-sub">หน้าเดียว รวมไลน์ · จอง · แผนที่ · เบอร์</span>
+      </span></label></li>
+      <li><label class="task"><input type="checkbox" data-id="e5"><span class="box"></span><span class="t-body">
+        <span class="t-main">อัปเดตตัวเลข “4.2 / 128 รีวิว” เมื่อรีวิว Google เพิ่ม</span>
+        <span class="t-sub">แก้ทั้งบนหน้าเว็บและใน JSON-LD ให้ตรงกัน</span>
+      </span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section id="s-days">
+  <div class="sec-head"><span class="sec-num">08</span><h2>ตารางเจ็ดวัน</h2></div>
+  <p class="sec-note">วันละ 1–2 ชั่วโมง ไม่ต้องลุยรวดเดียว งานที่ต้องเดินไปคุยวางไว้ต้นสัปดาห์
+  เพราะคอนเสิร์ตอัสนี-วสันต์เล่นถึง 8 ก.ย. และงานเฟอร์นิเจอร์เปิด 5 ก.ย.</p>
+  <ul class="days">
+    <li><span class="day-k">พฤ 3 ก.ย.<span>เดินไปคุย</span></span><span class="day-v">เข้าไปคุยกับ Novotel และ ibis เรื่องรับลูกค้าล้น พร้อมการ์ดราคา
+      <em>ถ้าการ์ดยังไม่ทัน ใช้มือถือเปิดหน้าเว็บให้ดูแล้วขอไลน์ผู้จัดการไว้ก่อนก็ได้ — อย่าเลื่อนเพราะรอของ</em></span></li>
+    <li><span class="day-k">ศ 4 ก.ย.<span>หน้าจอ</span></span><span class="day-v">ตั้ง Google Business Profile ให้ครบ: แก้ที่อยู่ · หมวดหมู่ · คุณลักษณะ · ปุ่มจองไปไลน์ · คำอธิบายใหม่
+      <em>ประมาณ 2 ชั่วโมง ทำครั้งเดียวจบ</em></span></li>
+    <li><span class="day-k">ส 5 ก.ย.<span>หน้าจอ</span></span><span class="day-v">ดึงรายชื่อผู้ออกบูธงานเฟอร์นิเจอร์ ครั้งที่ 92 คัดบริษัทต่างจังหวัด 30 ราย แล้วยิงอีเมลชุดแรก
+      <em>งานเปิดวันนี้พอดี ยังทันสำหรับคนที่พักคืนท้าย ๆ ของงาน 9 วัน</em></span></li>
+    <li><span class="day-k">อา 6 ก.ย.<span>ถ่ายรูป</span></span><span class="day-v">ถ่ายรูปจริง 20 รูป + คลิปจับเวลาไปอิมแพ็ค แล้วอัปขึ้น Google Business Profile ทันที
+      <em>ชุดเดียวใช้ได้ทั้ง GBP, Agoda, การ์ดราคา และอีเมล</em></span></li>
+    <li><span class="day-k">จ 7 ก.ย.<span>OTA</span></span><span class="day-v">เปิดเคสกับ Agoda เรื่องโซนดอนเมือง · ตอบรีวิว Booking ทั้ง 3 อัน (ร่างพร้อมแล้ว) · ติ๊กสิ่งอำนวยความสะดวก Agoda ที่ยังว่าง
+      <em>เคสของ Agoda ใช้เวลาหลายวัน ยิ่งเปิดเร็วยิ่งดี</em></span></li>
+    <li><span class="day-k">อ 8 ก.ย.<span>รีวิว</span></span><span class="day-v">ตอบรีวิว Google 30 อันล่าสุด · ตั้ง QR ขอรีวิวที่เคาน์เตอร์ · เริ่มขอไลน์ลูกค้าทุกคนตอนเช็คเอาท์
+      <em>ตอบทุกดาว รวมดาวต่ำ · ห้ามส่งลิงก์เฉพาะคนที่พอใจ</em></span></li>
+    <li><span class="day-k">พ 9 ก.ย.<span>ทบทวน</span></span><span class="day-v">ตรวจโฆษณา 5 ชุดแล้วเปิดแคมเปญกลับ · ดูตัวเลข 5 ตัวประจำสัปดาห์ · ยิงอีเมลผู้ออกบูธชุดที่สอง (Coffee Fest 10–13 ก.ย.)
+      <em>จากนี้ทุกวันจันทร์ใช้เวลา 15 นาทีดูตัวเลข ไม่ต้องมากกว่านี้</em></span></li>
+  </ul>
+
+  <h3>ปฏิทินยิงผู้ออกบูธล่วงหน้า</h3>
+  <p class="sec-note">ยิงช่วง T-14 ถึง T-7 ก่อนงาน ใช้สคริปต์เดิม เปลี่ยนแค่ชื่องานกับวันที่</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>งาน</th><th>วันงาน</th><th>ยิงอีเมลช่วง</th><th>หมายเหตุ</th></tr></thead>
+    <tbody>
+      <tr><td>งานแสดงเฟอร์นิเจอร์ ครั้งที่ 92</td><td class="m">5–13 ก.ย.</td><td class="m">ทำทันที</td><td>9 วัน = พักยาวที่สุดในเดือนนี้</td></tr>
+      <tr><td>Thailand Coffee Fest 2026</td><td class="m">10–13 ก.ย.</td><td class="m">ภายใน 5 ก.ย.</td><td>ผู้ออกบูธรายย่อยจากต่างจังหวัดเยอะ</td></tr>
+      <tr><td>BCT Expo + Woodworking Exhibition</td><td class="m">16–18 ก.ย.</td><td class="m">ภายใน 9 ก.ย.</td><td>สองงานพร้อมกัน คนล้นทั้งโซน</td></tr>
+      <tr><td>งานรับสร้างบ้านและวัสดุ EXPO</td><td class="m">16–20 ก.ย.</td><td class="m">ภายใน 9 ก.ย.</td><td>ผู้รับเหมาต่างจังหวัด กลุ่มตรงมาก</td></tr>
+      <tr><td>Toyota Farm Expo 2026</td><td class="m">24–27 ก.ย.</td><td class="m">ภายใน 17 ก.ย.</td><td>ตัวแทนจำหน่ายจากภูมิภาค</td></tr>
+      <tr><td>ASEAN Int'l Optics Expo</td><td class="m">9–11 ต.ค.</td><td class="m">ภายใน 2 ต.ค.</td><td>มีผู้ร่วมงานต่างชาติ ใช้หน้า EN ได้</td></tr>
+      <tr><td>FAPA 2026 (IMPACT Forum)</td><td class="m">3–7 พ.ย.</td><td class="m">ภายใน 27 ต.ค.</td><td>ประชุมนานาชาติ 5 วัน ใช้หน้า EN</td></tr>
+      <tr><td>Bangkok Ad &amp; Sign Expo</td><td class="m">5–8 พ.ย.</td><td class="m">ภายใน 29 ต.ค.</td><td>ต่อจาก FAPA ทันที</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="s-rules">
+  <div class="sec-head"><span class="sec-num">09</span><h2>กติกาที่ห้ามพลาด</h2></div>
+  <p class="sec-note">ห้าข้อนี้ผิดแล้วเสียหายมากกว่าที่ได้ อ่านก่อนลงมือทุกครั้ง</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>เรื่อง</th><th>กติกา</th><th>ถ้าพลาด</th></tr></thead>
+    <tbody>
+      <tr><td><b>ราคาบนเว็บและไลน์</b></td><td>ห้ามถูกกว่า OTA อย่างเปิดเผย ให้แข่งด้วยของแถมแทน — เช็คเอาท์สาย ยกเว้นค่าสัตว์เลี้ยง อัปเกรดห้องเมื่อว่าง</td><td>ผิดสัญญาและโดนลดอันดับบนแพลตฟอร์ม</td></tr>
+      <tr><td><b>เรตองค์กร</b></td><td>ราคาปิดที่มีสัญญากับองค์กรทำได้ ไม่นับเป็นการทำผิด parity เพราะไม่ได้ประกาศต่อสาธารณะ</td><td>—</td></tr>
+      <tr><td><b>ขอรีวิว</b></td><td>ส่งลิงก์ให้ทุกคนเหมือนกัน ห้ามถามก่อนว่าพอใจไหมแล้วส่งเฉพาะคนที่พอใจ</td><td>ผิดนโยบาย Google โดนลงโทษได้</td></tr>
+      <tr><td><b>โพสต์ในกลุ่มเฟซบุ๊ก</b></td><td>อ่านกฎกลุ่มก่อน · บอกตรง ๆ ว่าเป็นเจ้าของ · ตอบคำถามคนอื่นด้วย · งานเดิมโพสต์ไม่เกิน 2 ครั้ง</td><td>โดนแบนจากกลุ่มถาวร</td></tr>
+      <tr><td><b>ส่วนลดบน OTA</b></td><td>ส่วนลดทับซ้อนกันทั้งสองเจ้า ก่อนเพิ่มโปรฯ ใหม่ต้องเช็คก่อนว่ามันซ้อนกับอะไรอยู่</td><td>ขายต่ำกว่าตารางราคาโดยไม่รู้ตัว</td></tr>
+      <tr><td><b>ปฏิทินขาย</b></td><td>เปิดถึง 15 ธ.ค. 2569 ตามที่เจ้าของกำหนด ทั้งสองแพลตฟอร์ม</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <p class="callout-k">ตัวเลขที่ดูทุกวันจันทร์ 15 นาที</p>
+    <p>อันดับใน competitive set ของ Booking (ตั้งต้น <b>11/11</b>) · CTR ในผลค้นหา (ตั้งต้น <b>1.73%</b> เป้า 3.18%) ·
+    จำนวนรีวิวบน Booking (ตั้งต้น <b>3</b> เป้า 10+) · การเข้าชมและการกระทำบน Google Business Profile ·
+    อัตราเข้าพัก <b>แยก จ.–พฤ. กับ ศ.–อา.</b> เสมอ เพราะปัญหาจริงอยู่ที่วันธรรมดา ถ้าดูรวมจะมองไม่เห็น</p>
+  </div>
+</section>
+
+<footer>
+  <p>สร้างจาก <code>docs/marketing-plan.md</code> · <code>docs/agoda_improve.md</code> · <code>docs/booking_improve.md</code> · <code>docs/google-ads-audit.md</code> และปฏิทินอีเวนต์ใน <code>src/events.html</code> — สถานะ ณ 2 กันยายน 2569<br>
+  หัวข้อ 04–06 และข้อที่ติดป้าย “ของใหม่” เป็นส่วนที่ยังไม่มีในแผนเดิม · เครื่องหมายถูกเก็บไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น ไม่ได้ซิงก์ข้ามเครื่อง<br>
+  ชื่อหน่วยงานและโรงแรมในหัวข้อ 04 เป็นรายการเป้าหมาย ยังไม่ได้ยืนยันชื่อผู้ติดต่อและระยะทางจริง — เช็คก่อนใส่ตัวเลขลงในข้อความ</p>
+</footer>
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "bps-ops-2026-09-02";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.task input[type=checkbox]'));
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function save(state){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  var state = load();
+  boxes.forEach(function(b){
+    if (state[b.dataset.id]) b.checked = true;
+  });
+
+  var fill = document.getElementById('fill');
+  var mtxt = document.getElementById('mtxt');
+
+  function refresh(){
+    var done = 0;
+    boxes.forEach(function(b){ if (b.checked) done++; });
+    var pct = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+    fill.style.width = pct + '%';
+    mtxt.innerHTML = '<b>' + done + '</b> / ' + boxes.length + ' เสร็จแล้ว';
+
+    document.querySelectorAll('.group').forEach(function(g){
+      var gb = g.querySelectorAll('.task input[type=checkbox]');
+      var gd = 0;
+      Array.prototype.forEach.call(gb, function(b){ if (b.checked) gd++; });
+      var slot = g.querySelector('[data-count]');
+      if (slot) slot.textContent = gd + '/' + gb.length;
+    });
+  }
+
+  boxes.forEach(function(b){
+    b.addEventListener('change', function(){
+      state[b.dataset.id] = b.checked;
+      if (!b.checked) delete state[b.dataset.id];
+      save(state);
+      refresh();
+    });
+  });
+
+  var toggle = document.getElementById('toggleDone');
+  toggle.addEventListener('click', function(){
+    var on = toggle.getAttribute('aria-pressed') === 'true';
+    toggle.setAttribute('aria-pressed', on ? 'false' : 'true');
+    document.body.classList.toggle('hide-done', !on);
+    toggle.textContent = on ? 'ซ่อนข้อที่ทำแล้ว' : 'แสดงทุกข้อ';
+  });
+
+  document.getElementById('resetAll').addEventListener('click', function(){
+    boxes.forEach(function(b){ b.checked = false; });
+    state = {};
+    save(state);
+    refresh();
+  });
+
+  /* copy buttons */
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = document.getElementById(btn.dataset.copy);
+      if (!el) return;
+      var text = el.textContent;
+      var done = function(){
+        var old = btn.textContent;
+        btn.textContent = 'คัดลอกแล้ว';
+        setTimeout(function(){ btn.textContent = old; }, 1800);
+      };
+      var fallback = function(){
+        try{
+          var r = document.createRange();
+          r.selectNodeContents(el);
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          btn.textContent = 'เลือกข้อความแล้ว กด Cmd/Ctrl+C';
+          setTimeout(function(){ btn.textContent = 'คัดลอก'; }, 2600);
+        }catch(e){}
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+
+  /* build the rail from real sections */
+  var rail = document.getElementById('rail');
+  var secs = Array.prototype.slice.call(document.querySelectorAll('main section'));
+  secs.forEach(function(s){
+    var h = s.querySelector('h2');
+    var n = s.querySelector('.sec-num');
+    if (!h) return;
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + s.id;
+    a.innerHTML = '<span>' + h.textContent + '</span><span class="n">' + (n ? n.textContent : '') + '</span>';
+    li.appendChild(a);
+    rail.appendChild(li);
+  });
+
+  var links = Array.prototype.slice.call(rail.querySelectorAll('a'));
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        links.forEach(function(a){
+          a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id);
+        });
+      });
+    }, { rootMargin: '-10% 0px -75% 0px' });
+    secs.forEach(function(s){ io.observe(s); });
+  }
+
+  refresh();
+})();
+</script>

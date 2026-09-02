@@ -2178,8 +2178,10 @@ summary {
 /* --- Section 8: Contact & Location --- */
 .bps-contact-section {
     padding: 60px 20px 20px 20px; /* ด้านล่างเว้นน้อยหน่อย */
-    background-color: #2c3e50; /* สีพื้นหลังเข้ม (Dark Navy) ให้ดูเป็น Footer */
-    color: #fff;
+    /* เคยเป็น Dark Navy #2c3e50 + ตัวอักษรขาว — Phase H เปลี่ยนพื้นเป็นครีม
+       สีตัวอักษรทั้งบล็อกนี้จึงถูกผูกกับ token ให้อ่านออกบนพื้นสว่าง */
+    background-color: var(--bps-surface-warm);
+    color: var(--bps-ink);
 }
 
 .bps-contact-layout {
@@ -2207,7 +2209,7 @@ summary {
 .bps-contact-desc {
     font-family: 'Sarabun', sans-serif;
     font-size: 0.95rem;
-    color: #ccc;
+    color: var(--bps-ink-soft);
     line-height: 1.6;
     margin-bottom: 30px;
 }
@@ -2224,7 +2226,7 @@ summary {
     align-items: flex-start;
     margin-bottom: 15px;
     font-family: 'Sarabun', sans-serif;
-    color: #e8e0d6;
+    color: var(--bps-ink);
 }
 
 .bps-contact-list i {
@@ -2235,13 +2237,22 @@ summary {
 }
 
 .bps-contact-list a {
-    color: #fff;
-    text-decoration: none;
+    color: var(--bps-ink);
+    font-weight: 600;
+    /* The <li> is a flex container, so the space in "</a> (โทรจองได้...)" becomes
+       leading whitespace on an anonymous flex item and is stripped. Put it back. */
+    margin-right: 0.3em;
+    /* Brand orange on cream is 2.44:1 — below the 4.5:1 floor for body text.
+       The orange lives in the underline; the text keeps the readable ink. */
+    text-decoration: underline;
+    text-decoration-color: var(--bps-orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
     transition: color 0.3s;
 }
 
 .bps-contact-list a:hover {
-    color: #fc7e0f;
+    color: var(--bps-orange-ink);
     text-decoration: underline;
 }
 
@@ -2257,7 +2268,7 @@ summary {
 
 /* Footer Bottom */
 .bps-footer-bottom {
-    border-top: 1px solid #445566;
+    border-top: 1px solid var(--bps-line);
     text-align: center;
     padding-top: 20px;
     margin-top: 40px;
@@ -2265,7 +2276,7 @@ summary {
 
 .bps-footer-bottom p {
     font-size: 0.85rem;
-    color: #8899aa;
+    color: var(--bps-ink-soft);
     margin: 0;
 }
 
@@ -3071,9 +3082,13 @@ html {
     margin: 16px 0 0;
 }
 .bps-form-note a {
-    color: #fc7e0f;
+    color: var(--bps-ink);
     font-weight: 600;
-    text-decoration: none;
+    /* Same 2.44:1 problem as .bps-contact-list a — orange moves to the underline. */
+    text-decoration: underline;
+    text-decoration-color: var(--bps-orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
 }
 .bps-thanks-box {
     max-width: 620px;
@@ -3909,4 +3924,338 @@ section > .container h2.fw-bolder {
 
 .bps-solution-image img {
     border-radius: var(--bps-r-md);
+}
+
+/* ==========================================================================
+   Phase I — LINE-first CTA, link-in-bio page, exhibitor landing
+   ========================================================================== */
+
+/* --- LINE as the primary booking channel, sitting above the form --------- */
+/* LINE closes faster than the form (the form is an email round-trip), so it
+   leads and the form is demoted to the fallback below the divider. */
+.bps-line-first {
+    max-width: 620px;
+    margin: 0 auto var(--bps-s-3);
+    padding: var(--bps-s-3) var(--bps-s-2);
+    text-align: center;
+    background: var(--bps-surface);
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-md);
+    box-shadow: 0 6px 20px rgb(var(--bps-scrim) / 0.07);
+}
+
+.bps-line-first-eyebrow {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--bps-orange);
+    margin: 0 0 var(--bps-s-1);
+}
+
+.bps-line-first-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: var(--bps-t-h3);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--bps-ink);
+    margin: 0 0 var(--bps-s-1);
+}
+
+.bps-line-first-sub {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-body);
+    color: var(--bps-ink-soft);
+    line-height: 1.6;
+    margin: 0 0 var(--bps-s-3);
+}
+
+.bps-line-first-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 380px;
+    padding: 16px 28px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--bps-green);
+    border-radius: var(--bps-r-pill);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgb(22 163 74 / 0.32);
+}
+
+.bps-line-first-btn i {
+    font-size: 1.35rem;
+}
+
+.bps-line-first-btn:hover,
+.bps-line-first-btn:focus-visible {
+    background: #12833b;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgb(22 163 74 / 0.4);
+}
+
+.bps-line-first-alt {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink-soft);
+    margin: var(--bps-s-2) 0 0;
+}
+
+.bps-line-first-alt a {
+    color: var(--bps-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--bps-orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.bps-line-first-alt a:hover {
+    color: var(--bps-orange-ink);
+    text-decoration: underline;
+}
+
+/* "หรือกรอกฟอร์มด้านล่าง" — a rule with the label knocked out of the middle */
+.bps-line-first-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--bps-s-2);
+    max-width: 620px;
+    margin: 0 auto var(--bps-s-2);
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink-soft);
+}
+
+.bps-line-first-divider::before,
+.bps-line-first-divider::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 1px;
+    background: var(--bps-line);
+}
+
+.bps-line-first-divider span {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .bps-line-first {
+        padding: var(--bps-s-3) var(--bps-s-2);
+    }
+    .bps-line-first-btn {
+        max-width: none;
+    }
+}
+
+/* --- Link-in-bio hub (/links.html) --------------------------------------- */
+/* Thumb-first: one column of large tap targets, no nav, nothing to scroll
+   past before the first link. LINE sits at the top because it is the channel
+   that actually closes bookings. */
+.bps-bio-body {
+    background: var(--bps-surface-warm);
+}
+
+.bps-bio {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    padding: var(--bps-s-4) var(--bps-s-2);
+}
+
+.bps-bio-card {
+    width: 100%;
+    max-width: 520px;
+}
+
+.bps-bio-head {
+    text-align: center;
+    margin-bottom: var(--bps-s-4);
+}
+
+.bps-bio-logo {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    border-radius: var(--bps-r-pill);
+    background: var(--bps-surface);
+    padding: 6px;
+    box-shadow: 0 4px 16px rgb(var(--bps-scrim) / 0.1);
+}
+
+.bps-bio-name {
+    font-family: 'Prompt', sans-serif;
+    font-size: var(--bps-t-h2);
+    font-weight: 600;
+    color: var(--bps-ink);
+    margin: var(--bps-s-2) 0 var(--bps-s-1);
+}
+
+.bps-bio-tagline {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-body);
+    line-height: 1.6;
+    color: var(--bps-ink-soft);
+    margin: 0 0 var(--bps-s-2);
+}
+
+.bps-bio-meta {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--bps-s-1);
+    padding: 0;
+    margin: 0;
+}
+
+.bps-bio-meta li {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink);
+    background: var(--bps-surface);
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-pill);
+    padding: 5px 12px;
+}
+
+.bps-bio-meta i {
+    color: var(--bps-orange);
+    margin-right: 4px;
+}
+
+.bps-bio-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bps-bio-link {
+    display: flex;
+    align-items: center;
+    gap: var(--bps-s-2);
+    padding: 14px 16px;
+    background: var(--bps-surface);
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-md);
+    text-decoration: none;
+    color: var(--bps-ink);
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+}
+
+.bps-bio-link:hover,
+.bps-bio-link:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--bps-orange);
+    box-shadow: 0 6px 18px rgb(var(--bps-scrim) / 0.1);
+    color: var(--bps-ink);
+}
+
+.bps-bio-ico {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--bps-r-pill);
+    background: var(--bps-surface-warm);
+    color: var(--bps-orange);
+    font-size: 1.15rem;
+}
+
+.bps-bio-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.bps-bio-text strong {
+    display: block;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.bps-bio-text small {
+    display: block;
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink-soft);
+    line-height: 1.45;
+    margin-top: 2px;
+}
+
+.bps-bio-chev {
+    flex: 0 0 auto;
+    color: var(--bps-ink-soft);
+    font-size: 0.8rem;
+}
+
+/* LINE is the primary channel — it gets the solid green treatment */
+.bps-bio-link-line {
+    background: var(--bps-green);
+    border-color: var(--bps-green);
+    color: #fff;
+    box-shadow: 0 4px 14px rgb(22 163 74 / 0.3);
+}
+
+.bps-bio-link-line:hover,
+.bps-bio-link-line:focus-visible {
+    background: #12833b;
+    border-color: #12833b;
+    color: #fff;
+}
+
+.bps-bio-link-line .bps-bio-ico {
+    background: rgb(255 255 255 / 0.18);
+    color: #fff;
+}
+
+.bps-bio-link-line .bps-bio-text small,
+.bps-bio-link-line .bps-bio-chev {
+    color: rgb(255 255 255 / 0.85);
+}
+
+/* Phone: orange outline — second-strongest intent after LINE */
+.bps-bio-link-call {
+    border-color: var(--bps-orange);
+}
+
+.bps-bio-link-quiet .bps-bio-ico {
+    color: var(--bps-ink-soft);
+}
+
+.bps-bio-foot {
+    text-align: center;
+    margin-top: var(--bps-s-4);
+}
+
+.bps-bio-foot p {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink-soft);
+    line-height: 1.6;
+    margin: 0 0 4px;
+}
+
+.bps-bio-foot a {
+    color: var(--bps-ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--bps-orange);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.bps-bio-foot a:hover {
+    text-decoration: underline;
 }

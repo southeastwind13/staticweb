@@ -274,6 +274,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ---------------------------------------------------------------------------
+  // Link-in-bio hub (/links.html): stamp utm_* onto internal links
+  // ---------------------------------------------------------------------------
+  // One static page has to serve every social bio, so it cannot know which
+  // platform sent the visitor. The bio URL carries ?s=<channel> and this maps
+  // it onto utm_source, so GA4 can separate Instagram from TikTok from the
+  // Google Business Profile:
+  //     /links.html?s=ig   ?s=fb   ?s=tt   ?s=yt   ?s=gbp
+  // Missing or unrecognised ?s= falls back to utm_source=bio.
+  //
+  // Only same-origin links are tagged. LINE, tel: and Google Maps are left
+  // untouched on purpose — UTM parameters do not survive the handoff into
+  // those apps, and those taps are already measured by the line_click /
+  // phone_click / map_click events above.
+  if (/\/links\.html$/.test(location.pathname)) {
+    var BIO_SOURCES = {
+      ig: 'instagram', fb: 'facebook', tt: 'tiktok',
+      yt: 'youtube', gbp: 'google_business', li: 'line_oa'
+    };
+    var sParam = ((new URLSearchParams(location.search)).get('s') || '').toLowerCase();
+    var bioSource = BIO_SOURCES[sParam] ||
+      (/^[a-z0-9_]{1,20}$/.test(sParam) ? sParam : 'bio');
+
+    document.querySelectorAll('.bps-bio-link[href]').forEach(function (a) {
+      var raw = a.getAttribute('href') || '';
+      if (/^(tel:|mailto:)/i.test(raw)) return;
+      var u;
+      try { u = new URL(a.href, location.href); } catch (e) { return; }
+      if (u.origin !== location.origin) return; // external: leave clean
+      u.searchParams.set('utm_source', bioSource);
+      u.searchParams.set('utm_medium', 'bio');
+      u.searchParams.set('utm_campaign', 'linkinbio');
+      a.href = u.toString();
+    });
+
+    track('bio_page_view', { bio_source: bioSource });
+  }
+
   // Completed booking request (fires once, on the thank-you page — covers both
   // the AJAX redirect and the no-JS FormSubmit fallback). This is the GA4 key
   // event to import into Google Ads as the primary conversion.

@@ -36,10 +36,22 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - `src/en/index.html` — English version of the landing page (assets via `../`). Linked
   to the Thai page via `hreflang` on both; nav has a TH↔EN switch. Keep the two pages in
   sync when content changes.
-- `src/pet-friendly.html`, `src/concert.html`, `src/business.html` and their `src/en/`
-  counterparts — dedicated **Google Ads landing pages** (one per ad group × 2 languages,
-  6 total). Conversion-focused, minimal nav, `noindex,follow`. Each booking form has a
-  hidden `ที่มา`/`Source` field (e.g. "Landing Page: Pet Friendly") for lead attribution.
+- `src/pet-friendly.html`, `src/concert.html`, `src/business.html`, `src/exhibitor.html`
+  and their `src/en/` counterparts — dedicated **landing pages** (one per audience ×
+  2 languages, 8 total). Conversion-focused, minimal nav, `noindex,follow`, and
+  deliberately NOT in `sitemap.xml`. Each booking form has a hidden `ที่มา`/`Source`
+  field (e.g. "Landing Page: Pet Friendly") for lead attribution.
+  `exhibitor.html` targets trade-show exhibitor and booth-build teams (van parking,
+  24h check-in, early breakfast). It quotes **no discount percentage** on purpose —
+  the long-stay rate is a closed rate offered over LINE, because publishing it would
+  break rate parity with Agoda/Booking. It also says nothing about tax invoices: the
+  owner confirmed (2 Sep 2026) the hotel **cannot issue a full ใบกำกับภาษี**, only a
+  receipt. That fact kills the corporate/government segments in
+  `docs/proactive-plan.html` — the affected rows there are flagged.
+- `src/links.html` — link-in-bio hub for social profiles (noindex, not in sitemap).
+  One page serves every platform; append `?s=ig|fb|tt|yt|gbp|li` to the bio URL and
+  `scripts.js` stamps the matching `utm_source` onto every same-origin link on the
+  page. See `docs/utm.md`.
 - `src/thanks.html` — booking-form success page (noindex). The inquiry form on every page
   submits via FormSubmit AJAX (see scripts.js) to `baanpermsook@gmail.com` (already
   activated) and redirects here on success.
@@ -53,6 +65,11 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   differ from what the help pages describe), and a log of what was changed in the live
   Ads account. Read it before changing anything analytics-related.
   `docs/google-ads-audit.md` — audit of the live Ads account (1 Sep 2026).
+- `docs/utm.md` — the UTM tagging convention plus ready-to-paste tagged URLs per
+  channel. Read it before adding a link to any social post. Two rules that are easy to
+  get wrong: never UTM-tag an internal site link (GA4 restarts the session), and never
+  UTM-tag a `line.me`, `tel:` or Maps link (the parameters do not survive the app
+  handoff — those are measured by the `line_click`/`phone_click`/`map_click` events).
 - `docs/google-ads.md` — ready-to-paste Google Ads copy (TH + EN headlines, descriptions,
   sitelinks, callouts) + ad-group→landing-page mapping. NOT deployed (outside `src/`).
 - `docs/marketing-plan.md` — the overall marketing plan. `docs/agoda_improve.md` and
@@ -127,9 +144,9 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
 - Owner-customizable placeholder content (marked with HTML comments in the source): the
   brand story copy, promotion terms/prices, and location distances.
 - **The pet fee is `300 THB per pet, PER NIGHT`** (owner-confirmed 2 Sep 2026), and every
-  place that quotes it must say "per night" / "ต่อคืน". It is currently written in 21
+  place that quotes it must say "per night" / "ต่อคืน". It is currently written in 22
   places across `index.html`, `pet-friendly.html`, `articles/hotel-pet-friendly-pakkret.html`,
-  `llms.txt` and the `en/` counterparts — meta descriptions and OG tags included. Omitting
+  `llms.txt`, `links.html` and the `en/` counterparts — meta descriptions and OG tags included. Omitting
   "per night" understates a 2-night stay by half and is what drove Booking.com's
   value-for-money score to 6.3. Do not confuse it with the extra-bed fee, which is also
   300 THB but genuinely per night already.
@@ -138,6 +155,19 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   means editing the matching `acceptedAnswer.text` by hand in BOTH `index.html` and
   `en/index.html` (15 Q&A each). Verify by extracting both lists and comparing them
   byte-for-byte — Google requires them to match.
+- **LINE leads, the form follows.** Every page that has a booking form carries a
+  `.bps-line-first` block immediately above `<form class="bps-booking-form">` (8 pages),
+  plus the `.bps-line-first-divider` paragraph after it. LINE closes bookings faster
+  than the form, which is an email round-trip. If you add a page with a booking form,
+  add this block too. No JS wiring needed — the delegated listener in `scripts.js`
+  already fires `line_click` for any `line.me` link.
+- **Brand orange (`#fc7e0f`) on the cream surface is only 2.44:1** — below the 4.5:1
+  WCAG AA floor for body text, so do not use it as a link colour on cream. The pattern
+  in `.bps-contact-list a`, `.bps-line-first-alt a` and `.bps-bio-foot a` is dark ink
+  text with an orange `text-decoration-color`: brand cue kept, still readable. (The
+  Phase H token pass repainted `.bps-contact-section` from dark navy to cream but left
+  the white / `#ccc` / `#e8e0d6` dark-theme text colours behind, which made the phone,
+  LINE and Facebook links invisible. Fixed 2 Sep 2026.)
 - **Analytics: always fire events through `track()` in `scripts.js`, never `gtag()` directly.**
   Every page loads `gtm.js` before `gtag.js` on the same `dataLayer`, so the GTM container
   owns the default gtag destination — an event sent without `send_to` lands in

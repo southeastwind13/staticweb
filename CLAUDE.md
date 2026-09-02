@@ -200,12 +200,18 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
     100.52959 — 278 m from the site's own coordinates), so do not go looking there.
     Agoda refused a request to change the landmark itself ("no per-case edits") — that
     ticket is closed; the request to raise instead is the city/area misassignment.
-  - **Agoda's public page states facts the hotel has not confirmed**: a bar with
-    cocktails, a coffee shop, BBQ facilities, 21 rooms, children 3–6 free, 15 minutes
-    from Don Mueang. `Bar` and `Coffee shop` are ticked Yes in Property facilities and
-    feed that copy. `Breakfast [free]` is ticked **No** while breakfast is included in
-    every room type — that drops the property out of Agoda's free-breakfast filter.
-    None of this was changed: it needs the owner to confirm what actually exists.
+  - **The hotel has 21 rooms** (owner-confirmed 3 Sep 2026) and **children stay free up
+    to age 4**. The site previously said 13 rooms and age 3 in five places; corrected.
+    The "4" in the room-allocation note above is rooms registered with the OTAs, not the
+    property total. Agoda's own page still advertises "children 3 to 6 stay free" — its
+    Child & extra bed rates setup is incomplete (Pending/Required) and needs the owner
+    to set the numbers, since that is pricing, not a factual correction.
+  - **Agoda auto-generates its property description from the facility ticks, and the
+    published prose lags the ticks.** On 3 Sep 2026 `Bar` and `Restaurants` were turned
+    off (the hotel has neither; `Coffee shop` is real and stays on) and `Breakfast
+    [free]` turned on, but BBQ was already off while the page still ran a BBQ paragraph
+    — so unticking alone does not clear invented copy. The reliable fix is pasting our
+    own description (draft in `docs/agoda_improve.md` §5.1).
   - **Room allocation is deliberate**: 1 room/night to Booking, 2 to Agoda, out of 4
     registered. Not a bug; do not "fix" it.
   - Booking commission measured from real invoices is **14.9%** (not 15%).

@@ -528,6 +528,17 @@ Occupancy 0–49% = **10%** · 50–99% = **5%** · Minimum rooms = **1** · Lea
 
 **วางที่:** Partner Portal → Property → Property details → Description
 
+> 🔺 **อัปเกรดความสำคัญ 4 ก.ย. 2569 — ช่องนี้ไม่ได้กระทบแค่ Agoda**
+>
+> ตรวจ aggregator ด้วยเบราว์เซอร์จริงแล้วพบว่า **Trip.com และ ascendtravel ถือชุด
+> "ร้านอาหาร + บาร์" ชุดเดียวกับที่ Agoda สร้างขึ้นเอง** ส่วน Gplace ซึ่งมาคนละสาย
+> (choowap) กลับถูกต้องทุกข้อ ความต่างนี้ชี้ว่าคอนเทนต์ผิดไหลออกจากสายของ Agoda
+> ไปยังเว็บที่เจ้าของไม่เคยสมัคร
+>
+> แปลว่าการวางคำบรรยายชุดนี้ **น่าจะไล่แก้ปลายทางให้เองหลายเจ้าพร้อมกัน** —
+> วางแล้ว **จดวันไว้** รอ 2-4 สัปดาห์ค่อยไปตรวจ Trip.com กับ ascendtravel ซ้ำ
+> ถ้าหายเองแปลว่าจบ ไม่ต้องไล่ claim ทีละเจ้า รายละเอียดอยู่ `docs/ai-search.md` §5.1.1-5.1.2
+
 ### กติกาของ Agoda ที่ทำให้คำบรรยายถูกตีกลับ
 
 ก่อนวาง ตรวจว่าไม่มีของพวกนี้ปนอยู่ — ร่างข้างล่างเลี่ยงไว้หมดแล้ว
@@ -552,13 +563,15 @@ Occupancy 0–49% = **10%** · 50–99% = **5%** · Minimum rooms = **1** · Lea
 IMPACT Challenger และ IMPACT Exhibition Center จึงเหมาะกับผู้ที่เดินทางมาชมคอนเสิร์ต
 เข้าชมงานแสดงสินค้า หรือมาออกบูธติดต่อกันหลายคืน
 
-ตัวที่พักเป็นอาคารเตี้ยล้อมรอบด้วยสวนและต้นไม้ใหญ่ บรรยากาศร่มรื่นและเงียบกว่าโรงแรม
-ริมถนนใหญ่ ห้องพักทุกห้องมีเครื่องปรับอากาศ น้ำอุ่น โทรทัศน์ และ Wi-Fi ฟรี พร้อมอาหารเช้า
+ตัวที่พักเป็นเรือนเตี้ยชั้นเดียว 21 ห้อง ล้อมรอบด้วยสวนและต้นไม้ใหญ่ บรรยากาศร่มรื่น
+และเงียบกว่าโรงแรมริมถนนใหญ่ ห้องพักทุกห้องมีเครื่องปรับอากาศ น้ำอุ่น โทรทัศน์ ตู้เย็น
+และ Wi-Fi ฟรี พร้อมอาหารเช้า
 ที่รวมอยู่ในราคาห้องพักทุกประเภท เสิร์ฟเวลา 08.00–10.00 น. ทันเวลาสำหรับผู้ที่ต้องไปเปิดบูธ
 หรือเข้างานตั้งแต่เช้า
 
 อีกจุดที่หาได้ไม่ง่ายในย่านเมืองทองธานีคือเรารับสัตว์เลี้ยง ทั้งสุนัขและแมว โดยมีค่าดูแล
-คิดต่อตัว ต่อคืน มีที่จอดรถฟรีในบริเวณอย่างเพียงพอ ไม่ต้องไปหาที่จอดริมถนน และมีพนักงาน
+คิดต่อตัว ต่อคืน มีที่จอดรถฟรีในบริเวณอย่างเพียงพอ กว้างพอรองรับรถตู้และรถกระบะ
+ขนอุปกรณ์บูธ จอดค้างคืนได้ ไม่ต้องไปหาที่จอดริมถนน และมีพนักงาน
 ดูแลตลอด 24 ชั่วโมง เช็คอินดึกหลังเลิกคอนเสิร์ตหรือหลังรื้อบูธได้
 
 การเดินทางรอบ ๆ สะดวก ห่างจากเซ็นทรัล แจ้งวัฒนะ ประมาณ 10–15 นาที รถไฟฟ้า MRT
@@ -576,14 +589,15 @@ Thani. IMPACT Arena, IMPACT Challenger and IMPACT Exhibition Center are all with
 same short drive, which makes the hotel a practical base for concert-goers, trade show
 visitors and exhibitor teams staying several nights in a row.
 
-The buildings are low-rise and wrapped in a mature garden, so evenings are noticeably
-quieter here than at hotels on the main road. Every room has air conditioning, hot water,
-a TV and free Wi-Fi, and breakfast is included in every room type, served from 08:00 to
+The property is 21 single-storey cottages wrapped in a mature garden, so evenings are
+noticeably quieter here than at hotels on the main road. Every room has air conditioning,
+hot water, a TV, a fridge and free Wi-Fi, and breakfast is included in every room type, served from 08:00 to
 10:00 — early enough for guests who need to open a booth or reach a morning session.
 
 Pets are genuinely welcome: both dogs and cats may stay, with a care fee charged per pet,
 per night. That is still rare around Muang Thong Thani. There is ample free parking on
-the grounds, and staff are on duty 24 hours, so a late check-in after a concert or after
+the grounds — wide enough for vans and pickups carrying booth equipment, and overnight
+parking is included — and staff are on duty 24 hours, so a late check-in after a concert or after
 booth teardown is never a problem.
 
 Getting around is straightforward — Central Chaengwattana is roughly 10 to 15 minutes
@@ -597,7 +611,7 @@ from the property.
 
 ```
 [Standard]
-ห้องมาตรฐาน เตียงควีนไซส์ พักได้ 2 ท่าน เครื่องปรับอากาศ น้ำอุ่น โทรทัศน์ Wi-Fi ฟรี
+ห้องมาตรฐาน เตียงควีนไซส์ พักได้ 2 ท่าน เครื่องปรับอากาศ น้ำอุ่น โทรทัศน์ ตู้เย็น Wi-Fi ฟรี
 และอาหารเช้ารวมในราคาห้องพัก หน้าต่างมองเห็นสวนของโรงแรม
 
 [Family]

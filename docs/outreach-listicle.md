@@ -25,11 +25,13 @@ Villa Baron, Double D, Super Hostel วนอยู่แค่นี้ แป�
 | **chillpainai.com** | 10 (มี 2 บทความติดอันดับ) | 0 | `Chillpainai@gmail.com` · `marketing@chillpainai.com` (คุณฝ้าย 086-448-5139) · LINE `@Chillpainai` · [FB](https://www.facebook.com/Chillpainai/) | **น้ำหนักสูงสุด** มีทีมขายโฆษณาชัดเจน เตรียมใจว่าจะเสนอราคากลับมา |
 | **thaiontours.com** | 16 | 0 | ฟอร์มที่ `/contact` · [FB](https://www.facebook.com/thaiontours) (อีเมลถูกซ่อนด้วย JS) | ลิสต์ยาวสุด มีที่ว่างให้แทรกง่าย |
 | **chiangmaiexpert.com** | 15 | 0 | [FB: cmtravelexpert](https://www.facebook.com/cmtravelexpert) | **มีบทความ "11 ที่พัก pet-friendly เชียงใหม่" อยู่แล้ว** — สนใจหัวข้อนี้แน่ |
-| **whanjai.com** | 15 | 0 | ยังไม่เจอ — ลองผ่าน FB ค้น "WHANJAI" (ท้ายเว็บเขียน Designed By ETHAIWEB.COM) | อัปเดตถึงปี 2026 แล้ว ยังดูแลอยู่ |
-| **bkkstay.com** | 15 | 0 | ยังไม่เจอ — ลองผ่าน FB | |
-| **paktourthai.com** | 10 | 0 | ยังไม่เจอ — ลองผ่าน FB | ส่วนใหญ่เป็นห้องเช่า/คอนโด ไม่ใช่โรงแรม |
+| **whanjai.com** | 15 | 0 | **หาไม่เจอ** (4 ก.ย.) — ค้น FB ได้แต่เพจร้านแพนเค้กชื่อพ้อง ลองทักผ่าน ETHAIWEB.COM ผู้ทำเว็บให้ | อัปเดตถึงปี 2026 ยังดูแลอยู่ |
+| **bkkstay.com** | 15 | 0 | [FB: bkkstay](https://www.facebook.com/bkkstay) — "Bkkstay - แนะนำโรงแรมในกรุงเทพฯ" (หาเจอ 4 ก.ย.) | |
+| **paktourthai.com** | 10 | 0 | **ไม่มีเลย** — ตรวจหน้าแรก/ท้ายเว็บแล้ว ไม่มีอีเมล เบอร์ FB หรือหน้าติดต่อ (WordPress ธีม Themeansar) | ส่วนใหญ่เป็นห้องเช่า/คอนโด **ลำดับท้ายสุด** ติดต่อแทบไม่ได้ |
 
-**ลำดับที่แนะนำให้ส่ง:** chiangmaiexpert → chillpainai → thaiontours → ที่เหลือ
+**ลำดับที่แนะนำให้ส่ง:** chiangmaiexpert → chillpainai → thaiontours → bkkstay → whanjai → paktourthai
+
+(สามเจ้าแรกมีช่องทางติดต่อชัดเจน · bkkstay หาเจอเพิ่มเมื่อ 4 ก.ย. · สองเจ้าท้ายติดต่อยาก)
 
 เหตุผลที่ chiangmaiexpert มาก่อน: เขาเคยทำคอนเทนต์ pet-friendly มาแล้ว
 โอกาสตอบรับสูงสุดและได้ฟรี ส่วน chillpainai น้ำหนักสูงสุดแต่มีทีมขาย
@@ -138,8 +140,8 @@ Villa Baron, Double D, Super Hostel วนอยู่แค่นี้ แป�
 
 ### 3.4 whanjai.com
 
-ยังหาช่องทางติดต่อไม่เจอ — ลองค้น "WHANJAI" ใน Facebook ก่อน ถ้าไม่เจอให้ลอง
-ทักผ่าน ETHAIWEB.COM (ผู้ทำเว็บให้ ตามที่เขียนไว้ท้ายเว็บ)
+หาช่องทางติดต่อไม่เจอ (ตรวจ 4 ก.ย.) — ค้น Facebook เจอแต่เพจชื่อพ้องที่ไม่เกี่ยวกัน
+ทางที่เหลือคือทักผ่าน ETHAIWEB.COM ผู้ทำเว็บให้ ตามที่เขียนไว้ท้ายเว็บ
 
 > สวัสดีครับทีมงาน WHANJAI
 >
@@ -158,7 +160,7 @@ Villa Baron, Double D, Super Hostel วนอยู่แค่นี้ แป�
 
 ### 3.5 bkkstay.com
 
-ยังหาช่องทางติดต่อไม่เจอ — ลองค้น "bkkstay" ใน Facebook
+ส่งทาง [FB: bkkstay](https://www.facebook.com/bkkstay)
 
 > สวัสดีครับทีมงาน bkkstay
 >
@@ -174,7 +176,9 @@ Villa Baron, Double D, Super Hostel วนอยู่แค่นี้ แป�
 
 ### 3.6 paktourthai.com
 
-ยังหาช่องทางติดต่อไม่เจอ — ลองค้น "พักทั่วไทย" หรือ "paktourthai" ใน Facebook
+**ไม่มีช่องทางติดต่อเลย** — ตรวจหน้าแรกและท้ายเว็บเมื่อ 4 ก.ย. ไม่มีอีเมล เบอร์โทร
+ลิงก์ Facebook หรือหน้าติดต่อ เป็น WordPress ธีมสำเร็จรูปที่ไม่ได้ใส่ข้อมูลผู้ดูแล
+เก็บไว้ทำท้ายสุด ถ้าเจ้าอื่นตอบรับแล้วค่อยกลับมาลองหาใหม่
 
 บทความเจ้านี้ส่วนใหญ่เป็นห้องเช่า/คอนโด ไม่ใช่โรงแรม จึงเสนอมุมต่างออกไป:
 

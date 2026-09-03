@@ -4259,3 +4259,108 @@ section > .container h2.fw-bolder {
 .bps-bio-foot a:hover {
     text-decoration: underline;
 }
+
+/* ==========================================================================
+   Phase J — AI-search extractability (2026-09)
+   Plan: docs/ai-search.md
+
+   บทความเดิมเป็นร้อยแก้วล้วน ตัวเลขอย่าง "7-10 นาที" ฝังอยู่กลางย่อหน้า
+   ทำให้ answer engine (ChatGPT/Perplexity/AI Overviews) ยกไปอ้างไม่ได้
+   สองคอมโพเนนต์นี้ทำให้ข้อเท็จจริงกลายเป็นหน่วยที่ดึงออกมาตอบได้:
+   .bps-facts = ตารางคู่ ป้ายกำกับ/ค่า, .bps-qa = คู่คำถาม-คำตอบที่ผูกกับ FAQPage
+   ========================================================================== */
+
+.bps-facts-wrap {
+    overflow-x: auto;
+    margin: var(--bps-s-3) 0;
+    border: 1px solid var(--bps-line);
+    border-radius: var(--bps-r-md);
+    background-color: var(--bps-surface);
+}
+
+.bps-facts {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-body);
+    color: var(--bps-ink);
+}
+
+.bps-facts caption {
+    caption-side: top;
+    text-align: left;
+    padding: var(--bps-s-2) var(--bps-s-2) var(--bps-s-1);
+    font-weight: 700;
+    color: var(--bps-ink);
+}
+
+.bps-facts th,
+.bps-facts td {
+    padding: 12px var(--bps-s-2);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--bps-line);
+}
+
+.bps-facts thead th {
+    background-color: var(--bps-surface-warm);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.bps-facts tbody th {
+    font-weight: 600;
+    color: var(--bps-ink-soft);
+    width: 38%;
+}
+
+.bps-facts tbody tr:last-child th,
+.bps-facts tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.bps-facts-note {
+    font-size: var(--bps-t-small);
+    color: var(--bps-ink-soft);
+    margin: calc(var(--bps-s-2) * -1 + 4px) 0 var(--bps-s-3);
+}
+
+/* --- คู่ถาม-ตอบ: ข้อความที่เห็นต้องตรงกับ FAQPage JSON-LD เป๊ะๆ --- */
+.bps-qa {
+    margin: var(--bps-s-3) 0;
+}
+
+.bps-qa-item {
+    border-top: 1px solid var(--bps-line);
+    padding: var(--bps-s-2) 0;
+}
+
+.bps-qa-item:last-child {
+    border-bottom: 1px solid var(--bps-line);
+}
+
+.bps-article .bps-qa-q {
+    font-family: 'Sarabun', sans-serif;
+    font-size: var(--bps-t-h3);
+    font-weight: 700;
+    color: var(--bps-ink);
+    margin: 0 0 var(--bps-s-1);
+    line-height: 1.5;
+}
+
+.bps-article .bps-qa-a {
+    margin: 0;
+    color: var(--bps-ink-soft);
+}
+
+@media (max-width: 575px) {
+    .bps-facts tbody th {
+        width: 45%;
+    }
+
+    .bps-facts th,
+    .bps-facts td {
+        padding: 10px 12px;
+    }
+}

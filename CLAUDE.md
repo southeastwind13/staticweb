@@ -55,7 +55,7 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - `src/thanks.html` — booking-form success page (noindex). The inquiry form on every page
   submits via FormSubmit AJAX (see scripts.js) to `baanpermsook@gmail.com` (already
   activated) and redirects here on success.
-- `src/articles/` — blog/content-marketing pages targeting long-tail Thai keywords (8 so
+- `src/articles/` — blog/content-marketing pages targeting long-tail Thai keywords (9 so
   far). `index.html` is the article listing; each article is standalone with its own
   `BlogPosting` JSON-LD, OG tags, GTM/GA, and a LINE CTA. Assets referenced with `../`.
   Add new articles here AND to `sitemap.xml` AND to the article-index grid. Four of them
@@ -63,7 +63,8 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   `thipak-ok-booth-impact`) now carry `.bps-facts` tables and a `.bps-qa` block backed by
   their own `FAQPage` JSON-LD — the visible Q&A and `acceptedAnswer.text` must stay
   byte-identical there too, same rule as `index.html`. Prose alone is not enough: answer
-  engines quote discrete facts, so a new article aimed at AI search needs a table.
+  engines quote discrete facts, so a new article aimed at AI search needs a table. Five
+  carry them now — `thipak-khropkhrua-dek-impact` is the fifth.
 - `src/llms.txt` — markdown summary of the hotel (facts + links) for LLM/AI crawlers.
 - `docs/google-analytics-setup.md` — the analytics runbook: the `send_to` bug and its
   proof, every event the site sends, the real GA4 and Google Ads click paths (both
@@ -76,6 +77,10 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   ready-to-send blogger outreach, Pantip, Wikidata, and what to demand before paying for a
   sponsored listing). Read it before any AI-search or content-marketing work. Its §7 lists
   what still needs owner confirmation.
+  `docs/outreach-listicle.md` — the six ready-to-send blogger messages that hang off its
+  §5.2, with the contact channels found for each and a log table. All six listicles were
+  read on 4 Sep 2026: ~81 hotels between them, not one pet-friendly — that gap is the
+  opening line, so keep it accurate if you rewrite them.
 - `docs/utm.md` — the UTM tagging convention plus ready-to-paste tagged URLs per
   channel. Read it before adding a link to any social post. Two rules that are easy to
   get wrong: never UTM-tag an internal site link (GA4 restarts the session), and never

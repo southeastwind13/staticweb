@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://www.baanpermsook.com/events.html</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -69,6 +69,12 @@
   <url>
     <loc>https://www.baanpermsook.com/articles/thipak-ok-booth-impact.html</loc>
     <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.baanpermsook.com/articles/thipak-khropkhrua-dek-impact.html</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

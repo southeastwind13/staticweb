@@ -307,3 +307,79 @@ Google search อย่างเดียว · 24 ชม. · 5 ad group · โ�
 > **สิ่งที่ต้องเฝ้าดูหลังเปิด:** คลิกจะลดจาก ~138/วัน เหลือ ~30–50/วัน และ CPC จะขึ้นจาก ฿2.19
 > เป็น ฿5–10 ซึ่งเป็นเรื่องปกติ **อย่าตกใจแล้วเอา broad match กลับมา** ให้ดูที่ยอดทักไลน์
 > กับสายโทรเข้าแทน และรอ 7-14 วันให้ bid strategy เรียนรู้ก่อนตัดสินใจอะไร
+
+---
+
+## ตรวจซ้ำ 4 ก.ย. 2569 — การแก้ `send_to` ได้ผลแล้ว แต่เจอปัญหาใหญ่กว่าเดิม
+
+เข้าบัญชี 798-838-0532 ดูจริงผ่านเบราว์เซอร์ **อ่านอย่างเดียว ไม่ได้แก้อะไร**
+
+### ✅ ข่าวดี — conversion ไหลเข้าแล้ว
+
+30 วันล่าสุด (BPS Ads เป็นแคมเปญเดียวที่ Enabled อีก 5 ตัวเป็น Removed):
+
+| ตัวชี้วัด | ค่า | เทียบช่วงก่อน |
+| --- | --- | --- |
+| Impressions | 45,187 | ↑ 35,510 |
+| Clicks | 3,826 | ↑ 3,126 |
+| CTR | 8.47% | |
+| Cost | ฿8,697.95 | ↑ ฿6,916.69 |
+| Avg. CPC | ฿2.27 | ↓ ฿0.27 |
+| **Conversions** | **25.00** | **เดิม 0** |
+| Cost / conv. | ฿347.92 | |
+
+แยกตามชนิด: Store visits 8 · "คนที่เข้าชมเกิน 3 นาที" 10 · `line_click` 7
+
+**การแก้ `send_to` เมื่อ 2 ก.ย. ได้ผลจริง** — `line_click` ขึ้นสถานะ Active และมีตัวเลขเข้ามาแล้ว
+
+### 🔴 ปัญหาที่ใหญ่กว่า — bidding ถูกสอนให้ซื้อของผิด
+
+Google ขึ้นคำเตือนเองในหน้า Conversions:
+
+> *"Add a primary conversion action to your conversion goal: Your contact goal cannot be used
+> for optimization because it does not have any primary conversion actions."*
+
+และในหน้า Goals แสดงว่า **Group 1 goals = Page views, Results 99**
+
+แคมเปญตั้ง bid strategy เป็น **Maximize conversions** ดังนั้นมันกำลังประมูลเพื่อไล่ล่า
+**page view** กับ **เวลาอยู่บนหน้าเว็บเกิน 3 นาที** ซึ่งเป็น vanity metric ล้วนๆ
+ไม่ใช่การจอง นี่คือคำอธิบายว่าทำไมจ่าย ฿8,698 ได้ 3,826 คลิก แล้วยังไม่เห็นการจอง —
+**อัลกอริทึมทำถูกตามที่ถูกสั่ง แค่ถูกสั่งผิด**
+
+### รายการ conversion action ที่อ่านได้ (10 จาก 14 แถว)
+
+| Action | แหล่ง | สถานะ | Optimization | นับใน goal | 30 วัน |
+| --- | --- | --- | --- | --- | --- |
+| Store visits | Store | ⚠️ Needs attention | Primary | Yes | 12 |
+| Submit lead forms | Website | 🔴 **Misconfigured** | Primary | Yes | 0 |
+| Phone call leads | Call from Ads | Awaiting | Primary | Yes | 0 |
+| GA4 `booking_form_submit` | GA4 | ⚠️ Awaiting | Primary | Yes | **0** |
+| GA4 `line_click` | GA4 | ✅ Active | Primary | Yes | 7 |
+| Contacts | **Google Analytics (UA)** | Awaiting | Secondary | No | 0 |
+| **Clicks to call** | Google hosted | ✅ Active | Primary | 🔴 **No** | **77** |
+
+### 4 อย่างที่ต้องแก้ เรียงตามความเสียหาย
+
+1. **`Clicks to call` มี 77 conversion แต่ตั้ง "Included in account-level goals = No"**
+   นี่คือสัญญาณจริงที่แรงที่สุดในบัญชีทั้งหมด — คนกดโทรหาโรงแรม 77 ครั้ง —
+   **แล้วมันถูกกันออกจากการ optimize** เปิดให้นับเป็น goal ทันที
+   นี่คือรายการที่คุ้มที่สุดในเอกสารนี้
+2. **เอา Page views และ "เข้าชมเกิน 3 นาที" ออกจาก Primary** ลดเป็น Secondary
+   ตราบใดที่สองตัวนี้ยัง Primary อยู่ Maximize conversions จะซื้อคนอ่านเพลินต่อไป
+3. **`Submit lead forms` ขึ้น Misconfigured** ทั้งที่เป็น Primary — ต้องแก้หรือลบทิ้ง
+   conversion ที่พังแต่เป็น Primary ทำให้สัญญาณเพี้ยน
+4. **`Contacts` ชี้ไปที่ Google Analytics (UA)** ซึ่งปิดตายไปแล้วตั้งแต่ปี 2023 — ลบทิ้ง
+
+### `booking_form_submit` = 0 ใน 30 วัน ทั้งที่มี 3,826 คลิก
+
+ยังสรุปไม่ได้ว่าเป็นเพราะฟอร์มไม่มีคนกรอก (เป็นไปได้จริง เพราะเว็บออกแบบให้ LINE นำ
+ดูกติกา `.bps-line-first` ใน CLAUDE.md) หรือเพราะ conversion ยังไม่ทำงาน
+**วิธีแยกให้ขาด**: เปิดหน้าเว็บ กรอกฟอร์มทดสอบ แล้วดู Network ว่ามี `/g/collect`
+ที่มี `en=booking_form_submit` ไหม ตามขั้นตอนใน `docs/google-analytics-setup.md`
+ห้ามสรุปจากหน้า Events ของ GA4
+
+### ⚠️ ยังไม่ได้แก้อะไรทั้งสิ้น
+
+การเปลี่ยน Primary/Secondary คือการเปลี่ยนสิ่งที่ Google เอาเงินไปซื้อโดยตรง
+กับบัญชีที่จ่ายอยู่ ฿300/วัน จึงเป็นการตัดสินใจของเจ้าของ ไม่ใช่ของเอเจนต์
+ทั้งสี่ข้อข้างบนเป็น 3-4 คลิกในหน้า Goals → Conversions → Settings

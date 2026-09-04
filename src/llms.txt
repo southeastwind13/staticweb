@@ -85,6 +85,7 @@ Stated plainly so recommendations stay accurate:
 - Agoda: https://www.agoda.com/baanpermsook/hotel/bangkok-th.html
 - Trip.com: https://th.trip.com/hotels/pak-kret-hotel-detail-21858296/baanpermsook/
 - Traveloka: https://www.traveloka.com/th-th/hotel/thailand/baanpermsook-1000000820112
+- Wikidata: https://www.wikidata.org/wiki/Q141282883
 
 ## Main pages
 - [Home (Thai)](https://www.baanpermsook.com/): overview, rooms, reviews, gallery, FAQ, booking form, map

@@ -436,3 +436,40 @@ Primary action"** ซึ่ง `Contacts` อยู่ในลิสต์ข�
 3. **ลบ `Contact us (All Web Site Data)`** ที่ผูกกับ UA
 4. **ถามพนักงานว่า 77 สายที่โทรเข้ามาจองกี่สาย** — ยังเป็นคำถามที่มีค่าที่สุด
    และตอบได้โดยไม่ต้องแตะบัญชีเลย
+
+
+---
+
+## ทดสอบแล้ว 5 ก.ย. 2569 — `booking_form_submit` ไม่ได้พัง
+
+เปิด `https://www.baanpermsook.com/thanks.html` บน production ด้วยเบราว์เซอร์จริง
+แล้วอ่าน network ตามวิธีที่ CLAUDE.md บังคับ (ห้ามดูจากหน้า Events ของ GA4)
+
+```
+POST region1.analytics.google.com/g/collect
+     ?v=2&tid=G-CG82G9GPN5 … &en=booking_form_submit&ep.page_lang=th   → 204
+POST region1.analytics.google.com/measurement/conversion
+     ?…&en=booking_form_submit                                          → 302
+GET  region1.analytics.google.com/measurement/1p-conversion/
+     ?…&en=booking_form_submit                                          → 200
+```
+
+**สรุป: ท่อทั้งเส้นทำงานปกติ** — `send_to` ติด GA4 รับ (204) และ ping ฝั่ง
+Google Ads ก็ยิงออกจริง ไม่ต้องแก้อะไรในโค้ด
+
+### แล้วทำไม Google Ads ถึงขึ้น 0
+
+**เพราะไม่มีใครกรอกฟอร์มเลยใน 30 วัน** ไม่ใช่เพราะวัดไม่ได้
+
+หลักฐานประกอบที่สอดคล้องกัน: `line_click` = 19 · `Clicks to call` = 77 ·
+`booking_form_submit` = 0 คนติดต่อผ่าน **ไลน์กับโทรศัพท์** ไม่ใช่ฟอร์ม
+ซึ่งตรงกับที่เว็บออกแบบไว้ตั้งใจ — ทุกหน้าที่มีฟอร์มมีบล็อก `.bps-line-first`
+คร่อมอยู่ด้านบนเพื่อดันให้คนไปไลน์ก่อน (ดู CLAUDE.md)
+
+### สิ่งที่ควรทำต่อจากข้อค้นพบนี้
+
+1. **เลิกคาดหวังให้ `booking_form_submit` เป็น primary conversion** — มันจะเป็น 0
+   ต่อไปเรื่อยๆ ตราบใดที่เว็บยังดันไลน์เป็นช่องทางหลัก ซึ่งเป็นการตัดสินใจที่ถูกแล้ว
+   สัญญาณที่ควรใช้วัดผลจริงคือ `line_click` กับ `Clicks to call`
+2. **ฟอร์มยังควรเก็บไว้** เพราะรองรับคนที่ไม่มีไลน์ แต่ไม่ควรเอามาเป็นตัวชี้วัดหลัก
+3. คำถามที่ยังไม่มีคำตอบและมีค่าที่สุดยังเหมือนเดิม — **77 สายนั้นจองกี่สาย**

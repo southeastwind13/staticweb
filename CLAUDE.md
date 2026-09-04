@@ -70,7 +70,17 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   proof, every event the site sends, the real GA4 and Google Ads click paths (both
   differ from what the help pages describe), and a log of what was changed in the live
   Ads account. Read it before changing anything analytics-related.
-  `docs/google-ads-audit.md` — audit of the live Ads account (1 Sep 2026).
+  `docs/google-ads-audit.md` — audit of the live Ads account (1 Sep 2026, re-checked
+  4-5 Sep). Its later sections retract two earlier conclusions: the campaign does NOT
+  optimise toward page views (it uses campaign-specific goals), and `booking_form_submit`
+  is NOT broken — it fires correctly and reads 0 because nobody submits the form.
+  `docs/wikidata.md` — the Wikidata item (`Q141282883`), what is in it and the three
+  look-alike QIDs that must never be used for `P131`.
+- `docs/improvement.md` — **the master backlog. Start here.** Every outstanding item
+  across every channel, ranked by damage x urgency, each one linked to the doc that
+  holds its detail, each tagged with who can actually do it. Also carries a list of
+  earlier diagnoses that turned out to be WRONG — read that before trusting an older
+  note in any other doc.
 - `docs/ai-search.md` — the AI-search plan (3 Sep 2026): field evidence that answer engines
   answer "ที่พักเมืองทอง" from third-party listicles and OTA data rather than this site, the
   on-site work already shipped, and the off-site playbook (OTA fact-consistency sweep,
@@ -245,5 +255,21 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   disallowed for rich results) and do not fabricate reviews/`Event` schema.
 - Address: owner confirmed "ต.บางพูด" (Bang Phut) is correct — the site is right. The
   Google Business listing shows "Tambon Ban Mai" (owner to fix on Google's side).
+- **Every article carries `about`/`mentions` pointing at the `Hotel` entity**
+  (`https://www.baanpermsook.com/#hotel`) plus its own `@id` and `isPartOf`. A new
+  article needs all four or it reads to a crawler as an unattached page. The `Hotel`
+  `sameAs` array (7 links) must stay in sync with the **Official profiles** block in
+  `llms.txt` — they are hand-maintained in two places and drifted apart once already.
+- **English articles live in `src/en/articles/`** (assets via `../../`). Three exist so
+  far, each `hreflang`-paired with its Thai counterpart in both directions. The English
+  lane is far less contested than the Thai one — Thai listicles are entrenched, English
+  results are generic OTA pages — so a new topic is usually worth writing in both.
+- **Agoda auto-generates its guest-facing prose and it is stale by weeks.** Unticking a
+  facility updates the tick but NOT the prose, and there is **no free-text description
+  field anywhere in the Partner Portal** (checked page by page, 4 Sep 2026). The only
+  lever is the facility ticks plus a support request. Never tick a facility the hotel
+  lacks to chase Content Score — Agoda's own suggestions include Airport transfer,
+  Kids club and Pool kids, none of which exist here. That mechanism is how the phantom
+  bar and BBQ got there.
 - After editing structured data, validate at https://validator.schema.org/ and
   Google Rich Results Test before deploying.

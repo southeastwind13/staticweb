@@ -1,5 +1,8 @@
 # แผนปรับปรุง Agoda — บ้านเพิ่มสุข
 
+> 📌 รายการรวมทุกอย่างที่ค้างอยู่ เรียงตามความเร่ง อยู่ที่ [`improvement.md`](improvement.md)
+
+
 > ตรวจเมื่อ **1 ก.ย. 2569** · Property ID **5728170**
 > Partner Portal: https://portal.agoda.com/mldc/en-us/app/reporting/dashboard/5728170
 > เอกสารนี้ต่อยอดจาก `marketing-plan.md` หัวข้อ 7 (ยกอันดับ OTA)

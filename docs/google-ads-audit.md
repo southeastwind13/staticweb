@@ -383,3 +383,56 @@ Google ขึ้นคำเตือนเองในหน้า Conversions:
 การเปลี่ยน Primary/Secondary คือการเปลี่ยนสิ่งที่ Google เอาเงินไปซื้อโดยตรง
 กับบัญชีที่จ่ายอยู่ ฿300/วัน จึงเป็นการตัดสินใจของเจ้าของ ไม่ใช่ของเอเจนต์
 ทั้งสี่ข้อข้างบนเป็น 3-4 คลิกในหน้า Goals → Conversions → Settings
+
+
+---
+
+## แก้คำวินิจฉัยเดิม 5 ก.ย. 2569 — ผมสรุปผิดเรื่อง "ซื้อ page view"
+
+เปิดหน้า **Campaign settings → Conversion goals** ของ `BPS Ads` แล้วพบว่า
+แคมเปญตั้ง **Campaign-specific goals** อยู่แล้ว ไม่ได้ใช้ account-default:
+
+```
+Conversion goals = Campaign-specific
+  · Submit lead forms
+  · Phone call leads
+  · Contacts
+```
+
+**ไม่มี Page views และไม่มี Store visits อยู่ในนั้น**
+
+สิ่งที่ผมเห็นก่อนหน้าว่า *"Group 1 goals = Page views, Results 99"* คือ
+**กราฟรายงานระดับบัญชี** ไม่ใช่เป้าหมายที่แคมเปญนี้ใช้ประมูล ผมอ่านผิดและสรุปว่า
+bidding ไล่ล่า page view ซึ่ง**ไม่จริง** ยกเลิกข้อสรุปนั้น
+
+### แล้วอะไรผิดจริง
+
+| ปัญหา | หลักฐาน |
+| --- | --- |
+| **`Submit lead forms` ขึ้น Misconfigured** ทั้งที่แคมเปญ optimize ไปหามันอยู่ | 1 ใน 3 goal ของแคมเปญพัง = สัญญาณเพี้ยน |
+| `Phone call leads` = 0 conversion ใน 30 วัน | ทั้งที่ `Clicks to call` มี 77 |
+| `booking_form_submit` = 0 ทั้งที่มี 3,826 คลิก | ต้องทดสอบด้วย Network ตาม `google-analytics-setup.md` |
+| `Contact us` ชี้ไปที่ **Universal Analytics** ที่ปิดตายแล้ว | ควรลบทิ้ง |
+
+### เรื่อง "Clicks to call ไม่ถูกนับ" ก็ต้องแก้ความเข้าใจเหมือนกัน
+
+คอลัมน์ **"Included in account-level goals = No"** หมายถึงไม่ถูกรวมใน
+*account-default goals* — แต่แคมเปญนี้ตั้ง **campaign-specific** ทับไปแล้ว
+และหน้า detail ของ `Clicks to call` ระบุว่า **"Action optimization: Contacts,
+Primary action"** ซึ่ง `Contacts` อยู่ในลิสต์ของแคมเปญ
+**แปลว่ามันน่าจะป้อนสัญญาณให้ bidder อยู่แล้ว** คอลัมน์นั้นจึงไม่ใช่ปัญหาอย่างที่เขียนไว้ตอนแรก
+
+### ทำไมถึงยังไม่แก้อะไร
+
+ตัวช่วย "Fix it" ของ Google เสนอให้เลือก primary action ของ goal `Contact`
+จากสองตัวเลือกคือ `Contact us (All Web Site Data)` (UA ที่ตายแล้ว) กับ `Line`
+**ซึ่งทั้งคู่ขึ้น Weekly Conversions: None** ถ้ากดไปจะได้ goal ที่ไม่มีข้อมูล
+มาเป็นเป้าประมูล ซึ่งแย่กว่าปัจจุบัน — **จึงปิดหน้าต่างโดยไม่กด Apply**
+
+**ลำดับที่ควรทำจริง** เปลี่ยนไปจากเดิม:
+
+1. **แก้หรือลบ `Submit lead forms` ที่ Misconfigured** — นี่คือของพังจริงที่แคมเปญใช้อยู่
+2. **ทดสอบ `booking_form_submit` ด้วย Network tab** ว่ายิงจริงไหม
+3. **ลบ `Contact us (All Web Site Data)`** ที่ผูกกับ UA
+4. **ถามพนักงานว่า 77 สายที่โทรเข้ามาจองกี่สาย** — ยังเป็นคำถามที่มีค่าที่สุด
+   และตอบได้โดยไม่ต้องแตะบัญชีเลย

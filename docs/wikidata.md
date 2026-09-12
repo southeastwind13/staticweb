@@ -51,7 +51,11 @@ Wikidata รับเฉพาะข้อมูลที่ตรวจสอ�
 | --- | --- |
 | `P31` instance of | `Q27686` (hotel) |
 | `P17` country | `Q869` (Thailand) |
-| `P625` coordinate location | `13.9256010055542, 100.52959442138672` |
+| `P625` coordinate location | `13.9256010055542, 100.52959442138672` ⚠️ **ต้องแก้เป็น `13.925767, 100.529523`** |
+
+> ⚠️ **ค้างแก้ (12 ก.ย. 2569)** เจ้าของยืนยันพิกัดตัวอาคารจริงคือ `13.925767, 100.529523`
+> ค่าที่อยู่ใน P625 ตอนนี้เยื้องไปราว 20 ม. (ใต้ 18 ม. · ตะวันออก 8 ม.)
+> แก้แล้วในเว็บ (`index.html` + `en/index.html`) แต่**ยังไม่ได้แก้ใน Wikidata**
 | `P856` official website | `https://www.baanpermsook.com/` |
 | `P1329` phone number | `+66 94 962 5955` |
 | `P968` email address | `mailto:baanpermsook@gmail.com` |

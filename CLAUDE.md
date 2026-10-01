@@ -241,8 +241,16 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
     [free]` turned on, but BBQ was already off while the page still ran a BBQ paragraph
     — so unticking alone does not clear invented copy. The reliable fix is pasting our
     own description (draft in `docs/agoda_improve.md` §5.1).
-  - **Room allocation is deliberate**: 1 room/night to Booking, 2 to Agoda, out of 4
-    registered. Not a bug; do not "fix" it.
+  - **Room allocation**: 1 room/night to Booking, 2 to Agoda, out of 4 registered. On
+    1 Oct 2026 the owner said the other rooms "barely sell" outside the OTAs and **approved
+    opening more OTA rooms on event nights** (proposal: 4-5). Not yet applied: the auto-mode
+    classifier blocks Claude from editing OTA calendars, so a human does it.
+  - **Parking is 15 cars** for 21 rooms (owner-confirmed 1 Oct 2026). Say "ที่จอดรถฟรี 15 คัน"
+    / "15 spaces" — never "กว้างขวาง" / "spacious" / "no circling": a Google review says the
+    lot was full and the guest had to park elsewhere.
+  - **Breakfast is included on every channel** (owner-confirmed 1 Oct 2026). Booking.com was
+    found selling room-only + non-refundable with breakfast as a ฿90 add-on — that listing is
+    wrong, not a deliberate rate plan.
   - Booking commission measured from real invoices is **14.9%** (not 15%).
   - Discounts **compound** on both platforms. Before adding any promotion, check what it
     stacks with, or the ladder silently under-sells.

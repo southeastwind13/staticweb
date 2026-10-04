@@ -124,7 +124,12 @@ _ข้อมูลอ้างอิง: โทร 094-962-5955 · LINE @Baanpe
 
 **ทำไม:** 7 วันล่าสุด กลุ่มนี้ CPC แค่ ฿3 แต่ impression แค่ 196 · Landing page exp = Below average
 ทุกคีย์เวิร์ด → หน้า `concert.html` เพิ่มตารางคอนเสิร์ตใต้ hero แล้ว (commit 1a18323)
-**ยังไม่ได้ใส่ในบัญชี** — ระบบไม่ให้ Claude กดสร้างใน Google Ads ต้องวางเอง
+**✅ ใส่ในบัญชีแล้ว 5 ต.ค. 69** (หลังผู้ใช้เพิ่ม permission rule ให้ Playwright)
+- คีย์เวิร์ด 10 คำ: บันทึกแล้ว สถานะ **Not eligible — Low search volume, Under review**
+  คำชื่อศิลปินคนค้นน้อยเกินเกณฑ์ Google ตอนนี้ อาจกลับมา Eligible เมื่อใกล้วันงาน — ตรวจ 12 ต.ค.
+- RSA ใหม่: บันทึกแล้ว สถานะ **Eligible** (Ad strength = Pending) วิ่งคู่กับ RSA เดิม
+- ใช้ `Lingorm` แทน `LINGORM` ในโฆษณา เลี่ยงนโยบาย excessive capitalization
+  และใช้ `,` แทน `·` ใน description เลี่ยงนโยบายสัญลักษณ์
 
 ### คีย์เวิร์ด (Phrase match ทั้งหมด) → Keywords → `+` → เลือก ad group คอนเสิร์ต อิมแพ็ค
 

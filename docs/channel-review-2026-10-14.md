@@ -193,3 +193,6 @@ Booking: ราคาคืนมีงานตามตารางข้า�
 - Booking: เตียงเสริม 300/คน/คืน · Invoice/Meeting = No · Refrigerator = Yes (ตรวจหลัง reload ทุกข้อ)
 - Agoda มีจองใหม่คืน 17 พ.ย. (BIG ASS) 1 ห้อง
 - Booking ยังติ๊ก `Express check-in/check-out` = Yes — รวมในคำถามเจ้าของข้อเดียวกับ Agoda
+- เจ้าของยืนยัน **ไม่มีเช็คอิน/เอาท์ด่วน** → Booking `Express check-in/check-out`=No · Agoda `Check-in/out [express]`=No (Agoda ต้องรอ ~1-2 นาทีหลัง Save ถึงเห็นผลเมื่อ reload) — ตรวจแล้วทั้งคู่
+- Booking คืนที่เคยตั้ง 1,470 (16 ต.ค., 10–12 พ.ย., 21 พ.ย., 27 พ.ย.) → **1,490** ตามราคาฐาน — ตรวจปฏิทินแล้ว ไม่เหลือ 1,470 ใน ต.ค.–พ.ย.
+- ยังเหลือ Booking 13–15 ธ.ค. = 1,350 (ต่ำกว่าฐาน) — รอเจ้าของตัดสิน

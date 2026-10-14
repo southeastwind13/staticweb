@@ -55,14 +55,15 @@
     <link rel="icon" type="image/x-icon" href="assets/logo_bps.ico" />
     <link rel="apple-touch-icon" href="assets/images/logo_bps.png" />
     <!-- Speed: warm up connections to external origins -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <!-- Bootstrap icons-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Font Awesome (icons used throughout the page) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Speed: the hero is a CSS background, so the preload scanner cannot see it. Same files and breakpoint as .bps-hero in styles.css -->
+    <link rel="preload" as="image" href="assets/images/derived/hero-exterior-1200.webp" media="(max-width: 760px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/derived/hero-exterior-2000.webp" media="(min-width: 761px)" fetchpriority="high">
     <link href="css/styles.css" rel="stylesheet" />
 
     <!-- Structured data: Hotel + FAQ + Reviews (for Google rich results & AI search) -->
@@ -412,7 +413,7 @@
 
                 <div class="bps-problem-item">
                     <div class="bps-img-wrapper">
-                        <img src="assets/images/traffic_jam2.png" alt="รถติดเมืองทอง" class="bps-problem-img">
+                        <img src="assets/images/derived/problem-traffic-940.webp" width="940" height="788" alt="รถติดเมืองทอง" class="bps-problem-img" loading="lazy" decoding="async">
                     </div>
                     <div class="bps-problem-content">
                         <h3>ขาออกที่แสนสาหัส</h3>
@@ -422,7 +423,7 @@
 
                 <div class="bps-problem-item">
                     <div class="bps-img-wrapper">
-                        <img src="assets/images/tired.png" alt="คนเบียดเสียด" class="bps-problem-img">
+                        <img src="assets/images/derived/problem-crowd-940.webp" width="940" height="788" alt="คนเบียดเสียด" class="bps-problem-img" loading="lazy" decoding="async">
                     </div>
                     <div class="bps-problem-content">
                         <h3>ผู้คนนับหมื่น</h3>
@@ -433,7 +434,7 @@
 
                 <div class="bps-problem-item">
                     <div class="bps-img-wrapper">
-                        <img src="assets/images/small-room.png" alt="ห้องคอนโดแคบ" class="bps-problem-img">
+                        <img src="assets/images/derived/problem-small-room-940.webp" width="940" height="788" alt="ห้องคอนโดแคบ" class="bps-problem-img" loading="lazy" decoding="async">
                     </div>
                     <div class="bps-problem-content">
                         <h3>ห้องสี่เหลี่ยมแคบๆ</h3>
@@ -488,7 +489,7 @@
                 </div>
 
                 <div class="bps-solution-image">
-                    <img src="assets/images/cafe.jpg" alt="บรรยากาศบ้านสวนร่มรื่น">
+                    <img src="assets/images/derived/cafe-960.webp" width="960" height="665" alt="บรรยากาศบ้านสวนร่มรื่น" loading="lazy" decoding="async">
                 </div>
 
             </div>
@@ -584,7 +585,7 @@
                 <div class="bps-room-card">
                     <div class="bps-room-media">
                         <img src="assets/images/derived/room-standard-900.webp" width="900" height="420"
-                            loading="lazy" alt="ห้องมาตรฐาน เตียงควีนไซส์ ผนังสีเหลือง มีหน้าต่างรับแสงธรรมชาติ">
+                            loading="lazy" decoding="async" alt="ห้องมาตรฐาน เตียงควีนไซส์ ผนังสีเหลือง มีหน้าต่างรับแสงธรรมชาติ">
                     </div>
                     <div class="bps-room-body">
                         <p class="bps-room-price">฿1,090 <span>/ คืน · รวมอาหารเช้า</span></p>
@@ -604,7 +605,7 @@
                 <div class="bps-room-card">
                     <div class="bps-room-media">
                         <img src="assets/images/derived/room-family-900.webp" width="881" height="470"
-                            loading="lazy" alt="ห้องครอบครัว มีโซฟาเบดและโต๊ะกลาง นอนได้ 4 ท่าน">
+                            loading="lazy" decoding="async" alt="ห้องครอบครัว มีโซฟาเบดและโต๊ะกลาง นอนได้ 4 ท่าน">
                     </div>
                     <div class="bps-room-body">
                         <p class="bps-room-price">฿1,890 <span>/ คืน · รวมอาหารเช้า</span></p>
@@ -625,7 +626,7 @@
                     <div class="bps-room-media">
                         <span class="bps-room-tag"><i class="fas fa-paw"></i> Pet Friendly</span>
                         <img src="assets/images/derived/room-pet-900.webp" width="900" height="394"
-                            loading="lazy" alt="ห้อง Pet Friendly เตียงใหญ่ ใกล้สวนเดินเล่น">
+                            loading="lazy" decoding="async" alt="ห้อง Pet Friendly เตียงใหญ่ ใกล้สวนเดินเล่น">
                     </div>
                     <div class="bps-room-body">
                         <p class="bps-room-price">฿1,090 <span>/ คืน · สัตว์เลี้ยง +300 บาท/น้อง/คืน</span></p>
@@ -834,28 +835,28 @@
             </div>
             <div class="bps-gallery-grid">
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-exterior.jpg" alt="อาคารที่พักและสวนของโรงแรมบ้านเพิ่มสุข" loading="lazy">
+                    <img src="assets/images/bps-g-exterior.jpg" alt="อาคารที่พักและสวนของโรงแรมบ้านเพิ่มสุข" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-deck.jpg" alt="ศาลาไม้และมุมนั่งเล่นในสวนร่มรื่น" loading="lazy">
+                    <img src="assets/images/bps-g-deck.jpg" alt="ศาลาไม้และมุมนั่งเล่นในสวนร่มรื่น" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-garden.jpg" alt="พื้นที่สีเขียวและสวนของบ้านเพิ่มสุข" loading="lazy">
+                    <img src="assets/images/bps-g-garden.jpg" alt="พื้นที่สีเขียวและสวนของบ้านเพิ่มสุข" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-lounge.jpg" alt="มุมพักผ่อนกลางสวนบรรยากาศสงบ" loading="lazy">
+                    <img src="assets/images/bps-g-lounge.jpg" alt="มุมพักผ่อนกลางสวนบรรยากาศสงบ" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-room1.jpg" alt="ห้องพักตกแต่งสวย เตียงนุ่ม สะอาด" loading="lazy">
+                    <img src="assets/images/bps-g-room1.jpg" alt="ห้องพักตกแต่งสวย เตียงนุ่ม สะอาด" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-room2.jpg" alt="ห้องพักโทนสีอบอุ่น เป็นส่วนตัว" loading="lazy">
+                    <img src="assets/images/bps-g-room2.jpg" alt="ห้องพักโทนสีอบอุ่น เป็นส่วนตัว" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-room3.jpg" alt="ห้องพักกว้างขวาง พร้อมสิ่งอำนวยความสะดวก" loading="lazy">
+                    <img src="assets/images/bps-g-room3.jpg" alt="ห้องพักกว้างขวาง พร้อมสิ่งอำนวยความสะดวก" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-breakfast.jpg" alt="อาหารเช้าของโรงแรมบ้านเพิ่มสุข" loading="lazy">
+                    <img src="assets/images/bps-g-breakfast.jpg" alt="อาหารเช้าของโรงแรมบ้านเพิ่มสุข" loading="lazy" decoding="async">
                 </figure>
             </div>
         </div>

@@ -33,7 +33,11 @@
     <meta property="og:locale" content="th_TH" />
 
     <link rel="icon" type="image/x-icon" href="assets/logo_bps.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- Speed: .bps-page-band is a CSS background above the fold; preload it -->
+    <link rel="preload" as="image" href="assets/images/derived/location-overview-1280.webp" fetchpriority="high">
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 

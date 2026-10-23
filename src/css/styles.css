@@ -3705,13 +3705,15 @@ section h2,
     }
 }
 
-/* Mobile gets the 1200px hero (128KB) instead of the 2000px one (256KB).
+/* Mobile gets a 720x1200 portrait crop (104KB) instead of the 2000px one (256KB).
+   A phone hero is ~0.6:1, so a landscape 1200px file was scaled up and mostly
+   cropped away (~1.1x density, soft); the portrait crop is ~1.8x and smaller.
    Both are cut from header_background.webp, the 4628x2711 original of the
    same shot — bps-g-exterior.jpg is only a 1280px downscale of it, so
    deriving from that was what made the first attempt look soft. */
 @media (max-width: 760px) {
     .bps-hero {
-        background-image: url("../assets/images/derived/hero-exterior-1200.webp");
+        background-image: url("../assets/images/derived/hero-exterior-mobile-720.webp");
     }
 }
 

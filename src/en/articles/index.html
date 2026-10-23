@@ -2,20 +2,36 @@
 <html lang="en">
 
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PLKLTZT');</script>
-    <!-- End Google Tag Manager -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CG82G9GPN5"></script>
+    <!-- Google Tag Manager + Google tag (gtag.js)
+         Speed: everything is queued in dataLayer right away, but gtm.js and gtag.js
+         (~330KB) are fetched only after window load (or the first tap/scroll), so the
+         hero image gets the mobile bandwidth first. Queued commands replay when the
+         scripts arrive. Keep gtm.js before gtag.js — see the send_to note in scripts.js. -->
     <script>
     window.dataLayer = window.dataLayer || [];
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CG82G9GPN5');
+    (function () {
+        var loaded = false, evts = ['scroll', 'touchstart', 'pointerdown', 'keydown'];
+        function load() {
+            if (loaded) return;
+            loaded = true;
+            evts.forEach(function (e) { removeEventListener(e, load, true); });
+            ['https://www.googletagmanager.com/gtm.js?id=GTM-PLKLTZT',
+             'https://www.googletagmanager.com/gtag/js?id=G-CG82G9GPN5'].forEach(function (src) {
+                var j = document.createElement('script');
+                j.async = true;
+                j.src = src;
+                document.head.appendChild(j);
+            });
+        }
+        evts.forEach(function (e) { addEventListener(e, load, { capture: true, passive: true, once: true }); });
+        if (document.readyState === 'complete') load(); else addEventListener('load', load);
+    })();
     </script>
+    <!-- End Google Tag Manager -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

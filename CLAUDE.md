@@ -169,13 +169,17 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
 - Owner-customizable placeholder content (marked with HTML comments in the source): the
   brand story copy, promotion terms/prices, and location distances.
-- **The pet fee is `300 THB per pet, PER NIGHT`** (owner-confirmed 2 Sep 2026), and every
-  place that quotes it must say "per night" / "ต่อคืน". It is currently written in 22
-  places across `index.html`, `pet-friendly.html`, `articles/hotel-pet-friendly-pakkret.html`,
-  `llms.txt`, `links.html` and the `en/` counterparts — meta descriptions and OG tags included. Omitting
+- **The pet fee is `500 THB per pet, PER NIGHT`** (raised from 300 on 24 Oct 2026 at the
+  owner's request; 300 was owner-confirmed 2 Sep 2026), and every place that quotes it must
+  say "per night" / "ต่อคืน". It is written on 42 lines across 12 files — `index.html`,
+  `pet-friendly.html`, `links.html`, `llms.txt`, five Thai articles and the `en/`
+  counterparts, meta/OG tags and FAQ JSON-LD included — plus two "2 nights = 1,000"
+  worked examples. Find them all with a grep for the amount on lines mentioning pets.
+  Agoda and Booking have **no numeric pet-fee field**, so the OTAs carry the amount only
+  in description text (support/description-edit request) and guest messages. Omitting
   "per night" understates a 2-night stay by half and is what drove Booking.com's
-  value-for-money score to 6.3. Do not confuse it with the extra-bed fee, which is also
-  300 THB but genuinely per night already.
+  value-for-money score to 6.3. Do not confuse it with the extra-bed fee, which is
+  300 THB per night and did NOT change.
 - **The `FAQPage` JSON-LD is hand-maintained, not generated.** There is no build step in
   this repo (`package.json` has only `start`), so editing a visible `.bps-faq-answer`
   means editing the matching `acceptedAnswer.text` by hand in BOTH `index.html` and

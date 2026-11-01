@@ -260,3 +260,18 @@ Performance → Competitor set → Manage (เรียงตามลำดั�
 
 ⚠️ **เจ้าของต้องรู้ไว้:** คืน 14 พ.ย. รับปากไปแล้วว่า **เตียงเสริม 2 ห้อง** (Wichien J., Piyawadee S.) · **เตียงแยก 2 ห้อง** (Juntra U., Wichien J.) ·
 ทุกห้องที่จองผ่าน Agoda ขอปลอดบุหรี่
+
+### ข้อความอัตโนมัติ Agoda — ✅ ตั้งแล้ว 1 พ.ย.
+
+Agoda **Auto reply** ใส่ข้อความเองไม่ได้ — เป็นเทมเพลตของ Agoda ตามหัวข้อคำขอ (เตียง/ปลอดบุหรี่/ชั้น) จึง**ไม่ได้เปิด**
+ใช้ **Message scheduler → Upon booking confirmation** แทน (ส่งทันทีที่มีจองใหม่) · เทมเพลต "ยืนยันการจอง / Booking confirmation":
+
+```
+สวัสดีค่ะ ขอบคุณที่จองโรงแรมบ้านเพิ่มสุขนะคะ
+เช็คอินได้ 24 ชั่วโมง มีอาหารเช้าและที่จอดรถฟรี 15 คัน
+มีคำขอหรือคำถามเพิ่มเติม พิมพ์ทิ้งไว้ในข้อความนี้ได้เลย ทางโรงแรมจะตอบกลับโดยเร็วค่ะ
+
+Thank you for booking Baan Perm Sook Hotel. 24-hour check-in, breakfast and free parking included. Feel free to leave any request or question here and we will reply as soon as possible.
+```
+
+ไม่รับปากเรื่องเตียง/ห้อง — คำขอพิเศษยังต้องกด Approve/Reject เอง · ไม่ส่งย้อนหลังให้การจองเดิม

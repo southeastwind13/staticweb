@@ -169,12 +169,15 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   LINE `FI5YYjJS-X`. Keep these consistent across the page copy, links, and JSON-LD `sameAs`.
 - Owner-customizable placeholder content (marked with HTML comments in the source): the
   brand story copy, promotion terms/prices, and location distances.
-- **The pet fee is `500 THB per pet, PER NIGHT`** (raised from 300 on 24 Oct 2026 at the
-  owner's request; 300 was owner-confirmed 2 Sep 2026), and every place that quotes it must
-  say "per night" / "ต่อคืน". It is written on 42 lines across 12 files — `index.html`,
-  `pet-friendly.html`, `links.html`, `llms.txt`, five Thai articles and the `en/`
-  counterparts, meta/OG tags and FAQ JSON-LD included — plus two "2 nights = 1,000"
-  worked examples. Find them all with a grep for the amount on lines mentioning pets.
+- **The pet fee is `350 THB for a small pet (up to 10 kg), 500 THB for a larger one, per
+  pet, PER NIGHT`** (owner set the two tiers on 1 Nov 2026; it was a flat 500 from 24 Oct,
+  and 300 before that), and every place that quotes it must say "per night" / "ต่อคืน".
+  Thai wording: "ตัวเล็ก (ไม่เกิน 10 กก.) 350 บาท ตัวใหญ่ 500 บาท"; short slots (meta/OG,
+  price chips) say "350–500 ... ตามขนาด" / "by size". It is written on ~44 lines across 12
+  files — `index.html`, `pet-friendly.html`, `links.html`, `llms.txt`, five Thai articles
+  and the `en/` counterparts, meta/OG tags and FAQ JSON-LD included — plus two "2 nights"
+  worked examples (700 small / 1,000 large). Find them all with a grep for `350` on lines
+  mentioning pets.
   Agoda and Booking have **no numeric pet-fee field**, so the OTAs carry the amount only
   in description text (support/description-edit request) and guest messages. Omitting
   "per night" understates a 2-night stay by half and is what drove Booking.com's

@@ -1,6 +1,7 @@
-# ข้อความที่ต้องส่ง — ค่าสัตว์เลี้ยง 500 บาท (24 ต.ค. 2569)
+# ข้อความที่ต้องส่ง — ค่าสัตว์เลี้ยง 350/500 บาท (24 ต.ค. 2569 · แก้ 1 พ.ย.)
 
-ค่าสัตว์เลี้ยงเปลี่ยนจาก 300 → **500 บาท ต่อตัว ต่อคืน** (เว็บแก้แล้ว commit `319a1af`)
+ค่าสัตว์เลี้ยง: **ตัวเล็ก (ไม่เกิน 10 กก.) 350 บาท · ตัวใหญ่ 500 บาท ต่อตัว ต่อคืน** (เจ้าของกำหนด 1 พ.ย. 69 —
+เดิม 24 ต.ค. เป็น 500 ทุกขนาด) · ข้อความทุกฉบับด้านล่างแก้เป็นราคาใหม่แล้ว
 Agoda และ Booking **ไม่มีช่องกรอกตัวเลข** ตัวเลขต้องไปอยู่ในข้อความด้านล่าง
 
 ## 1. Booking.com — ขอแก้คำบรรยายที่พัก
@@ -18,12 +19,13 @@ policy is set to "Pets are allowed. Charges may apply", but guests cannot see th
 and several have been surprised by the fee at check-in.
 
 TH:
-รับน้องหมาและน้องแมว ค่าดูแลสัตว์เลี้ยง 500 บาท ต่อตัว ต่อคืน (คิดทุกคืนที่เข้าพัก)
+รับน้องหมาและน้องแมว ค่าดูแลสัตว์เลี้ยงตัวเล็ก (ไม่เกิน 10 กก.) 350 บาท ตัวใหญ่ 500 บาท
+ต่อตัว ต่อคืน (คิดทุกคืนที่เข้าพัก)
 ชำระที่โรงแรม กรุณาแจ้งจำนวนสัตว์เลี้ยงล่วงหน้า
 
 EN:
-Dogs and cats are welcome. Pet fee: THB 500 per pet, per night (charged for every night
-of the stay), payable at the property. Please tell us in advance how many pets you are
+Dogs and cats are welcome. Pet fee: THB 350 per small pet (up to 10 kg) or THB 500 per
+larger pet, per night (charged for every night of the stay), payable at the property. Please tell us in advance how many pets you are
 bringing.
 
 Thank you.
@@ -47,8 +49,8 @@ property page.
    Our facilities are set to "Pet-friendly [charges apply]", but the portal has no field
    for the amount, so guests cannot see it before booking. Please add to our property
    description / house rules:
-   "Dogs and cats are welcome. Pet fee: THB 500 per pet, per night, payable at the
-   property. Please inform the property in advance."
+   "Dogs and cats are welcome. Pet fee: THB 350 per small pet (up to 10 kg) or THB 500
+   per larger pet, per night, payable at the property. Please inform the property in advance."
 
 2. "Restaurant" highlight
    The property page still highlights a restaurant. We do not have a restaurant (we serve
@@ -65,7 +67,7 @@ property page.
 Thank you for your help.
 ```
 
-## 3. Google Business Profile — ✅ โพสต์แล้ว 24 ต.ค. 2569
+## 3. Google Business Profile — ✅ โพสต์แล้ว 24 ต.ค. 2569 · ⚠️ **ต้องแก้โพสต์** (โพสต์ยังเขียน 500 ทุกขนาด)
 
 ตรวจแล้ว: โปรไฟล์ประเภทโรงแรม**ไม่มีช่องคำอธิบาย** · Hotel details → Pets = Yes / Free = No /
 Dogs = Yes / Cats = Yes (ถูกแล้ว ไม่มีช่องจำนวนเงิน) · หน้า Maps ไม่มีเลข 300 ที่ไหนเลย ·
@@ -76,19 +78,21 @@ Q&A กดไม่เปิดแล้ว (Google เลิกใช้) → �
 
 ```
 🐶🐱 พาน้องมาพักด้วยได้ทุกวัน ไม่ต้องรอช่วงงานสัตว์เลี้ยง
-รับทั้งน้องหมาและน้องแมว ค่าดูแลน้อง 500 บาท ต่อตัว ต่อคืน
+รับทั้งน้องหมาและน้องแมว ค่าดูแลน้องตัวเล็ก (ไม่เกิน 10 กก.) 350 บาท ตัวใหญ่ 500 บาท ต่อตัว ต่อคืน
 
 ห้องเริ่มต้น 1,090 บาท รวมอาหารเช้า · ที่จอดรถฟรี 15 คัน · ใกล้อิมแพ็ค เมืองทองธานี 7-10 นาที
 จองหรือสอบถามทาง LINE ได้เลย
 
-Pets welcome every day — dogs and cats. Pet fee THB 500 per pet, per night.
+Pets welcome every day — dogs and cats. Pet fee THB 350 (up to 10 kg) or THB 500 per pet, per night.
 ```
 
 ## 4. LINE — ข้อความตอบลูกค้าที่ถามเรื่องพาสัตว์เลี้ยง
 
 ```
 พาน้องมาได้เลยค่ะ 🐶🐱 รับทั้งน้องหมาและน้องแมว
-ค่าดูแลน้อง 500 บาท ต่อตัว ต่อคืน (เช่น พัก 2 คืน น้อง 1 ตัว = 1,000 บาท)
+ค่าดูแลน้องตัวเล็ก (ไม่เกิน 10 กก.) 350 บาท ตัวใหญ่ 500 บาท ต่อตัว ต่อคืน
+(เช่น พัก 2 คืน น้องตัวเล็ก 1 ตัว = 700 บาท)
+น้องหนักประมาณกี่กิโลคะ
 ห้องเริ่มต้น 1,090 บาท/คืน รวมอาหารเช้า ที่จอดรถฟรี
 รบกวนแจ้งวันที่เข้าพัก จำนวนคน และจำนวนน้องได้เลยค่ะ
 ```
@@ -96,14 +100,16 @@ Pets welcome every day — dogs and cats. Pet fee THB 500 per pet, per night.
 ## 5. ข้อความถึงลูกค้าที่จองผ่าน OTA แล้วแจ้งว่าพาสัตว์เลี้ยง
 
 ส่งผ่านแชทของ Agoda/Booking ก่อนวันเข้าพัก กันเซอร์ไพรส์ที่เคาน์เตอร์
-(ใครจองก่อน 24 ต.ค. หรือได้ราคา 300 ไปแล้ว → ใช้ 300 ตามเดิม แก้ตัวเลขในข้อความ)
+(ใครได้ราคาเดิมไปแล้ว — 300 ก่อน 24 ต.ค. หรือ 500 ช่วง 24 ต.ค.–1 พ.ย. — ใช้ราคาที่ได้ไปตามเดิม แก้ตัวเลขในข้อความ)
 
 ```
 สวัสดีค่ะ ขอบคุณที่จองโรงแรมบ้านเพิ่มสุขนะคะ
-แจ้งล่วงหน้าเรื่องน้องสัตว์เลี้ยง: มีค่าดูแล 500 บาท ต่อตัว ต่อคืน ชำระที่โรงแรมตอนเช็คอินค่ะ
+แจ้งล่วงหน้าเรื่องน้องสัตว์เลี้ยง: มีค่าดูแลตัวเล็ก (ไม่เกิน 10 กก.) 350 บาท ตัวใหญ่ 500 บาท
+ต่อตัว ต่อคืน ชำระที่โรงแรมตอนเช็คอินค่ะ
 เช็คอินได้ 24 ชั่วโมง มีอะไรสอบถามทางไลน์ได้เลย: https://line.me/ti/p/FI5YYjJS-X
 
 Hello, and thank you for booking Baan Perm Sook Hotel.
-A note about your pet: the pet fee is THB 500 per pet, per night, payable at check-in.
+A note about your pet: the pet fee is THB 350 per small pet (up to 10 kg) or THB 500 per larger pet,
+per night, payable at check-in.
 Check-in is available 24 hours. Feel free to message us on LINE: https://line.me/ti/p/FI5YYjJS-X
 ```

@@ -258,7 +258,11 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   - **Breakfast is included on every channel** (owner-confirmed 1 Oct 2026). Booking.com was
     found selling room-only + non-refundable with breakfast as a ฿90 add-on — that listing is
     wrong, not a deliberate rate plan.
-  - Booking commission measured from real invoices is **14.9%** (not 15%).
+  - Booking's real cost is **~18.7% of what the guest pays** (payout 8 Oct 2026): 15% commission
+    + 2.5% Payments by Booking.com service fee + 7% VAT on both (the property is not VAT-registered,
+    so it cannot reclaim it). The older "14.9%" figure came from the monthly commission invoice
+    alone and leaves out the fee and VAT. Genius 10% and Mobile 10% also stack, so a guest pays 81%
+    of the shelf price and the hotel keeps ~66% of it.
   - Discounts **compound** on both platforms. Before adding any promotion, check what it
     stacks with, or the ladder silently under-sells.
 - robots.txt explicitly welcomes AI crawlers (GPTBot, ClaudeBot, PerplexityBot,

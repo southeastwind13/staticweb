@@ -304,3 +304,12 @@ Thank you for booking Baan Perm Sook Hotel. 24-hour check-in, breakfast and free
 
 สมมติฐาน (ยังไม่ยืนยัน): คนที่ค้น 13–15 พ.ย. 2 คืน เห็นเรา "เต็ม" เพราะ 14 ปิด → คืน 13 แพ้ไปด้วย
 · อันดับค้นหาจริง 16 · แพ้ให้ Challenger serviced apt / Jumbotel มากสุด
+
+## 4 พ.ย. — รีเฟรชตารางงาน (`events.html`, `concert.html` TH/EN)
+
+- ลบงานที่จบแล้ว: LYKN · บ้านและสวนแฟร์ · Amusement Parks Expo · Billiards Expo · Makro HoReCa · Nunew
+- เพิ่ม: **PONG ROCK LEGACY** ส. 7 พ.ย. Thunder Dome · **TGU 2026** 13–15 พ.ย. The Portal Ballroom (แข่งเกมต่อสู้ — ใส่แค่ events.html)
+- **WILLIAM EST ขยายเป็น 5–7 ธ.ค.** (หน้างาน IMPACT) → Agoda 7 ธ.ค. ยัง 1,590 ควรเป็นราคาคืนคอนเสิร์ต
+- **เอาออกเพราะยืนยันไม่ได้:** TIFACE 19–21 พ.ย. · JAN JINGJING 21–22 พ.ย. · Fasteners 3–4 ธ.ค. — หายจากปฏิทิน IMPACT
+  และหน้างาน Fasteners บน IMPACT ขึ้น 404 ("event not found") · K-POP MASTERZ ไม่อยู่ในปฏิทิน IMPACT แต่ข่าว ต.ค. ยืนยัน 2 รอบ 14–15 พ.ย. → เก็บไว้
+- ⚠️ **RSA ยังมี headline `ไป JAN JINGJING 21-22 พ.ย.?`** — ถ้างานยกเลิกจริง ต้องเปลี่ยน (แนะนำ `ไป BOYdKO 10-12 ธ.ค.?`)

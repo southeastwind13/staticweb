@@ -4367,3 +4367,53 @@ section > .container h2.fw-bolder {
         padding: 10px 12px;
     }
 }
+
+/* ==========================================================================
+   Phase J — honest CTA labels, phone in the mobile bar, navbar on one line
+   (10 Nov 2026)
+   ========================================================================== */
+
+/* Mobile bar on the homepages: was LINE + LINE ("จองเลย" also opened LINE,
+   so a guest expecting a booking page landed on an add-friend screen). Now a
+   phone button + one LINE button that says what it does. tel: links are
+   tracked as phone_click by scripts.js. */
+.btn-call {
+    background-color: #fff;
+    color: var(--bps-ink, #2b2620);
+    border: 1px solid var(--bps-line, #e8e0d6);
+    flex: 1;
+}
+.btn-call i {
+    margin-right: 6px;
+    font-size: 1rem;
+}
+.btn-line i {
+    margin: 0 6px 0 0;
+    font-size: 1.3rem;
+}
+.bps-hero-cta .btn i,
+.bps-room-cta i,
+.bps-cta-buttons .bps-btn i.fa-phone {
+    margin-right: 6px;
+}
+
+/* Navbar: `px-5` (48px a side) left the brand + toggler 50px short of a
+   390px phone, so the menu button dropped to a second line and the bar took
+   87px of the first screen. Tighter gutter, and let the brand shrink. */
+@media (max-width: 575px) {
+    .navbar > .container.px-5 {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    .navbar > .container > .navbar-brand {
+        flex: 1 1 0;
+        min-width: 0;
+        white-space: normal;
+    }
+}
+
+/* The divider label could not shrink, so the longer English sentence pushed
+   /en/ 12px wider than a 320px screen. Let it wrap instead. */
+.bps-line-first-divider span {
+    flex: 0 1 auto;
+}

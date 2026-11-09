@@ -25,7 +25,7 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 
 ## Structure
 
-- `src/index.html` — the landing page (Hero → Problem → Brand story → Audiences → Rooms
+- `src/index.html` — the landing page (Hero → Rooms → Problem → Brand story → Audiences
   → Promotions → Objections → Testimonials+review links → Gallery → FAQ → CTA →
   Location/distances → Booking form → Contact/Map). Section anchors: `#about`, `#room`,
   `#promo`, `#gallery`, `#faq`, `#reviews`, `#location`, `#booking`, `#contact` (the
@@ -194,6 +194,11 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
   than the form, which is an email round-trip. If you add a page with a booking form,
   add this block too. No JS wiring needed — the delegated listener in `scripts.js`
   already fires `line_click` for any `line.me` link.
+- **A button that opens LINE must say LINE.** On 10 Nov 2026 "จองห้องพัก" / "จองเลย
+  (ราคาดีสุด)" / "จองห้องนี้" on the homepages all opened LINE's add-friend screen, so a
+  guest expecting a booking page met a personal LINE account instead. They now read
+  "ทัก LINE ..." / "... on LINE", and the homepage mobile bar is phone + LINE (it was LINE
+  twice). The review count (134 on 10 Nov) is hand-written in ~34 places: grep `134`.
 - **Brand orange (`#fc7e0f`) on the cream surface is only 2.44:1** — below the 4.5:1
   WCAG AA floor for body text, so do not use it as a link colour on cream. The pattern
   in `.bps-contact-list a`, `.bps-line-first-alt a` and `.bps-bio-foot a` is dark ink
@@ -268,7 +273,7 @@ workflow; `app_location`/`output_location` = `./src`, no build step). Merging/pu
 - robots.txt explicitly welcomes AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
   Google-Extended, etc.).
 - Testimonials are REAL Google reviews (Sutasinee W., Waraporn S., Napaporn M.) mirrored
-  in the Hotel JSON-LD `review` array; the visible "4.2 / 128 reviews" badge and the
+  in the Hotel JSON-LD `review` array; the visible "4.2 / 134 reviews" badge and the
   `bps-platform-google` link (`https://maps.app.goo.gl/EBG2Zk9efFbtqHaT7`) point to the
   real Google Business listing. Do NOT add `aggregateRating` to JSON-LD (self-serving —
   disallowed for rich results) and do not fabricate reviews/`Event` schema.

@@ -1,4 +1,18 @@
 {
+    "routes": [
+      {
+        "route": "/assets/*",
+        "headers": {
+          "Cache-Control": "public, max-age=2592000"
+        }
+      },
+      {
+        "route": "/font/*",
+        "headers": {
+          "Cache-Control": "public, max-age=2592000"
+        }
+      }
+    ],
     "globalHeaders": {
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },

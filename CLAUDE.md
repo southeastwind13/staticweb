@@ -18,7 +18,14 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
 - Hand-written custom CSS in `src/css/styles.css` (Bootstrap is bundled inline here — the
   file is large; most of it is the framework, only `bps-*` classes are custom)
 - Self-hosted **Sarabun** Thai font (`src/font/Sarabun/`)
-- Icons: Font Awesome 6 + Bootstrap Icons (both via CDN, loaded in `<head>`)
+- Icons: **self-hosted Font Awesome 6.0.0 subset** — only the ~57 icons the pages
+  use, as a "Phase I" block at the end of `styles.css` plus two ~6KB woff2 files in
+  `src/font/fontawesome/` (the CDN build was 244KB). **A newly added `fa-*` icon
+  renders as an empty box until you re-run `tools/fa_subset.py`** (usage in its
+  docstring; needs a `fonttools`+`brotli` venv and the FA 6.0.0 `all.css` + `.ttf`
+  files — the cdnjs `.woff2` fails to decode in fontTools) and replace that CSS
+  block with its output. Icons newer than 6.0.0 (e.g. `fa-shield-heart`) do not
+  exist in this version. Sarabun is served as WOFF2 (TTF kept as fallback).
 - Analytics: Google Tag Manager (`GTM-PLKLTZT`) + GA4 (`G-CG82G9GPN5`, property
   "Baanpermsook - GA4"). Paid traffic runs from Google Ads account `798-838-0532`
   (campaign `BPS Ads`) — see the Analytics note under Conventions before touching either.
@@ -135,6 +142,17 @@ Primary booking channel is **LINE** (`https://line.me/ti/p/FI5YYjJS-X`).
   picking a source. The older `hero-garden-*` / `og-garden-*` files are still used
   by `articles/pak-kret-day-trip.html` — do not delete them. Regenerate exports with
   `dwebp` + `sips` + `cwebp` (no ImageMagick/PIL on this machine).
+  **Gallery grids use `derived/gallery-<name>-640/960.webp` via `srcset`, with
+  `data-full` pointing at the 1280 (breakfast: 960) version for the lightbox.**
+  The 1280px `bps-g-*.jpg` originals stay on disk because og:image, JSON-LD and
+  article heroes still reference them. On the short landing pages the gallery sits
+  inside Chrome's lazy-load distance, so it loads immediately — that is why the
+  thumbnails matter (~1.2MB → ~240KB per landing page).
+- **Assets and fonts are cached for 30 days** (`staticwebapp.config.json` routes
+  `/assets/*` and `/font/*`), and filenames carry no hash. Never overwrite an image
+  or font in place — write a new filename and update the references, or returning
+  visitors keep the old file for up to a month. HTML/CSS/JS keep Azure's default
+  `max-age=30`.
 - `src-backup/` — an older version snapshot; ignore for edits.
 
 ## Run locally

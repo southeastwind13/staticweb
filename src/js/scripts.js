@@ -118,7 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
     zoomable.forEach(function (img) {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', function () {
-        openLightbox(img.currentSrc || img.src, img.alt);
+        // Gallery thumbs are 640/960px (srcset); data-full is the large version
+        openLightbox(img.dataset.full || img.currentSrc || img.src, img.alt);
       });
     });
     lightbox.addEventListener('click', closeLightbox);

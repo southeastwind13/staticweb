@@ -2,6 +2,7 @@
 <html lang="th">
 
 <head>
+    <meta charset="utf-8">
     <!-- Google Tag Manager + Google tag (gtag.js)
          Speed: everything is queued in dataLayer right away, but gtm.js and gtag.js
          (~330KB) are fetched only after window load (or the first tap/scroll), so the
@@ -34,7 +35,6 @@
     <!-- End Google Tag Manager -->
 
     <meta name="facebook-domain-verification" content="xjmylhtjo79te47ek3yy9wozochs2v" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="robots" content="index, follow" />
     <meta name="description"
@@ -68,11 +68,8 @@
     <link rel="icon" type="image/x-icon" href="assets/logo_bps.ico" />
     <link rel="apple-touch-icon" href="assets/images/logo_bps.png" />
     <!-- Speed: warm up connections to external origins -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <!-- Font Awesome (icons used throughout the page) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- Font Awesome: self-hosted 57-icon subset inside styles.css (tools/fa_subset.py) -->
     <!-- Core theme CSS (includes Bootstrap)-->
     <!-- Speed: the hero is a CSS background, so the preload scanner cannot see it. Same files and breakpoint as .bps-hero in styles.css -->
     <link rel="preload" as="image" href="assets/images/derived/hero-exterior-mobile-720.webp" media="(max-width: 760px)" fetchpriority="high">
@@ -851,28 +848,28 @@
             </div>
             <div class="bps-gallery-grid">
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-exterior.jpg" alt="อาคารที่พักและสวนของโรงแรมบ้านเพิ่มสุข" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-exterior-640.webp" srcset="assets/images/derived/gallery-exterior-640.webp 640w, assets/images/derived/gallery-exterior-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-exterior-1280.webp" alt="อาคารที่พักและสวนของโรงแรมบ้านเพิ่มสุข" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-deck.jpg" alt="ศาลาไม้และมุมนั่งเล่นในสวนร่มรื่น" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-deck-640.webp" srcset="assets/images/derived/gallery-deck-640.webp 640w, assets/images/derived/gallery-deck-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-deck-1280.webp" alt="ศาลาไม้และมุมนั่งเล่นในสวนร่มรื่น" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-garden.jpg" alt="พื้นที่สีเขียวและสวนของบ้านเพิ่มสุข" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-garden-640.webp" srcset="assets/images/derived/gallery-garden-640.webp 640w, assets/images/derived/gallery-garden-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-garden-1280.webp" alt="พื้นที่สีเขียวและสวนของบ้านเพิ่มสุข" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-lounge.jpg" alt="มุมพักผ่อนกลางสวนบรรยากาศสงบ" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-lounge-640.webp" srcset="assets/images/derived/gallery-lounge-640.webp 640w, assets/images/derived/gallery-lounge-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-lounge-1280.webp" alt="มุมพักผ่อนกลางสวนบรรยากาศสงบ" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-room1.jpg" alt="ห้องพักตกแต่งสวย เตียงนุ่ม สะอาด" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-room1-640.webp" srcset="assets/images/derived/gallery-room1-640.webp 640w, assets/images/derived/gallery-room1-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-room1-1280.webp" alt="ห้องพักตกแต่งสวย เตียงนุ่ม สะอาด" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-room2.jpg" alt="ห้องพักโทนสีอบอุ่น เป็นส่วนตัว" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-room2-640.webp" srcset="assets/images/derived/gallery-room2-640.webp 640w, assets/images/derived/gallery-room2-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-room2-1280.webp" alt="ห้องพักโทนสีอบอุ่น เป็นส่วนตัว" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-room3.jpg" alt="ห้องพักกว้างขวาง พร้อมสิ่งอำนวยความสะดวก" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-room3-640.webp" srcset="assets/images/derived/gallery-room3-640.webp 640w, assets/images/derived/gallery-room3-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-room3-1280.webp" alt="ห้องพักกว้างขวาง พร้อมสิ่งอำนวยความสะดวก" loading="lazy" decoding="async">
                 </figure>
                 <figure class="bps-gallery-item">
-                    <img src="assets/images/bps-g-breakfast.jpg" alt="อาหารเช้าของโรงแรมบ้านเพิ่มสุข" loading="lazy" decoding="async">
+                    <img src="assets/images/derived/gallery-breakfast-640.webp" srcset="assets/images/derived/gallery-breakfast-640.webp 640w, assets/images/derived/gallery-breakfast-960.webp 960w" sizes="(max-width: 768px) 50vw, 360px" data-full="assets/images/derived/gallery-breakfast-960.webp" alt="อาหารเช้าของโรงแรมบ้านเพิ่มสุข" loading="lazy" decoding="async">
                 </figure>
             </div>
         </div>
